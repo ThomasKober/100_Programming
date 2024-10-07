@@ -56,6 +56,27 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+uint32_t counter_ticktimer = 0;
+uint32_t counter1_ticktimer = 0;
+uint32_t counter2_ticktimer = 0;
+
+void blink_LED_P0(uint32_t interval_ms)
+{
+	  if((counter_ticktimer - counter1_ticktimer) >= interval_ms)
+	  {
+		  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+		  counter1_ticktimer = HAL_GetTick();
+	  }
+}
+
+void blink_LED_P1(uint32_t interval_ms)
+{
+	  if((counter_ticktimer - counter2_ticktimer) >= interval_ms)
+	  {
+		  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_1);
+		  counter2_ticktimer = HAL_GetTick();
+	  }
+}
 
 /* USER CODE END 0 */
 
@@ -67,8 +88,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	uint32_t ui32counter1_ticktimer = 0;
-	uint32_t ui32counter2_ticktimer = 0;
+
 
   /* USER CODE END 1 */
 
@@ -110,25 +130,12 @@ int main(void)
 	   *   https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf
 	   *------------------------------------- */
 
-	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
-	  HAL_Delay(500);
-	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
-	  HAL_Delay(500);
+	  counter_ticktimer = HAL_GetTick();
 
-	  ui32counter2_ticktimer = HAL_GetTick();
-
-	  if( (ui32counter2_ticktimer - ui32counter1_ticktimer) >= 500)
-	  {
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
-		  ui32counter1_ticktimer = 0
-	  }
-	  else
-	  {
-		  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_RESET);
-	  }
+	  blink_LED_P0(500);
+	  blink_LED_P1(200);
 
 
-	  //blink_led();
 
 
 
