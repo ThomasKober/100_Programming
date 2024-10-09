@@ -15,7 +15,23 @@
   *
   ******************************************************************************
   */
+
+
+  /*--------------------------------------------------------------------------
+   * Task:
+   * - two LEDs should blink differently
+   * - use "HAL_GetTick()" function
+   * - use PB0 (D3) and PB1 (D6) for LED connection
+   *
+   * - Dev. Board: NUCLEO-L432KC
+   * - User Manual: UM1884
+   *   https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf
+   *--------------------------------------------------------------------------
+
+
 /* USER CODE END Header */
+
+
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
@@ -119,17 +135,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  /*-------------------------------------
-	   * Task:
-	   * - two LEDs should blink differently
-	   * - use "HAL_GetTick()" function
-	   * - use PB0 (D3) and PB1 (D6) for LED connection
-	   *
-	   * - Dev. Board: NUCLEO-L432KC
-	   * - User Manual: UM1884
-	   *   https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf
-	   *------------------------------------- */
-
 	  counter_ticktimer = HAL_GetTick();
 
 	  blink_LED_P0(500);

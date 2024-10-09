@@ -15,6 +15,20 @@
   *
   ******************************************************************************
   */
+
+
+  /*--------------------------------------------------------------------------
+   * Task:
+   * - two LEDs should blink differently
+   * - use "HAL_GetTick()" function
+   * - use PB0 (D3) and PB1 (D6) for LED connection
+   *
+   * - Dev. Board: NUCLEO-L432KC
+   * - User Manual: UM1884
+   *   https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf
+   *--------------------------------------------------------------------------
+
+
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -45,13 +59,41 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+uint8_t state = 0;
+uint8_t v1 = 0;
+uint8_t v2 = 0;
+uint8_t v3 = 0;
+uint8_t v4 = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
 
+/* USER CODE BEGIN PFP */
+void strobe(void)
+{
+	  switch (state)
+	  {
+	  	  case 1:
+	  		  v1++;
+	  		  state = 2;
+	  		  break;
+	      case 2:
+	    	  v2++;
+	    	  state = 3;
+	    	  break;
+	      case 3:
+	    	  v3++;
+	    	  state = 4;
+	    	  break;
+	      case 4:
+	    	  v4++;
+	    	  state = 1;
+	          break;
+	      default:
+	    	  state = 1;
+	  }
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -65,6 +107,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -97,6 +140,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -169,7 +214,8 @@ HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Instance == TIM1)
 	{
-		HAL_GPIO_TogglePin(Debug_GPIO_Port, Debug_Pin);
+		strobe();
+		//HAL_GPIO_TogglePin(Debug_GPIO_Port, Debug_Pin);
 	}
 }
 /* USER CODE END 4 */
