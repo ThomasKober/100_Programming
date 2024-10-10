@@ -29,6 +29,8 @@
    * - Dev. Board: NUCLEO-L432KC
    * - User Manual: UM1884
    *   https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf
+   * - STM32L4 Timers
+   *   https://www.st.com/resource/en/product_training/STM32L4_WDG_TIMERS_GPTIM.pdf
    *--------------------------------------------------------------------------
    */
 
@@ -63,6 +65,7 @@
 
 /* USER CODE BEGIN PV */
 uint16_t cnt = 0;
+uint32_t i = 0;
 
 /* USER CODE END PV */
 
@@ -71,14 +74,27 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void lt_beacon(void)
 {
-	if( ((cnt>=0)&&(cnt<=40)) || ((cnt>=50)&&(cnt<=90)) )
-	{
-		HAL_GPIO_WritePin(lt_bea_GPIO_Port, lt_bea_Pin, GPIO_PIN_SET);
-	}
-	else
-	{
-		HAL_GPIO_WritePin(lt_bea_GPIO_Port, lt_bea_Pin, GPIO_PIN_RESET);
-	}
+		for(i=100; i<2000; i++)
+		{
+			__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1, i);
+		}
+		HAL_Delay(1);
+
+		for(i=2000; i>100; i--)
+		{
+			__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1, i);
+		}
+		HAL_Delay(1);
+
+//	if( ((cnt>=0)&&(cnt<=40)) || ((cnt>=50)&&(cnt<=90)) )
+//	{
+//		HAL_GPIO_WritePin(lt_bea_GPIO_Port, lt_bea_Pin, GPIO_PIN_SET);
+//	}
+//	else
+//	{
+//		HAL_GPIO_WritePin(lt_bea_GPIO_Port, lt_bea_Pin, GPIO_PIN_RESET);
+//	}
+
 }
 
 void lt_position(void)
@@ -88,7 +104,8 @@ void lt_position(void)
 
 void lt_anticollition(void)
 {
-	if( ((cnt>=0)&&(cnt<=2)) || ((cnt>=4)&&(cnt<=6)) || ((cnt>=8)&&(cnt<=10)) || ((cnt>=50)&&(cnt<=52)) || ((cnt>=54)&&(cnt<=56)) || ((cnt>=58)&&(cnt<=60)))
+	//ON | OFF | ON | OFF | ON | OFF (10 ms per section)
+	if( ((cnt>=0)&&(cnt<=1)) || ((cnt>=3)&&(cnt<=4)) || ((cnt>=6)&&(cnt<=7)) || ((cnt>=50)&&(cnt<=51)) || ((cnt>=53)&&(cnt<=54)) || ((cnt>=56)&&(cnt<=57)))
 	{
 		HAL_GPIO_WritePin(lt_ac_GPIO_Port, lt_ac_Pin, GPIO_PIN_SET);
 	}
@@ -151,8 +168,10 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_TIM1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim1);
+  HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
