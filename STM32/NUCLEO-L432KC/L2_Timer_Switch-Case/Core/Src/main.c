@@ -19,15 +19,18 @@
 
   /*--------------------------------------------------------------------------
    * Task:
-   * - two LEDs should blink differently
-   * - use "HAL_GetTick()" function
-   * - use PB0 (D3) and PB1 (D6) for LED connection
+   * - create light system for aircraft
+   *	-> Beacon lights
+   *	-> Position Lights
+   *	-> Anti Collition Lights
+   *	-> Landing Light
+   *	-> Search light
    *
    * - Dev. Board: NUCLEO-L432KC
    * - User Manual: UM1884
    *   https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf
    *--------------------------------------------------------------------------
-
+   */
 
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
@@ -59,41 +62,57 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t state = 0;
-uint8_t v1 = 0;
-uint8_t v2 = 0;
-uint8_t v3 = 0;
-uint8_t v4 = 0;
+uint16_t cnt = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-
 /* USER CODE BEGIN PFP */
-void strobe(void)
+void lt_beacon(void)
 {
-	  switch (state)
-	  {
-	  	  case 1:
-	  		  v1++;
-	  		  state = 2;
-	  		  break;
-	      case 2:
-	    	  v2++;
-	    	  state = 3;
-	    	  break;
-	      case 3:
-	    	  v3++;
-	    	  state = 4;
-	    	  break;
-	      case 4:
-	    	  v4++;
-	    	  state = 1;
-	          break;
-	      default:
-	    	  state = 1;
-	  }
+	if( ((cnt>=0)&&(cnt<=40)) || ((cnt>=50)&&(cnt<=90)) )
+	{
+		HAL_GPIO_WritePin(lt_bea_GPIO_Port, lt_bea_Pin, GPIO_PIN_SET);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(lt_bea_GPIO_Port, lt_bea_Pin, GPIO_PIN_RESET);
+	}
 }
+
+void lt_position(void)
+{
+	HAL_GPIO_WritePin(lt_pos_GPIO_Port, lt_pos_Pin, GPIO_PIN_SET);
+}
+
+void lt_anticollition(void)
+{
+	if( ((cnt>=0)&&(cnt<=2)) || ((cnt>=4)&&(cnt<=6)) || ((cnt>=8)&&(cnt<=10)) || ((cnt>=50)&&(cnt<=52)) || ((cnt>=54)&&(cnt<=56)) || ((cnt>=58)&&(cnt<=60)))
+	{
+		HAL_GPIO_WritePin(lt_ac_GPIO_Port, lt_ac_Pin, GPIO_PIN_SET);
+	}
+	else
+	{
+		HAL_GPIO_WritePin(lt_ac_GPIO_Port, lt_ac_Pin, GPIO_PIN_RESET);
+	}
+}
+
+void lt_landing(void)
+{
+	HAL_GPIO_WritePin(lt_lan_GPIO_Port, lt_lan_Pin, GPIO_PIN_SET);
+}
+
+
+void lt_search(void)
+{
+	HAL_GPIO_WritePin(lt_sea_GPIO_Port, lt_sea_Pin, GPIO_PIN_SET);
+}
+
+
+
+
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -140,7 +159,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  lt_beacon();
+	  lt_position();
+	  lt_anticollition();
+	  lt_landing();
+	  lt_search();
 
     /* USER CODE END WHILE */
 
@@ -214,8 +237,11 @@ HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Instance == TIM1)
 	{
-		strobe();
-		//HAL_GPIO_TogglePin(Debug_GPIO_Port, Debug_Pin);
+		cnt++;
+		if(cnt >= 100)
+		{
+			cnt = 0;
+		}
 	}
 }
 /* USER CODE END 4 */

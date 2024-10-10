@@ -61,22 +61,22 @@ void Error_Handler(void);
 #define MCO_GPIO_Port GPIOA
 #define VCP_TX_Pin GPIO_PIN_2
 #define VCP_TX_GPIO_Port GPIOA
-#define Beacon_Lights_Pin GPIO_PIN_0
-#define Beacon_Lights_GPIO_Port GPIOB
-#define Position_Lights_Pin GPIO_PIN_1
-#define Position_Lights_GPIO_Port GPIOB
+#define lt_bea_Pin GPIO_PIN_0
+#define lt_bea_GPIO_Port GPIOB
+#define lt_pos_Pin GPIO_PIN_1
+#define lt_pos_GPIO_Port GPIOB
 #define SWDIO_Pin GPIO_PIN_13
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
 #define SWCLK_GPIO_Port GPIOA
 #define VCP_RX_Pin GPIO_PIN_15
 #define VCP_RX_GPIO_Port GPIOA
-#define Strobe_Lights_Pin GPIO_PIN_3
-#define Strobe_Lights_GPIO_Port GPIOB
-#define Landing_Lights_Pin GPIO_PIN_4
-#define Landing_Lights_GPIO_Port GPIOB
-#define Debug_Pin GPIO_PIN_5
-#define Debug_GPIO_Port GPIOB
+#define lt_ac_Pin GPIO_PIN_3
+#define lt_ac_GPIO_Port GPIOB
+#define lt_lan_Pin GPIO_PIN_4
+#define lt_lan_GPIO_Port GPIOB
+#define lt_sea_Pin GPIO_PIN_5
+#define lt_sea_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 
