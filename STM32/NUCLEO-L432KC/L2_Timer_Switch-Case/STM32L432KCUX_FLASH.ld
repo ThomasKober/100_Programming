@@ -7,7 +7,7 @@
 **
 **  Abstract    : Linker script for NUCLEO-L432KC Board embedding STM32L432KCUx Device from stm32l4 series
 **                      256KBytes FLASH
-**                      64KBytes RAM
+**                      48KBytes RAM
 **                      16KBytes RAM2
 **
 **                Set heap size, stack size and stack location according
@@ -45,7 +45,7 @@ _Min_Stack_Size = 0x400; /* required amount of stack */
 /* Memories definition */
 MEMORY
 {
-  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 64K
+  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 48K
   RAM2    (xrw)    : ORIGIN = 0x10000000,   LENGTH = 16K
   FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 256K
 }
@@ -87,13 +87,15 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .ARM.extab   : {
+  .ARM.extab (READONLY) : /* The "READONLY" keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
+  {
     . = ALIGN(4);
     *(.ARM.extab* .gnu.linkonce.armextab.*)
     . = ALIGN(4);
   } >FLASH
 
-  .ARM : {
+  .ARM (READONLY) : /* The "READONLY" keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
+  {
     . = ALIGN(4);
     __exidx_start = .;
     *(.ARM.exidx*)
@@ -101,7 +103,7 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .preinit_array     :
+  .preinit_array (READONLY) : /* The "READONLY" keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
   {
     . = ALIGN(4);
     PROVIDE_HIDDEN (__preinit_array_start = .);
@@ -110,7 +112,7 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .init_array :
+  .init_array (READONLY) : /* The "READONLY" keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
   {
     . = ALIGN(4);
     PROVIDE_HIDDEN (__init_array_start = .);
@@ -120,7 +122,7 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .fini_array :
+  .fini_array (READONLY) : /* The "READONLY" keyword is only supported in GCC11 and later, remove it if using GCC10 or earlier. */
   {
     . = ALIGN(4);
     PROVIDE_HIDDEN (__fini_array_start = .);
