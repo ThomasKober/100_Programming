@@ -66,10 +66,9 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-Status satus;
-
 uint16_t cnt = 0;
 uint32_t i = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,7 +99,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  init_status(&satus, false, false, false, false, false);
+  init_status(false, false, false, false, false);
   /* USER CODE END Init */
 
   /* Configure the system clock */

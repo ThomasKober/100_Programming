@@ -1,6 +1,2 @@
-../Core/Src/my_controls.c:11:6:init_status	16	static
-../Core/Src/my_controls.c:21:6:lt_beacon	16	static
-../Core/Src/my_controls.c:27:6:lt_position	16	static
-../Core/Src/my_controls.c:33:6:lt_anticollition	16	static
-../Core/Src/my_controls.c:48:6:lt_landing	16	static
-../Core/Src/my_controls.c:54:6:lt_search	16	static
+../Core/Src/my_controls.c:15:6:init_status	16	static
+../Core/Src/my_controls.c:25:6:get_status	16	static
