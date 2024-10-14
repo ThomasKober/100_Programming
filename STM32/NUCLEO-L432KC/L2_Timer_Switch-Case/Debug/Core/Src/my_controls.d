@@ -27,7 +27,8 @@ Core/Src/my_controls.o: ../Core/Src/my_controls.c ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Core/Inc/my_controls.h
+ ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/my_controls.h \
+ ../Core/Inc/my_signalshapes.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -57,4 +58,7 @@ Core/Src/my_controls.o: ../Core/Src/my_controls.c ../Core/Inc/main.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_tim_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
+../Core/Inc/tim.h:
+../Core/Inc/main.h:
 ../Core/Inc/my_controls.h:
+../Core/Inc/my_signalshapes.h:

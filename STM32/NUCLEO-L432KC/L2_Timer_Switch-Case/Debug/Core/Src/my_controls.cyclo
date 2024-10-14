@@ -1,0 +1,17 @@
+../Core/Src/my_controls.c:29:6:counter	2
+../Core/Src/my_controls.c:54:6:init_status	1
+../Core/Src/my_controls.c:83:6:get_status_lt_bea	1
+../Core/Src/my_controls.c:90:6:get_status_lt_pos	1
+../Core/Src/my_controls.c:97:6:get_status_lt_ac	1
+../Core/Src/my_controls.c:104:6:get_status_lt_lan	1
+../Core/Src/my_controls.c:111:6:get_status_lt_sea	1
+../Core/Src/my_controls.c:123:6:set_status_lt_bea	1
+../Core/Src/my_controls.c:130:6:set_status_lt_pos	1
+../Core/Src/my_controls.c:137:6:set_status_lt_ac	1
+../Core/Src/my_controls.c:144:6:set_status_lt_lan	1
+../Core/Src/my_controls.c:151:6:set_status_lt_sea	1
+../Core/Src/my_controls.c:163:6:lt_beacon	2
+../Core/Src/my_controls.c:177:6:lt_position	2
+../Core/Src/my_controls.c:191:6:lt_anticollition	8
+../Core/Src/my_controls.c:214:6:lt_landing	2
+../Core/Src/my_controls.c:228:6:lt_search	2

@@ -10,7 +10,7 @@
 
 #include "main.h"
 
-
-extern const int32_t data[1024];
+//extern const uint32_t data[1024];
+extern const uint32_t data[500];
 
 #endif /* INC_MY_SIGNALSHAPES_H_ */

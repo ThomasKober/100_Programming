@@ -44,7 +44,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <my_signalshapes.h>
 #include <my_controls.h>
 /* USER CODE END Includes */
 
@@ -66,8 +65,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint16_t cnt = 0;
-uint32_t i = 0;
 
 /* USER CODE END PV */
 
@@ -116,9 +113,7 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_Base_Start_IT(&htim1);
-  //HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
-  HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_1, data, 1024);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -203,11 +198,7 @@ HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Instance == TIM1)
 	{
-		cnt++;
-		if(cnt >= 100)
-		{
-			cnt = 0;
-		}
+		void counter(void);
 	}
 }
 /* USER CODE END 4 */
