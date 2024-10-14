@@ -125,11 +125,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  lt_beacon();
-//	  lt_position();
-//	  lt_anticollition();
-//	  lt_landing();
-//	  lt_search();
+	  lt_beacon();
+	  lt_position();
+	  lt_anticollition();
+	  lt_landing();
+	  lt_search();
 
     /* USER CODE END WHILE */
 
