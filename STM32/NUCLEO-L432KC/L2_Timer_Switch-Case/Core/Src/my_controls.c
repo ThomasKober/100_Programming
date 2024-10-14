@@ -9,7 +9,7 @@
 #include "tim.h"
 #include "stdbool.h"
 
-#include "my_controls.h"
+#include <my_controls.h>
 #include <my_signalshapes.h>
 
 
@@ -19,7 +19,7 @@
  * initialization of counter variable
  * ----------------------------------------------------------------------
  */
-uint16_t cnt = 0;
+uint8_t cnt = 0;
 
 /*
  * ----------------------------------------------------------------------

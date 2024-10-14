@@ -96,7 +96,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  init_status(false, false, false, false, false);
+  init_status(true, false, false, false, false);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -113,7 +113,7 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -198,7 +198,7 @@ HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Instance == TIM1)
 	{
-		void counter(void);
+		counter();
 	}
 }
 /* USER CODE END 4 */
