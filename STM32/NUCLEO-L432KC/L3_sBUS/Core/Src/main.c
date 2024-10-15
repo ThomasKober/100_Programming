@@ -76,6 +76,8 @@ DMA_HandleTypeDef hdma_usart1_rx;
 
 //transmit variable UART2
 uint8_t data_tx[] = "sBUS Test!\r\n";
+uint8_t data_tx_sBUSframeOK[] = "sBUS Frame Correct!\r\n";
+uint8_t data_tx_sBUSframeNOK[] = "sBUS Frame NOT Correct!\r\n";
 
 //receive variable UART1 (sBUS)
 uint8_t sbusBuffer[SBUS_FRAME_LENGTH];
@@ -99,21 +101,7 @@ static void MX_TIM1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-    if (huart->Instance == USART1)
-    {
-    	// Check for SBUS start byte
-        if (sbusBuffer[0] == SBUS_START_BYTE)
-        {
-            // Frame is ready for processing
-            sbusDataReady = 1;
-        }
 
-        // Restart DMA reception
-        HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
-    }
-}
 
 void processSbusData()
 {
@@ -124,6 +112,68 @@ void processSbusData()
 
         // Reset the flag after processing
         sbusDataReady = 0;
+    }
+}
+
+//function for parsing sBUS data
+void parseSBUSData(uint8_t *buffer)
+{
+    // Check for valid start byte (0x0F)
+    if (buffer[0] != 0x0F || buffer[SBUS_FRAME_SIZE - 1] != 0x00)
+    {
+        // Invalid frame, return
+        return;
+    }
+
+    // Extract channel values
+    for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
+    {
+        if (i < 8) {
+            // First 8 channels: use first 16 bytes
+            channelValues[i] = (buffer[1 + (i * 2)] & 0x07) | (buffer[2 + (i * 2)] << 3);
+        } else {
+            // Next 8 channels: use last 9 bytes
+            channelValues[i] = (buffer[2 + ((i - 8) * 2)] >> 5) | ((buffer[3 + ((i - 8) * 2)] & 0xFF) << 3);
+        }
+    }
+
+    // Process flags (if necessary)
+    uint8_t flags = buffer[SBUS_FRAME_SIZE - 2];
+    // Check for failsafe or lost frame conditions
+    if (flags & 0x04)
+    {
+        // Failsafe triggered
+    }
+    if (flags & 0x08)
+    {
+        // Frame lost
+    }
+}
+
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART1)
+    {
+    	// Check for SBUS start byte
+        if (sbusBuffer[0] == SBUS_START_BYTE)
+        {
+            // Frame is ready for processing
+            sbusDataReady = 1;
+
+            if(sbusDataReady)
+            {
+            	HAL_UART_Transmit(&huart2, data_tx_sBUSframeOK, sizeof(data_tx_sBUSframeOK) - 1, 100);
+            	parseSBUSData(sbusBuffer);
+            }
+            else
+            {
+            	HAL_UART_Transmit(&huart2, data_tx_sBUSframeNOK, sizeof(data_tx_sBUSframeNOK) - 1, 100);
+            }
+        }
+
+        // Restart DMA reception
+        HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
     }
 }
 
@@ -175,6 +225,14 @@ int main(void)
   while (1)
   {
 	  processSbusData();
+
+	  // Example: Process or use the channel values
+	  for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
+	  {
+		  // Use channelValues[i] for your application
+	  }
+
+	  HAL_Delay(100); // Adjust as necessary
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
