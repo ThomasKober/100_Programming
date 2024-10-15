@@ -29,6 +29,8 @@
  * - 25 bytes long frame (start byte and a checksum)
  * - start byte (0x0F)
  *
+ * Help: (decoding sBUS)
+ * - chatgpt: stm32 L4 logic to process the SBUS data
  */
 
 
@@ -48,8 +50,14 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+//sBUS receive
 #define SBUS_START_BYTE 0x0F
 #define SBUS_FRAME_LENGTH 25
+
+//sBUS decode
+#define SBUS_FRAME_SIZE 25
+#define SBUS_CHANNEL_COUNT 16
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -72,6 +80,10 @@ uint8_t data_tx[] = "sBUS Test!\r\n";
 //receive variable UART1 (sBUS)
 uint8_t sbusBuffer[SBUS_FRAME_LENGTH];
 volatile uint8_t sbusDataReady = 0;
+
+//sBUS decode
+uint8_t sbusBuffer[SBUS_FRAME_SIZE];
+uint16_t channelValues[SBUS_CHANNEL_COUNT];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
