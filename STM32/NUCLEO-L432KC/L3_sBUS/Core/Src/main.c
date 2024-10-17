@@ -146,7 +146,8 @@ void parseSBUSData(uint8_t *buffer)
 }
 
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
     if (huart->Instance == USART1)
     {
@@ -154,7 +155,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     	parseSBUSData(sbusBuffer);
 
         // Restart DMA reception
-        HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+    	HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
     }
 }
 
@@ -197,7 +198,8 @@ int main(void)
   // Start TIM1 in interrupt mode
   HAL_TIM_Base_Start_IT(&htim1);
   // Start UART1 reception with DMA
-  HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+//  HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -385,7 +387,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 100000;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
