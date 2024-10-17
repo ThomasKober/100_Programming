@@ -72,7 +72,8 @@ DMA_HandleTypeDef hdma_usart1_rx;
 /* USER CODE BEGIN PV */
 
 //transmit variable UART2
-uint8_t data_test[] = "sBUS Test!\r\n";
+uint8_t data_sBusTest[] = "sBUS Test!\r\n";
+uint8_t data_sBusOK[] = "sBUS RX OK!\r\n";
 uint8_t data_sBusRxOk[] = "sBUS Frame Correct!\r\n";
 uint8_t data_sBusRxNok[] = "sBUS Frame NOT Correct!\r\n";
 const char *crlf = "\r\n";
@@ -152,10 +153,45 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
     if (huart->Instance == USART1)
     {
     	// Process the received data
-    	parseSBUSData(sbusBuffer);
+//    	parseSBUSData(sbusBuffer);
 
         // Restart DMA reception
     	HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+
+    	HAL_UART_Transmit(&huart2, data_sBusOK, sizeof(data_sBusOK), 100);
+    }
+}
+
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART1)
+    {
+        // Handle UART2 errors
+        if (huart->ErrorCode & HAL_UART_ERROR_ORE)
+        {
+            // Overrun Error
+        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nOverrun Error", 20, 100);
+        }
+        if (huart->ErrorCode & HAL_UART_ERROR_FE)
+        {
+            // Framing Error
+        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nFraming Error", 20, 100);
+        }
+        if (huart->ErrorCode & HAL_UART_ERROR_NE)
+        {
+            // Noise Error
+        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nNoise Error", 20, 100);
+        }
+        if (huart->ErrorCode & HAL_UART_ERROR_PE)
+        {
+            // Parity Error
+        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nParity Error", 20, 100);
+        }
+
+        // Optionally reset the UART
+        //HAL_UART_DeInit(huart);
+        //HAL_UART_Init(huart);  // Reinitialize if necessary
     }
 }
 
@@ -206,21 +242,24 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  // Example: Process or use the channel values
-	  for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
-	  {
-		  // Use channelValues[i] for your application
-		  uint8_t dataToSend[2]; // Array to hold the two bytes of the uint16_t value
-		  dataToSend[0] = (channelValues[i] & 0xFF);          // Lower byte
-		  dataToSend[1] = (channelValues[i] >> 8) & 0xFF;     // Upper byte
+//	  // Example: Process or use the channel values
+//	  for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
+//	  {
+//		  // Use channelValues[i] for your application
+//		  uint8_t dataToSend[2]; // Array to hold the two bytes of the uint16_t value
+//		  dataToSend[0] = (channelValues[i] & 0xFF);          // Lower byte
+//		  dataToSend[1] = (channelValues[i] >> 8) & 0xFF;     // Upper byte
+//
+//		  // Transmit the two bytes
+//		  HAL_UART_Transmit(&huart2, dataToSend, sizeof(dataToSend), 10);
+//	  }
+//
+//	  HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
+//
+//	  HAL_Delay(100); // Adjust as necessary
 
-		  // Transmit the two bytes
-		  HAL_UART_Transmit(&huart2, dataToSend, sizeof(dataToSend), 10);
-	  }
 
-	  HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
 
-	  HAL_Delay(100); // Adjust as necessary
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -457,7 +496,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if (htim->Instance == TIM1)
     {
-  	  //HAL_UART_Transmit(&huart2, data_test, sizeof(data_test) - 1, 100);
+  	  HAL_UART_Transmit(&huart2, data_sBusTest, sizeof(data_sBusTest), 100);
+  	  HAL_UART_ErrorCallback(&huart1);
     }
 }
 /* USER CODE END 4 */
