@@ -15,6 +15,66 @@
   *
   ******************************************************************************
   */
+
+/*
+ * ChatGPT: HAL_UART_ErrorCallback vs HAL_DMA_ErrorCallback
+ *
+ *
+ *
+ * Structure of HAL_DMA_ErrorCallback
+ *
+ * Identify the DMA Instance:
+ * 		Use the hdma parameter to determine which DMA channel experienced the error.
+ *
+ * Log the Error:
+ * 		Use a logging mechanism (e.g., printing to console, sending an error message,
+ * 		etc.) to capture the error context.
+ *
+ * Clear the Error:
+ * 		If applicable, you might want to clear the error flags associated with the DMA.
+ *
+ * Abort the DMA Transfer:
+ * 		Call HAL_DMA_Abort() to stop the DMA transfer and clean up any resources.
+ *
+ * Optionally, Reinitialize the DMA:
+ * 		Depending on the application, you might need to reconfigure or restart the DMA
+ * 		after handling the error.
+ *
+ * Notify Other System Components:
+ * 		If other parts of your system need to be aware of the error (e.g., an application layer),
+ * 		send a notification or update a status variable.
+ */
+
+/*
+ * Breakdown of Key Components
+ *
+ * Error Callback Function:
+ * 		This function is called automatically when a UART error occurs. Ensure it's configured
+ * 		properly in your UART initialization.
+ *
+ * dentify UART Instance:
+ * 		The code checks if the error relates to UART2. This is crucial for applications with multiple UARTs.
+ *
+ * DMA Abort Handling:
+ * 		Abort the DMA: Call HAL_DMA_Abort() to stop the ongoing DMA transfer. Check the return value
+ * 		to ensure the abort was successful.
+ *
+ * 		Clear Error Flags: Use __HAL_DMA_CLEAR_FLAG() to clear relevant error flags, such as transfer
+ * 		errors, FIFO errors, and direct memory errors.
+ *
+ * Stop UART DMA:
+ * 		Use HAL_UART_DMAStop() to stop any ongoing DMA operations related to the UART. This prevents
+ * 		further erroneous transmissions.
+ *
+ * Optional Reinitialization:
+ * 		If necessary, you can reinitialize the UART peripheral by uncommenting the HAL_UART_Init() line.
+ * 		This step may be required depending on your application's state management.
+ *
+ * Notify Other Components:
+ * 		Consider implementing a mechanism to notify other parts of your application about the error, such
+ * 		as setting an error state or invoking an error handler function.
+ */
+
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -81,72 +141,40 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 
 void HAL_DMA_ErrorCallback(DMA_HandleTypeDef *hdma)
 {
-    // Handle DMA transmit errors
-    if (hdma->Instance == DMA1_Channel7)	// Check for your specific DMA channel
+    // Step 1: Identify the DMA instance
+    if (hdma->Instance == DMA1_Channel6)		//UART2, TX
     {
-    	// Get the error type
-    	HAL_DMA_ErrorTypeDef dmaError = HAL_DMA_GetError(hdma);
+        // Step 2: Log the error for DMA1_Channel6
+        //printf("Error occurred on DMA1_Channel6.\n");
 
-    	// Handle specific error types
-    	switch (dmaError)
-    	{
-    		case HAL_DMA_ERROR_TE:
-    			// Handle transfer error
-    			// You might want to reset the DMA or the UART
-    			// Example: HAL_UART_Abort(&huart2);
-    			break;
+        // Step 3: Clear any error flags
+        __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TE6);
+    }
+    else if (hdma->Instance == DMA1_Channel7)	//UART2, RX
+    {
+        // Step 2: Log the error for DMA1_Channel7
+    	//printf("Error occurred on DMA1_Channel7.\n");
 
-    		case HAL_DMA_ERROR_FE:
-    			// Handle FIFO error
-    			break;
+        // Step 3: Clear any error flags
+        __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TE7);
+    }
+    // Add additional channels as needed
 
-    		case HAL_DMA_ERROR_TIMEOUT:
-    			// Handle timeout error
-    			break;
-
-    		default:
-    			// Handle unknown error
-    			break;
-    	}
-
-
-    	// Check for specific error flags
-    	if (__HAL_DMA_GET_FLAG(hdma, DMA_FLAG_TE))
-    	{
-
-    		// Handle Transfer Error
-
-    		__HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TE);   	// Clear the error flag
-
-    		// Optionally reset the DMA or take other corrective actions
-
-    		Error_Handler(); // Call your error handler function
-    	}
-
-    	if (__HAL_DMA_GET_FLAG(hdma, DMA_FLAG_FE))
-    	{
-    		// Handle FIFO Error
-    	    // Reset FIFO or take corrective actions
-    	}
-
-    	if (__HAL_DMA_GET_FLAG(hdma, DMA_FLAG_TIMEOUT))
-    	{
-    		// Handle Timeout Error
-    		// Possibly reset peripherals or take corrective actions
-    	}
-
-        // Take appropriate action
-        Error_Handler(); // Call the error handler
+    // Step 4: Abort the DMA transfer
+    if (HAL_DMA_Abort(hdma) != HAL_OK)
+    {
+        // Handle abort error if necessary
+    	//printf("Failed to abort DMA transfer.\n");
     }
 
-    // Handle DMA receive errors
-    if (hdma->Instance == DMA1_Channel6)	// Check for your specific DMA channel
-    {
-        // Take appropriate action
-        Error_Handler(); // Call the error handler
-    }
+    // Step 5: Optional - Reinitialize the DMA if needed
+    // HAL_DMA_Init(hdma); // Uncomment if you wish to reinitialize
 
+    // Step 6: Notify other parts of the application if needed
+    // e.g., set an error flag, send a message, etc.
 }
+
+
 
 /* USER CODE END 0 */
 
