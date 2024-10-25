@@ -17,8 +17,8 @@
   */
 
 /*
- * ChatGPT: HAL_UART_ErrorCallback vs HAL_DMA_ErrorCallback
- *
+ * ChatGPT:	- HAL_UART_ErrorCallback vs HAL_DMA_ErrorCallback
+ *			- stm32 L4 HAL_UART_ErrorCallback error handling logic
  *
  *
  * Structure of HAL_DMA_ErrorCallback
@@ -78,6 +78,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdio.h>
+#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -105,7 +107,7 @@ DMA_HandleTypeDef hdma_usart2_rx;
 DMA_HandleTypeDef hdma_usart2_tx;
 
 /* USER CODE BEGIN PV */
-uint8_t dataBuffer[] = "Hello, UART with DMA!\r\n";		//data buffer tx
+uint8_t dataBufferTx[] = "Hello, UART with DMA!\r\n";		//data buffer tx
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,10 +122,94 @@ static void MX_USART2_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-// Callback for DMA transmission complete
-void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
+
+/*
+ * Error Code description UART1
+ * 0xA0....UART1 Unknown Error
+ * 0xA1....UART1 Overrun Error
+ * 0xA2....UART1 Noise Error
+ * 0xA3....UART1 Framing Error
+ * 0xA4....UART1 Parity Error
+ */
+
+/*
+ * Error Code description UART2
+ * 0xB0....UART2 Unknown Error
+ * 0xB1....UART2 Overrun Error
+ * 0xB2....UART2 Noise Error
+ * 0xB3....UART2 Framing Error
+ * 0xB4....UART2 Parity Error
+ */
+
+
+void LogError(uint8_t errorCode)
 {
-    // Transmission complete handling
+	char message[50];
+
+    // Implement your logging mechanism, e.g., send to UART, store in buffer
+
+	// Example: send error code to a debug UART
+    sprintf(message, "UART Error: 0x%08X\n", errorCode);
+    HAL_UART_Transmit(&huart2, (uint8_t*)message, strlen(message), HAL_MAX_DELAY);
+}
+
+
+void resetUART(UART_HandleTypeDef *huart)
+{
+	if (huart == NULL || huart->Instance != USART1 || huart->Instance != USART2)
+	{
+		return; // Error: Invalid handle
+	}
+
+//	if (huart->Instance == USART1)
+//	{
+//		// Disable the UART1 peripheral
+//		__HAL_UART_DISABLE(&huart1);
+//
+//		// Clear the RX buffer
+//		while (__HAL_UART_GET_FLAG(huart, UART_FLAG_RXNE))
+//		{
+//			(void)huart->Instance->RDR; // Read the data register to clear RXNE
+//		}
+//
+//		// Reset the UART1 peripheral
+//		__HAL_RCC_USART1_FORCE_RESET();
+//		__HAL_RCC_USART1_RELEASE_RESET();
+//
+//		// Reinitialize the UART1 peripheral
+//		if (HAL_UART_Init(&huart1) == HAL_OK)		// Init UART1
+//		{
+//			// Reinitialize successful
+//		}else
+//		{
+//			// Reinitialize not successful
+//		}
+//	}
+
+	if (huart->Instance == USART2)
+	{
+		// Disable the UART2 peripheral
+		__HAL_UART_DISABLE(&huart2);
+
+		// Clear the RX buffer
+		while (__HAL_UART_GET_FLAG(huart, UART_FLAG_RXNE))
+		{
+			(void)huart->Instance->RDR; // Read the data register to clear RXNE
+		}
+
+		// Reset the UART2 peripheral
+		__HAL_RCC_USART2_FORCE_RESET();
+		__HAL_RCC_USART2_RELEASE_RESET();
+
+		// Reinitialize the UART2 peripheral
+		if (HAL_UART_Init(&huart2) == HAL_OK)		// Init UART2
+		{
+			// Reinitialize successful
+		}else
+		{
+			// Reinitialize not successful
+		}
+	}
 }
 
 
@@ -139,40 +225,187 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 //    }
 //}
 
-void HAL_DMA_ErrorCallback(DMA_HandleTypeDef *hdma)
+
+////------------------------------Error Handling UART1------------------------------
+//// Handle overrun error
+//void HandleOverrunErrorUART1(void)
+//{
+//	LogError(0xB1);						// log the error
+//	__HAL_UART_CLEAR_OREFLAG(&huart1);	// clear error flag
+//	//resetUART1(&huart1);						// reset UART1
+//}
+//
+//// Handle noise error
+//void HandleNoiseErrorUART1(void)
+//{
+//	LogError(0xB2);						// log the error
+//	__HAL_UART_CLEAR_NEFLAG(&huart1);	// clear error flag
+//}
+//
+//// Handle framing error
+//void HandleFramingErrorUART1(void)
+//{
+//	LogError(0xB3);						// log the error
+//	__HAL_UART_CLEAR_FEFLAG(&huart1);	// clear error flag
+//}
+//
+//// Handle parity error
+//void HandleParityErrorUART1(void)
+//{
+//	LogError(0xB4);						// log the error
+//	__HAL_UART_CLEAR_PEFLAG(&huart1);	// clear error flag
+//}
+//
+//// Handle unknown errors
+//void HandleUnknownErrorUART1(void)
+//{
+//	LogError(0xB0);						// log the error
+//	//resetUART1();						// reset UART1
+//}
+
+
+//------------------------------Error Handling UART2------------------------------
+// Handle overrun error
+void HandleOverrunErrorUART2(void)
 {
-    // Step 1: Identify the DMA instance
-    if (hdma->Instance == DMA1_Channel6)		//UART2, TX
-    {
-        // Step 2: Log the error for DMA1_Channel6
-        //printf("Error occurred on DMA1_Channel6.\n");
-
-        // Step 3: Clear any error flags
-        __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TE6);
-    }
-    else if (hdma->Instance == DMA1_Channel7)	//UART2, RX
-    {
-        // Step 2: Log the error for DMA1_Channel7
-    	//printf("Error occurred on DMA1_Channel7.\n");
-
-        // Step 3: Clear any error flags
-        __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TE7);
-    }
-    // Add additional channels as needed
-
-    // Step 4: Abort the DMA transfer
-    if (HAL_DMA_Abort(hdma) != HAL_OK)
-    {
-        // Handle abort error if necessary
-    	//printf("Failed to abort DMA transfer.\n");
-    }
-
-    // Step 5: Optional - Reinitialize the DMA if needed
-    // HAL_DMA_Init(hdma); // Uncomment if you wish to reinitialize
-
-    // Step 6: Notify other parts of the application if needed
-    // e.g., set an error flag, send a message, etc.
+	LogError(0xB1);						// log the error
+	__HAL_UART_CLEAR_OREFLAG(&huart2);	// clear error flag
+	resetUART(&huart2);					// reset UART2
 }
+
+// Handle noise error
+void HandleNoiseErrorUART2(void)
+{
+	LogError(0xB2);						// log the error
+	__HAL_UART_CLEAR_NEFLAG(&huart2);	// clear error flag
+}
+
+// Handle framing error
+void HandleFramingErrorUART2(void)
+{
+	LogError(0xB3);						// log the error
+	__HAL_UART_CLEAR_FEFLAG(&huart2);	// clear error flag
+}
+
+// Handle parity error
+void HandleParityErrorUART2(void)
+{
+	LogError(0xB4);						// log the error
+	__HAL_UART_CLEAR_PEFLAG(&huart2);	// clear error flag
+}
+
+// Handle unknown errors
+void HandleUnknownErrorUART2(void)
+{
+	LogError(0xB0);						// log the error
+	//resetUART2();						// reset UART2
+}
+
+
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+	if (huart == NULL || huart->Instance != USART1 || huart->Instance != USART2)
+	{
+		return; // Error: Invalid handle
+	}
+
+//	//Error Handling UART1
+//    if (huart->Instance == USART1)
+//    {
+//        switch (huart->ErrorCode)
+//        {
+//            case HAL_UART_ERROR_ORE:
+//                // Handle overrun error
+//                HandleOverrunErrorUART1();
+//                break;
+//            case HAL_UART_ERROR_NE:
+//                // Handle noise error
+//                HandleNoiseErrorUART1();
+//                break;
+//            case HAL_UART_ERROR_FE:
+//                // Handle framing error
+//                HandleFramingErrorUART1();
+//                break;
+//            case HAL_UART_ERROR_PE:
+//                // Handle parity error
+//                HandleParityErrorUART1();
+//                break;
+//            default:
+//                // Handle unknown errors
+//                HandleUnknownErrorUART1();
+//                break;
+//        }
+//    }
+
+    //Error Handling UART2
+    if (huart->Instance == USART2)
+    {
+        switch (huart->ErrorCode)
+        {
+            case HAL_UART_ERROR_ORE:
+                // Handle overrun error
+                HandleOverrunErrorUART2();
+                break;
+            case HAL_UART_ERROR_NE:
+                // Handle noise error
+                HandleNoiseErrorUART2();
+                break;
+            case HAL_UART_ERROR_FE:
+                // Handle framing error
+                HandleFramingErrorUART2();
+                break;
+            case HAL_UART_ERROR_PE:
+                // Handle parity error
+                HandleParityErrorUART2();
+                break;
+            default:
+                // Handle unknown errors
+                HandleUnknownErrorUART2();
+                break;
+        }
+    }
+}
+
+
+
+
+// Callback for DMA transmission complete
+//void HAL_DMA_ErrorCallback(DMA_HandleTypeDef *hdma)
+//{
+//    // Step 1: Identify the DMA instance
+//    if (hdma->Instance == DMA1_Channel6)		//UART2, TX
+//    {
+//        // Step 2: Log the error for DMA1_Channel6
+//        //printf("Error occurred on DMA1_Channel6.\n");
+//
+//        // Step 3: Clear any error flags
+//        __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TE6);
+//    }
+//    else if (hdma->Instance == DMA1_Channel7)	//UART2, RX
+//    {
+//        // Step 2: Log the error for DMA1_Channel7
+//    	//printf("Error occurred on DMA1_Channel7.\n");
+//
+//        // Step 3: Clear any error flags
+//        __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TE7);
+//    }
+//    // Add additional channels as needed
+//
+//    // Step 4: Abort the DMA transfer
+//    if (HAL_DMA_Abort(hdma) != HAL_OK)
+//    {
+//        // Handle abort error if necessary
+//    	//printf("Failed to abort DMA transfer.\n");
+//    }
+//
+//    // Step 5: Optional - Reinitialize the DMA if needed
+//    // HAL_DMA_Init(hdma); // Uncomment if you wish to reinitialize
+//
+//    // Step 6: Notify other parts of the application if needed
+//    // e.g., set an error flag, send a message, etc.
+//}
+
+
 
 
 
@@ -219,7 +452,7 @@ int main(void)
   {
 	  HAL_Delay(1000);
 
-	  if (HAL_UART_Transmit_DMA(&huart2, dataBuffer, sizeof(dataBuffer)) != HAL_OK)
+	  if (HAL_UART_Transmit_DMA(&huart2, dataBufferTx, sizeof(dataBufferTx)) != HAL_OK)
 	  {
 		  // Transmission error handling
 		  Error_Handler();
@@ -230,8 +463,6 @@ int main(void)
   }
   /* USER CODE END 3 */
 }
-
-
 
 /**
   * @brief System Clock Configuration
