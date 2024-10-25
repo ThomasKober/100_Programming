@@ -78,12 +78,11 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include <stdio.h>
-#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -161,35 +160,36 @@ void resetUART(UART_HandleTypeDef *huart)
 		return; // Error: Invalid handle
 	}
 
-//	if (huart->Instance == USART1)
-//	{
-//		// Disable the UART1 peripheral
-//		__HAL_UART_DISABLE(&huart1);
-//
-//		// Clear the RX buffer
-//		while (__HAL_UART_GET_FLAG(huart, UART_FLAG_RXNE))
-//		{
-//			(void)huart->Instance->RDR; // Read the data register to clear RXNE
-//		}
-//
-//		// Reset the UART1 peripheral
-//		__HAL_RCC_USART1_FORCE_RESET();
-//		__HAL_RCC_USART1_RELEASE_RESET();
-//
-//		// Reinitialize the UART1 peripheral
-//		if (HAL_UART_Init(&huart1) == HAL_OK)		// Init UART1
-//		{
-//			// Reinitialize successful
-//		}else
-//		{
-//			// Reinitialize not successful
-//		}
-//	}
+	if (huart->Instance == USART1)
+		{
+			// Disable the UART2 peripheral
+			__HAL_UART_DISABLE(huart);
+
+			// Clear the RX buffer
+			while (__HAL_UART_GET_FLAG(huart, UART_FLAG_RXNE))
+			{
+				(void)huart->Instance->RDR; // Read the data register to clear RXNE
+			}
+
+			// Reset the UART2 peripheral
+			__HAL_RCC_USART1_FORCE_RESET();
+			__HAL_RCC_USART1_RELEASE_RESET();
+
+
+			// Reinitialize the UART2 peripheral
+			if (HAL_UART_Init(huart) == HAL_OK)		// Init UART1
+			{
+				// Reinitialize successful
+			}else
+			{
+				// Reinitialize not successful
+			}
+		}
 
 	if (huart->Instance == USART2)
 	{
 		// Disable the UART2 peripheral
-		__HAL_UART_DISABLE(&huart2);
+		__HAL_UART_DISABLE(huart);
 
 		// Clear the RX buffer
 		while (__HAL_UART_GET_FLAG(huart, UART_FLAG_RXNE))
@@ -201,8 +201,9 @@ void resetUART(UART_HandleTypeDef *huart)
 		__HAL_RCC_USART2_FORCE_RESET();
 		__HAL_RCC_USART2_RELEASE_RESET();
 
+
 		// Reinitialize the UART2 peripheral
-		if (HAL_UART_Init(&huart2) == HAL_OK)		// Init UART2
+		if (HAL_UART_Init(huart) == HAL_OK)		// Init UART2
 		{
 			// Reinitialize successful
 		}else
@@ -226,79 +227,76 @@ void resetUART(UART_HandleTypeDef *huart)
 //}
 
 
-////------------------------------Error Handling UART1------------------------------
-//// Handle overrun error
-//void HandleOverrunErrorUART1(void)
-//{
-//	LogError(0xB1);						// log the error
-//	__HAL_UART_CLEAR_OREFLAG(&huart1);	// clear error flag
-//	//resetUART1(&huart1);						// reset UART1
-//}
-//
-//// Handle noise error
-//void HandleNoiseErrorUART1(void)
-//{
-//	LogError(0xB2);						// log the error
-//	__HAL_UART_CLEAR_NEFLAG(&huart1);	// clear error flag
-//}
-//
-//// Handle framing error
-//void HandleFramingErrorUART1(void)
-//{
-//	LogError(0xB3);						// log the error
-//	__HAL_UART_CLEAR_FEFLAG(&huart1);	// clear error flag
-//}
-//
-//// Handle parity error
-//void HandleParityErrorUART1(void)
-//{
-//	LogError(0xB4);						// log the error
-//	__HAL_UART_CLEAR_PEFLAG(&huart1);	// clear error flag
-//}
-//
-//// Handle unknown errors
-//void HandleUnknownErrorUART1(void)
-//{
-//	LogError(0xB0);						// log the error
-//	//resetUART1();						// reset UART1
-//}
-
-
-//------------------------------Error Handling UART2------------------------------
+//------------------------------Error Handling Functions UART1 and UART2------------------------------
 // Handle overrun error
-void HandleOverrunErrorUART2(void)
+void HandleOverrunErrorUART(UART_HandleTypeDef *huart)
 {
-	LogError(0xB1);						// log the error
-	__HAL_UART_CLEAR_OREFLAG(&huart2);	// clear error flag
-	resetUART(&huart2);					// reset UART2
+	if (huart->Instance == USART2)		// log the error
+	{
+		LogError(0xA1);
+	}else if (huart->Instance == USART2)
+	{
+		LogError(0xB1);
+	}
+
+	__HAL_UART_CLEAR_OREFLAG(huart);	// clear error flag
+	resetUART(huart);					// reset UART
 }
 
 // Handle noise error
-void HandleNoiseErrorUART2(void)
+void HandleNoiseErrorUART(UART_HandleTypeDef *huart)
 {
-	LogError(0xB2);						// log the error
-	__HAL_UART_CLEAR_NEFLAG(&huart2);	// clear error flag
+	if (huart->Instance == USART2)		// log the error
+	{
+		LogError(0xA2);
+	}else if (huart->Instance == USART2)
+	{
+		LogError(0xB2);
+	}
+
+	__HAL_UART_CLEAR_NEFLAG(huart);		// clear error flag
 }
 
 // Handle framing error
-void HandleFramingErrorUART2(void)
+void HandleFramingErrorUART(UART_HandleTypeDef *huart)
 {
-	LogError(0xB3);						// log the error
-	__HAL_UART_CLEAR_FEFLAG(&huart2);	// clear error flag
+	if (huart->Instance == USART2)		// log the error
+	{
+		LogError(0xA3);
+	}else if (huart->Instance == USART2)
+	{
+		LogError(0xB3);
+	}
+
+	__HAL_UART_CLEAR_FEFLAG(huart);		// clear error flag
 }
 
 // Handle parity error
-void HandleParityErrorUART2(void)
+void HandleParityErrorUART(UART_HandleTypeDef *huart)
 {
-	LogError(0xB4);						// log the error
-	__HAL_UART_CLEAR_PEFLAG(&huart2);	// clear error flag
+	if (huart->Instance == USART2)		// log the error
+	{
+		LogError(0xA4);
+	}else if (huart->Instance == USART2)
+	{
+		LogError(0xB4);
+	}
+
+	__HAL_UART_CLEAR_PEFLAG(huart);		// clear error flag
 }
 
 // Handle unknown errors
-void HandleUnknownErrorUART2(void)
+void HandleUnknownErrorUART(UART_HandleTypeDef *huart)
 {
-	LogError(0xB0);						// log the error
-	//resetUART2();						// reset UART2
+	if (huart->Instance == USART2)		// log the error
+	{
+		LogError(0xA0);
+	}else if (huart->Instance == USART2)
+	{
+		LogError(0xB0);
+	}
+
+	//resetUART();						// reset UART2
 }
 
 
@@ -309,61 +307,31 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 		return; // Error: Invalid handle
 	}
 
-//	//Error Handling UART1
-//    if (huart->Instance == USART1)
-//    {
-//        switch (huart->ErrorCode)
-//        {
-//            case HAL_UART_ERROR_ORE:
-//                // Handle overrun error
-//                HandleOverrunErrorUART1();
-//                break;
-//            case HAL_UART_ERROR_NE:
-//                // Handle noise error
-//                HandleNoiseErrorUART1();
-//                break;
-//            case HAL_UART_ERROR_FE:
-//                // Handle framing error
-//                HandleFramingErrorUART1();
-//                break;
-//            case HAL_UART_ERROR_PE:
-//                // Handle parity error
-//                HandleParityErrorUART1();
-//                break;
-//            default:
-//                // Handle unknown errors
-//                HandleUnknownErrorUART1();
-//                break;
-//        }
-//    }
+    //Error Handling UART1 and UART2
 
-    //Error Handling UART2
-    if (huart->Instance == USART2)
-    {
-        switch (huart->ErrorCode)
-        {
-            case HAL_UART_ERROR_ORE:
-                // Handle overrun error
-                HandleOverrunErrorUART2();
-                break;
-            case HAL_UART_ERROR_NE:
-                // Handle noise error
-                HandleNoiseErrorUART2();
-                break;
-            case HAL_UART_ERROR_FE:
-                // Handle framing error
-                HandleFramingErrorUART2();
-                break;
-            case HAL_UART_ERROR_PE:
-                // Handle parity error
-                HandleParityErrorUART2();
-                break;
-            default:
-                // Handle unknown errors
-                HandleUnknownErrorUART2();
-                break;
-        }
-    }
+	switch (huart->ErrorCode)
+	{
+		case HAL_UART_ERROR_ORE:
+			// Handle overrun error
+			HandleOverrunErrorUART(huart);
+			break;
+		case HAL_UART_ERROR_NE:
+			// Handle noise error
+			HandleNoiseErrorUART(huart);
+			break;
+		case HAL_UART_ERROR_FE:
+			// Handle framing error
+			HandleFramingErrorUART(huart);
+			break;
+		case HAL_UART_ERROR_PE:
+			// Handle parity error
+			HandleParityErrorUART(huart);
+			break;
+		default:
+			// Handle unknown errors
+			HandleUnknownErrorUART(huart);
+			break;
+	}
 }
 
 
@@ -457,6 +425,8 @@ int main(void)
 		  // Transmission error handling
 		  Error_Handler();
 	  }
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
