@@ -101,7 +101,10 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
+DMA_HandleTypeDef hdma_usart1_rx;
+DMA_HandleTypeDef hdma_usart1_tx;
 DMA_HandleTypeDef hdma_usart2_rx;
 DMA_HandleTypeDef hdma_usart2_tx;
 
@@ -114,6 +117,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_USART2_UART_Init(void);
+static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -122,25 +126,8 @@ static void MX_USART2_UART_Init(void);
 /* USER CODE BEGIN 0 */
 
 
-/*
- * Error Code description UART1
- * 0xA0....UART1 Unknown Error
- * 0xA1....UART1 Overrun Error
- * 0xA2....UART1 Noise Error
- * 0xA3....UART1 Framing Error
- * 0xA4....UART1 Parity Error
- */
-
-/*
- * Error Code description UART2
- * 0xB0....UART2 Unknown Error
- * 0xB1....UART2 Overrun Error
- * 0xB2....UART2 Noise Error
- * 0xB3....UART2 Framing Error
- * 0xB4....UART2 Parity Error
- */
-
-
+//------------------------------Error Logging------------------------------
+// Error Log
 void LogError(uint8_t errorCode)
 {
 	char message[50];
@@ -153,6 +140,8 @@ void LogError(uint8_t errorCode)
 }
 
 
+//------------------------------UART Resets------------------------------
+// UART Reset
 void resetUART(UART_HandleTypeDef *huart)
 {
 	if (huart == NULL || huart->Instance != USART1 || huart->Instance != USART2)
@@ -162,7 +151,7 @@ void resetUART(UART_HandleTypeDef *huart)
 
 	if (huart->Instance == USART1)
 		{
-			// Disable the UART2 peripheral
+			// Disable the UART1 peripheral
 			__HAL_UART_DISABLE(huart);
 
 			// Clear the RX buffer
@@ -171,12 +160,12 @@ void resetUART(UART_HandleTypeDef *huart)
 				(void)huart->Instance->RDR; // Read the data register to clear RXNE
 			}
 
-			// Reset the UART2 peripheral
+			// Reset the UART1 peripheral
 			__HAL_RCC_USART1_FORCE_RESET();
 			__HAL_RCC_USART1_RELEASE_RESET();
 
 
-			// Reinitialize the UART2 peripheral
+			// Reinitialize the UART1 peripheral
 			if (HAL_UART_Init(huart) == HAL_OK)		// Init UART1
 			{
 				// Reinitialize successful
@@ -213,7 +202,7 @@ void resetUART(UART_HandleTypeDef *huart)
 	}
 }
 
-
+// Debug over hardware
 //void Error_Handler(void)
 //{
 //	// User can add their own implementation to report the HAL error return state
@@ -226,80 +215,142 @@ void resetUART(UART_HandleTypeDef *huart)
 //    }
 //}
 
+/*
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ */
 
-//------------------------------Error Handling Functions UART1 and UART2------------------------------
-// Handle overrun error
-void HandleOverrunErrorUART(UART_HandleTypeDef *huart)
+// ------------------------------Error Handling Functions UART------------------------------
+
+// UART Error Code Description
+/*
+ * ----------UART1----------
+ * 0xA0....UART1 Error No
+ * 0xA1....UART1 Error Parity error
+ * 0xA2....UART1 Error Noise
+ * 0xA3....UART1 Error Frame
+ * 0xA4....UART1 Error Overrun
+ * 0xA5....UART1 Error Receiver Timeout
+ * 0xA6....UART1 Error Unknown
+ */
+
+/*
+ * ----------UART2----------
+ * 0xB0....UART2 Error No
+ * 0xB1....UART2 Error Parity error
+ * 0xB2....UART2 Error Noise
+ * 0xB3....UART2 Error Frame
+ * 0xB4....UART2 Error Overrun
+ * 0xB5....UART2 Error Receiver Timeout
+ * 0xB6....UART1 Error Unknown
+ */
+
+
+// Handle No Error
+void HandleNoErrorUART(UART_HandleTypeDef *huart)
 {
-	if (huart->Instance == USART2)		// log the error
+	if (huart->Instance == USART1)
 	{
-		LogError(0xA1);
-	}else if (huart->Instance == USART2)
-	{
-		LogError(0xB1);
+		LogError(0xA0);	// Log Error
 	}
-
-	__HAL_UART_CLEAR_OREFLAG(huart);	// clear error flag
-	resetUART(huart);					// reset UART
+	else if (huart->Instance == USART2)
+	{
+		LogError(0xB0);	// Log Error
+	}
 }
 
-// Handle noise error
+// Handle Parity Error
+void HandleParityErrorUART(UART_HandleTypeDef *huart)
+{
+	if (huart->Instance == USART1)
+	{
+		LogError(0xA1);			// Log Error
+	}
+	else if (huart->Instance == USART2)
+	{
+		LogError(0xB1);			// Log Error
+	}
+
+	__HAL_UART_CLEAR_PEFLAG(huart);	// Clear Error Flag
+}
+
+// Handle Noise Error
 void HandleNoiseErrorUART(UART_HandleTypeDef *huart)
 {
-	if (huart->Instance == USART2)		// log the error
+	if (huart->Instance == USART1)		// log the error
 	{
 		LogError(0xA2);
-	}else if (huart->Instance == USART2)
+	}
+	else if (huart->Instance == USART2)
 	{
-		LogError(0xB2);
+		LogError(0xB2);				// log the error
 	}
 
 	__HAL_UART_CLEAR_NEFLAG(huart);		// clear error flag
 }
 
-// Handle framing error
-void HandleFramingErrorUART(UART_HandleTypeDef *huart)
+// Handle Framing Error
+void HandleFramErrorUART(UART_HandleTypeDef *huart)
 {
-	if (huart->Instance == USART2)		// log the error
+	if (huart->Instance == USART1)		// Log Error
 	{
 		LogError(0xA3);
-	}else if (huart->Instance == USART2)
+	}
+	else if (huart->Instance == USART2)
 	{
-		LogError(0xB3);
+		LogError(0xB3);				// Log Error
 	}
 
-	__HAL_UART_CLEAR_FEFLAG(huart);		// clear error flag
+	__HAL_UART_CLEAR_FEFLAG(huart);		// Clear Error Flag
 }
 
-// Handle parity error
-void HandleParityErrorUART(UART_HandleTypeDef *huart)
+// Handle Overrun Error
+void HandleOverrunErrorUART(UART_HandleTypeDef *huart)
 {
-	if (huart->Instance == USART2)		// log the error
+	if (huart->Instance == USART1)
 	{
-		LogError(0xA4);
-	}else if (huart->Instance == USART2)
+		LogError(0xA4);				// Log the Error
+	}
+	else if (huart->Instance == USART2)
 	{
-		LogError(0xB4);
+		LogError(0xB4);				// Log the Error
 	}
 
-	__HAL_UART_CLEAR_PEFLAG(huart);		// clear error flag
+	__HAL_UART_CLEAR_OREFLAG(huart);	// Clear Error Flag
+
+	resetUART(huart);					// Reset UART
 }
 
-// Handle unknown errors
+// Receiver Timeout Error
+void HandleReceiverTimeoutErrorUART(UART_HandleTypeDef *huart)
+{
+	if (huart->Instance == USART1)						// Log Error
+	{
+		LogError(0xA5);
+	}else if (huart->Instance == USART2)
+	{
+		LogError(0xB5);								// Log Error
+	}
+}
+
+// Handle Unknown Errors
 void HandleUnknownErrorUART(UART_HandleTypeDef *huart)
 {
-	if (huart->Instance == USART2)		// log the error
+	if (huart->Instance == USART1)		// Log Error
 	{
-		LogError(0xA0);
+		LogError(0xA6);
 	}else if (huart->Instance == USART2)
 	{
-		LogError(0xB0);
+		LogError(0xB6);				// Log Error
 	}
 
-	//resetUART();						// reset UART2
+	resetUART(huart);					// Reset UART
 }
 
 
+// ------------------------------UART Error Callback------------------------------
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
 	if (huart == NULL || huart->Instance != USART1 || huart->Instance != USART2)
@@ -307,44 +358,192 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 		return; // Error: Invalid handle
 	}
 
-    //Error Handling UART1 and UART2
-
+    //Error Handling UART
 	switch (huart->ErrorCode)
 	{
-		case HAL_UART_ERROR_ORE:
-			// Handle overrun error
-			HandleOverrunErrorUART(huart);
+		case HAL_UART_ERROR_NONE:
+			// Handle No Error
+			HandleNoErrorUART(huart);
+			break;
+		case HAL_UART_ERROR_PE:
+			// Handle Parity Error
+			HandleParityErrorUART(huart);
 			break;
 		case HAL_UART_ERROR_NE:
-			// Handle noise error
+			// Handle Noise Error
 			HandleNoiseErrorUART(huart);
 			break;
 		case HAL_UART_ERROR_FE:
-			// Handle framing error
-			HandleFramingErrorUART(huart);
+			// Handle Frame Error
+			HandleFramErrorUART(huart);
 			break;
-		case HAL_UART_ERROR_PE:
-			// Handle parity error
-			HandleParityErrorUART(huart);
+		case HAL_UART_ERROR_ORE:
+			// Handle Overrun error
+			HandleOverrunErrorUART(huart);
+			break;
+		case HAL_UART_ERROR_RTO:
+			// Handle Receiver Timeout Error
+			HandleReceiverTimeoutErrorUART(huart);
 			break;
 		default:
-			// Handle unknown errors
+			// Handle Unknown Errors
 			HandleUnknownErrorUART(huart);
 			break;
 	}
 }
 
+/*
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ */
+
+//------------------------------Error Handling Functions DMA------------------------------
+
+// UART Error Code Description
+/*
+ * ----------DMA UART1----------
+ * 0xC0....UART1 Error No
+ * 0xC1....UART1 Error Transfer
+ * 0xC2....UART1 Error Abort requested with no Xfer ongoing
+ * 0xC3....UART1 Error Not supported mode
+ * 0xC4....UART1 Error DMAMUX sync overrun  error
+ * 0xC5....UART1 Error DMAMUX request generator overrun  error
+ * 0xC6....UART1 Error Unknown
+ */
+
+/*
+ * ----------DMA UART2----------
+ * 0xC0....UART2 Error No
+ * 0xC1....UART2 Error Transfer
+ * 0xC2....UART2 Error Abort requested with no Xfer ongoing
+ * 0xC3....UART2 Error Timeout
+ * 0xC4....UART2 Error Not supported mode
+ * 0xC5....UART2 Error DMAMUX sync overrun
+ * 0xC6....UART2 Error DMAMUX request generator overrun
+ * 0xC7....UART2 Error Unknown
+ */
 
 
+void HandleNoErrorDMA(DMA_HandleTypeDef *hdma)
+{
+	// Behandlung des Transferfehlers
+	// Zum Beispiel: DMA-Kanal zurücksetzen und neu starten
+	HAL_DMA_Abort(hdma);
+	// Optional: Fehlermeldung oder Wiederherstellungsmaßnahmen
+	// z.B. Fehlermeldung an eine Logging-Funktion senden
+	// LogError("DMA Transfer Error");
+}
 
-// Callback for DMA transmission complete
-//void HAL_DMA_ErrorCallback(DMA_HandleTypeDef *hdma)
-//{
+void HandleTransferErrorDMA(DMA_HandleTypeDef *hdma)
+{
+//	if (huart->Instance == USART1)
+//	{
+//		LogError(0xA05);								// Log the Error
+//	}
+//	else if (huart->Instance == USART2)
+//	{
+//		LogError(0xB05);								// Log the Error
+//	}
+//
+//	__HAL_DMA_CLEAR_FLAG(&hdma_uart_rx, DMA_FLAG_TE);	// Clear Error Flag
+}
+
+void HandleNoXferErrorDMA(DMA_HandleTypeDef *hdma)
+{
+
+}
+
+void HandleTimeOutErrorDMA(DMA_HandleTypeDef *hdma)
+{
+	// Behandlung des Timeout-Fehlers
+	// Zum Beispiel: DMA-Kanal zurücksetzen und neu starten
+	HAL_DMA_Abort(hdma);
+	// Optional: Fehlermeldung oder Wiederherstellungsmaßnahmen
+	// z.B. Fehlermeldung an eine Logging-Funktion senden
+	// LogError("DMA Timeout Error");
+}
+
+void HandleNoSupportedErrorDMA(DMA_HandleTypeDef *hdma)
+{
+
+}
+
+void HandleSyncErrorDMA(DMA_HandleTypeDef *hdma)
+{
+
+}
+
+void HandleRequestErrorDMA(DMA_HandleTypeDef *hdma)
+{
+
+}
+
+void HandleUnknownErrorDMA(DMA_HandleTypeDef *hdma)
+{
+	// Unbekannter Fehler
+	// Behandlung des unbekannten Fehlers
+	// Zum Beispiel: DMA-Kanal zurücksetzen und neu starten
+	HAL_DMA_Abort(hdma);
+	// Optional: Fehlermeldung oder Wiederherstellungsmaßnahmen
+	// z.B. Fehlermeldung an eine Logging-Funktion senden
+	// LogError("Unknown DMA Error");
+}
+
+
+//------------------------------DMA Error Callback------------------------------
+void HAL_DMA_ErrorCallback(DMA_HandleTypeDef *hdma)
+{
+	if (hdma == NULL)
+	{
+		return; // Error: Invalid handle
+	}
+
+	//Error Handling DMA1 UART1 and UART2
+
+	//switch (huart->ErrorCode)
+	switch (hdma->ErrorCode)
+	{
+		case HAL_DMA_ERROR_NONE:
+			// Handle No Error
+			HandleNoErrorDMA(hdma);
+			break;
+		case HAL_DMA_ERROR_TE:
+			// Handle Transfer Error
+			HandleTransferErrorDMA(hdma);
+			break;
+		case HAL_DMA_ERROR_NO_XFER:
+			// Handle Abort Requested With No Xfer Ongoing Error
+			HandleNoXferErrorDMA(hdma);
+			break;
+		case HAL_DMA_ERROR_TIMEOUT:
+			// Handle Timeout Error
+			HandleTimeOutErrorDMA(hdma);
+			break;
+		case HAL_DMA_ERROR_NOT_SUPPORTED:
+			// Handle Not Supported Mode Error
+			HandleNoSupportedErrorDMA(hdma);
+			break;
+		case HAL_DMA_ERROR_SYNC:
+			// Handle DMAMUX Sync Overrun Error
+			HandleSyncErrorDMA(hdma);
+			break;
+		case HAL_DMA_ERROR_REQGEN:
+			// Handle MAMUX Request Generator Overrun Error
+			HandleRequestErrorDMA(hdma);
+			break;
+		default:
+			// Handle Unknown Error
+			HandleUnknownErrorDMA(hdma);
+			break;
+	}
+
 //    // Step 1: Identify the DMA instance
 //    if (hdma->Instance == DMA1_Channel6)		//UART2, TX
 //    {
 //        // Step 2: Log the error for DMA1_Channel6
-//        //printf("Error occurred on DMA1_Channel6.\n");
+//    	LogError(0xA0);
 //
 //        // Step 3: Clear any error flags
 //        __HAL_DMA_CLEAR_FLAG(hdma, DMA_FLAG_TE6);
@@ -371,9 +570,14 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 //
 //    // Step 6: Notify other parts of the application if needed
 //    // e.g., set an error flag, send a message, etc.
-//}
+}
 
-
+/*
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------------------------------
+ */
 
 
 
@@ -410,6 +614,7 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_USART2_UART_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -420,7 +625,7 @@ int main(void)
   {
 	  HAL_Delay(1000);
 
-	  if (HAL_UART_Transmit_DMA(&huart2, dataBufferTx, sizeof(dataBufferTx)) != HAL_OK)
+	  if (HAL_UART_Transmit_DMA(&huart2, dataBufferTx, sizeof(dataBufferTx)))
 	  {
 		  // Transmission error handling
 		  Error_Handler();
@@ -495,6 +700,41 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 9600;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
   * @brief USART2 Initialization Function
   * @param None
   * @retval None
@@ -539,6 +779,12 @@ static void MX_DMA_Init(void)
   __HAL_RCC_DMA1_CLK_ENABLE();
 
   /* DMA interrupt init */
+  /* DMA1_Channel4_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel4_IRQn);
+  /* DMA1_Channel5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
   /* DMA1_Channel6_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA1_Channel6_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
