@@ -15,26 +15,6 @@
   *
   ******************************************************************************
   */
-
-/*
- * Configuration UART
- * - Mode: 					asynchronously
- * - Baud Rate: 			100000
- * - Word Length: 			8 bits
- * - Stop Bits: 			1
- * - Parity: 				None
- * - Hardware Flow Control: None
- *
- * Receiving sBUS Data
- * - 25 bytes long frame (start byte and a checksum)
- * - start byte (0x0F)
- *
- * Help: (decoding sBUS)
- * - chatgpt: stm32 L4 logic to process the SBUS data
- * - cubeIDE stm32 dont jump into void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
- */
-
-
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
@@ -52,10 +32,6 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define SBUS_START_BYTE 0x0F
-#define SBUS_FRAME_LENGTH 25
-#define SBUS_CHANNEL_COUNT 16
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -64,137 +40,22 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-TIM_HandleTypeDef htim1;
-
-UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
-DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
 
-//transmit variable UART2
-uint8_t data_sBusTest[] = "sBUS Test!\r\n";
-uint8_t data_sBusOK[] = "sBUS RX OK!\r\n";
-uint8_t data_sBusRxOk[] = "sBUS Frame Correct!\r\n";
-uint8_t data_sBusRxNok[] = "sBUS Frame NOT Correct!\r\n";
-const char *crlf = "\r\n";
-
-//receive variable UART1 (sBUS)
-uint8_t sbusBuffer[SBUS_FRAME_LENGTH];
-volatile uint8_t sbusDataReady = 0;
-
-//sBUS decode
-uint16_t channelValues[SBUS_CHANNEL_COUNT];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_DMA_Init(void);
 static void MX_USART2_UART_Init(void);
-static void MX_USART1_UART_Init(void);
-static void MX_TIM1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-//function for parsing sBUS data
-void parseSBUSData(uint8_t *buffer)
-{
-    // Check for valid start byte (0x0F)
-    if (buffer[0] != 0x0F || buffer[SBUS_FRAME_LENGTH - 1] != 0x00)
-    {
-        // Invalid frame, return
-    	HAL_UART_Transmit(&huart2, data_sBusRxNok, sizeof(data_sBusRxNok), 100);
-        return;
-    }
-
-    // Valid frame
-    HAL_UART_Transmit(&huart2, data_sBusRxOk, sizeof(data_sBusRxOk), 100);
-
-    // Extract channel values
-    for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
-    {
-        if (i < 8)
-        {
-            // First 8 channels: use first 16 bytes
-            channelValues[i] = (buffer[1 + (i * 2)] & 0x07) | (buffer[2 + (i * 2)] << 3);
-        }
-        else
-        {
-            // Next 8 channels: use last 9 bytes
-            channelValues[i] = (buffer[2 + ((i - 8) * 2)] >> 5) | ((buffer[3 + ((i - 8) * 2)] & 0xFF) << 3);
-        }
-    }
-
-    // Process flags (if necessary)
-    uint8_t flags = buffer[SBUS_FRAME_LENGTH - 2];
-    // Check for failsafe or lost frame conditions
-    if (flags & 0x04)
-    {
-        // Failsafe triggered
-    	// Handle failsafe condition
-    	// For example, set a flag, log the event, or revert to a safe state
-    }
-    if (flags & 0x08)
-    {
-        // Frame lost
-    	// Handle frame loss condition
-    	// You may want to log this or take action to recover
-    }
-}
-
-
-//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
-{
-    if (huart->Instance == USART1)
-    {
-    	// Process the received data
-    	parseSBUSData(sbusBuffer);
-
-        // Restart DMA reception
-    	HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
-
-    	HAL_UART_Transmit(&huart2, data_sBusOK, sizeof(data_sBusOK), 100);
-    }
-}
-
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
-{
-    if (huart->Instance == USART1)
-    {
-        // Handle UART2 errors
-        if (huart->ErrorCode & HAL_UART_ERROR_ORE)
-        {
-            // Overrun Error
-        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nOverrun Error UART1!", 50, 100);
-        }
-        if (huart->ErrorCode & HAL_UART_ERROR_FE)
-        {
-            // Framing Error
-        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nFraming Error UART1!", 50, 100);
-        }
-        if (huart->ErrorCode & HAL_UART_ERROR_NE)
-        {
-            // Noise Error
-        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nNoise Error UART1!", 50, 100);
-        }
-        if (huart->ErrorCode & HAL_UART_ERROR_PE)
-        {
-            // Parity Error
-        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nParity Error UART1!", 50, 100);
-        }
-
-        // Optionally reset the UART
-        //HAL_UART_DeInit(huart);
-        //HAL_UART_Init(huart);  // Reinitialize if necessary
-    }
-}
 
 /* USER CODE END 0 */
 
@@ -227,40 +88,15 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_USART2_UART_Init();
-  MX_USART1_UART_Init();
-  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
-  // Start TIM1 in interrupt mode
-  HAL_TIM_Base_Start_IT(&htim1);
-  // Start UART1 reception with DMA
-//  HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
-  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  // Example: Process or use the channel values
-//	  for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
-//	  {
-//		  // Use channelValues[i] for your application
-//		  uint8_t dataToSend[2]; // Array to hold the two bytes of the uint16_t value
-//		  dataToSend[0] = (channelValues[i] & 0xFF);          // Lower byte
-//		  dataToSend[1] = (channelValues[i] >> 8) & 0xFF;     // Upper byte
-//
-//		  // Transmit the two bytes
-//		  HAL_UART_Transmit(&huart2, dataToSend, sizeof(dataToSend), 10);
-//	  }
-//
-//	  HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
-
-//	  HAL_Delay(100); // Adjust as necessary
-
-
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -329,88 +165,6 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief TIM1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_TIM1_Init(void)
-{
-
-  /* USER CODE BEGIN TIM1_Init 0 */
-
-  /* USER CODE END TIM1_Init 0 */
-
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
-
-  /* USER CODE BEGIN TIM1_Init 1 */
-
-  /* USER CODE END TIM1_Init 1 */
-  htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 32000-1;
-  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 500-1;
-  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim1.Init.RepetitionCounter = 0;
-  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM1_Init 2 */
-
-  /* USER CODE END TIM1_Init 2 */
-
-}
-
-/**
-  * @brief USART1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_USART1_UART_Init(void)
-{
-
-  /* USER CODE BEGIN USART1_Init 0 */
-
-  /* USER CODE END USART1_Init 0 */
-
-  /* USER CODE BEGIN USART1_Init 1 */
-
-  /* USER CODE END USART1_Init 1 */
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 100000;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN USART1_Init 2 */
-
-  /* USER CODE END USART1_Init 2 */
-
-}
-
-/**
   * @brief USART2 Initialization Function
   * @param None
   * @retval None
@@ -426,7 +180,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 100000;
+  huart2.Init.BaudRate = 115200;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
@@ -442,22 +196,6 @@ static void MX_USART2_UART_Init(void)
   /* USER CODE BEGIN USART2_Init 2 */
 
   /* USER CODE END USART2_Init 2 */
-
-}
-
-/**
-  * Enable DMA controller clock
-  */
-static void MX_DMA_Init(void)
-{
-
-  /* DMA controller clock enable */
-  __HAL_RCC_DMA1_CLK_ENABLE();
-
-  /* DMA interrupt init */
-  /* DMA1_Channel5_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
 
 }
 
@@ -492,14 +230,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if (htim->Instance == TIM1)
-    {
-  	  HAL_UART_Transmit(&huart2, data_sBusTest, sizeof(data_sBusTest), 100);
-  	  //HAL_UART_ErrorCallback(&huart1);
-    }
-}
+
 /* USER CODE END 4 */
 
 /**
