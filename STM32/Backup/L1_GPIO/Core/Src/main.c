@@ -15,23 +15,7 @@
   *
   ******************************************************************************
   */
-
-
-  /*--------------------------------------------------------------------------
-   * Task:
-   * - two LEDs should blink differently
-   * - use "HAL_GetTick()" function
-   * - use PB0 (D3) and PB1 (D6) for LED connection
-   *
-   * - Dev. Board: NUCLEO-L432KC
-   * - User Manual: UM1884
-   *   https://www.st.com/resource/en/user_manual/um1884-description-of-stm32l4l4-hal-and-lowlayer-drivers-stmicroelectronics.pdf
-   *--------------------------------------------------------------------------
-
-
 /* USER CODE END Header */
-
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
@@ -72,27 +56,6 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint32_t counter_ticktimer = 0;
-uint32_t counter1_ticktimer = 0;
-uint32_t counter2_ticktimer = 0;
-
-void blink_LED_P0(uint32_t interval_ms)
-{
-	  if((counter_ticktimer - counter1_ticktimer) >= interval_ms)
-	  {
-		  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-		  counter1_ticktimer = HAL_GetTick();
-	  }
-}
-
-void blink_LED_P1(uint32_t interval_ms)
-{
-	  if((counter_ticktimer - counter2_ticktimer) >= interval_ms)
-	  {
-		  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_1);
-		  counter2_ticktimer = HAL_GetTick();
-	  }
-}
 
 /* USER CODE END 0 */
 
@@ -104,7 +67,6 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
 
   /* USER CODE END 1 */
 
@@ -135,16 +97,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  counter_ticktimer = HAL_GetTick();
-
-	  blink_LED_P0(500);
-	  blink_LED_P1(200);
-
-
-
-
-
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -264,14 +216,14 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, LED_P0_Pin|LED_P1_Pin|LD3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LD3_GPIO_Port, LD3_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : LED_P0_Pin LED_P1_Pin LD3_Pin */
-  GPIO_InitStruct.Pin = LED_P0_Pin|LED_P1_Pin|LD3_Pin;
+  /*Configure GPIO pin : LD3_Pin */
+  GPIO_InitStruct.Pin = LD3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  HAL_GPIO_Init(LD3_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
