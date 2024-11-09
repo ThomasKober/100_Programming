@@ -56,6 +56,9 @@
 #define SBUS_FRAME_LENGTH 25
 #define SBUS_CHANNEL_COUNT 16
 
+//new
+#define SBUS_FRAME_SIZE 25
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -78,6 +81,12 @@ uint8_t data_sBusOK[] = "sBUS RX OK!\r\n";
 uint8_t data_sBusRxOk[] = "sBUS Frame Correct!\r\n";
 uint8_t data_sBusRxNok[] = "sBUS Frame NOT Correct!\r\n";
 const char *crlf = "\r\n";
+
+
+// new
+uint8_t sbusBuffer[SBUS_FRAME_SIZE];
+uint8_t sbusData[SBUS_FRAME_SIZE];
+uint8_t sbusIndex = 0;
 
 //receive variable UART1 (sBUS)
 uint8_t sbusBuffer[SBUS_FRAME_LENGTH];
@@ -148,7 +157,6 @@ void parseSBUSData(uint8_t *buffer)
 }
 
 
-//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
     if (huart->Instance == USART1)
@@ -162,6 +170,39 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
     	HAL_UART_Transmit(&huart2, data_sBusOK, sizeof(data_sBusOK), 100);
     }
 }
+
+
+
+//// new
+//void decodeSBusFrame(uint8_t *frame)
+//{
+//    if (frame[0] == 0x0F && frame[24] == 0x00)
+//    {
+//        // Frame is valid, decode channels
+//        for (int i = 0; i < 16; i++)
+//        {
+//            uint16_t channel = ((uint16_t)frame[1 + (i * 2)] | ((uint16_t)frame[2 + (i * 2)] << 8)) & 0x07FF;
+//            // Process the channel data
+//        }
+//    }
+//}
+
+
+//// new
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+//{
+//    if (huart->Instance == USART1)
+//    {
+//        sbusBuffer[sbusIndex++] = sbusData[0];
+//        if (sbusIndex >= SBUS_FRAME_SIZE)
+//        {
+//            sbusIndex = 0;
+//            // Process the received sBus frame
+//            decodeSBusFrame(sbusBuffer);
+//        }
+//        HAL_UART_Receive_IT(&huart1, sbusData, 1);
+//    }
+//}
 
 
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
@@ -235,8 +276,11 @@ int main(void)
   // Start TIM1 in interrupt mode
   HAL_TIM_Base_Start_IT(&htim1);
   // Start UART1 reception with DMA
-  //HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+  //  HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
   HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+
+  //new
+  //HAL_UART_Receive_IT(&huart1, sbusData, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -392,7 +436,7 @@ static void MX_USART1_UART_Init(void)
   /* USER CODE END USART1_Init 1 */
   huart1.Instance = USART1;
   huart1.Init.BaudRate = 100000;
-  huart1.Init.WordLength = UART_WORDLENGTH_9B;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
   huart1.Init.StopBits = UART_STOPBITS_2;
   huart1.Init.Parity = UART_PARITY_EVEN;
   huart1.Init.Mode = UART_MODE_TX_RX;
@@ -427,7 +471,7 @@ static void MX_USART2_UART_Init(void)
 
   /* USER CODE END USART2_Init 1 */
   huart2.Instance = USART2;
-  huart2.Init.BaudRate = 115200;
+  huart2.Init.BaudRate = 100000;
   huart2.Init.WordLength = UART_WORDLENGTH_8B;
   huart2.Init.StopBits = UART_STOPBITS_1;
   huart2.Init.Parity = UART_PARITY_NONE;
