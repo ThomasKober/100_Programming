@@ -52,9 +52,9 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define SBUS_START_BYTE 0x0F
 #define SBUS_FRAME_LENGTH 25
 #define SBUS_CHANNEL_COUNT 16
+//#define SBUS_START_BYTE 0x0F
 
 /* USER CODE END PD */
 
@@ -164,6 +164,40 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 }
 
 
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+{
+    if (huart->Instance == USART1)
+    {
+//        if (Size == SBUS_FRAME_SIZE && sbusBuffer[0] == 0x0F && (sbusBuffer[24] == 0x00 || sbusBuffer[24] == 0x04))
+//        {
+//            // Decode sBUS channels
+//            sbusChannels[0]  = ((sbusBuffer[1]    | sbusBuffer[2]<<8)                       & 0x07FF);
+//            sbusChannels[1]  = ((sbusBuffer[2]>>3 | sbusBuffer[3]<<5)                       & 0x07FF);
+//            sbusChannels[2]  = ((sbusBuffer[3]>>6 | sbusBuffer[4]<<2 | sbusBuffer[5]<<10)   & 0x07FF);
+//            sbusChannels[3]  = ((sbusBuffer[5]>>1 | sbusBuffer[6]<<7)                       & 0x07FF);
+//            sbusChannels[4]  = ((sbusBuffer[6]>>4 | sbusBuffer[7]<<4)                       & 0x07FF);
+//            sbusChannels[5]  = ((sbusBuffer[7]>>7 | sbusBuffer[8]<<1 | sbusBuffer[9]<<9)    & 0x07FF);
+//            sbusChannels[6]  = ((sbusBuffer[9]>>2 | sbusBuffer[10]<<6)                      & 0x07FF);
+//            sbusChannels[7]  = ((sbusBuffer[10]>>5| sbusBuffer[11]<<3)                      & 0x07FF);
+//            sbusChannels[8]  = ((sbusBuffer[12]   | sbusBuffer[13]<<8)                      & 0x07FF);
+//            sbusChannels[9]  = ((sbusBuffer[13]>>3 | sbusBuffer[14]<<5)                    & 0x07FF);
+//            sbusChannels[10] = ((sbusBuffer[14]>>6 | sbusBuffer[15]<<2 | sbusBuffer[16]<<10)& 0x07FF);
+//            sbusChannels[11] = ((sbusBuffer[16]>>1 | sbusBuffer[17]<<7)                    & 0x07FF);
+//            sbusChannels[12] = ((sbusBuffer[17]>>4 | sbusBuffer[18]<<4)                    & 0x07FF);
+//            sbusChannels[13] = ((sbusBuffer[18]>>7 | sbusBuffer[19]<<1 | sbusBuffer[20]<<9) & 0x07FF);
+//            sbusChannels[14] = ((sbusBuffer[20]>>2 | sbusBuffer[21]<<6)                    & 0x07FF);
+//            sbusChannels[15] = ((sbusBuffer[21]>>5 | sbusBuffer[22]<<3)                    & 0x07FF);
+//
+//            // Process the decoded channels
+//            // ...
+//        }
+
+        // Restart DMA reception
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+    }
+}
+
+
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
     if (huart->Instance == USART1)
@@ -232,11 +266,13 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
+
   // Start TIM1 in interrupt mode
   HAL_TIM_Base_Start_IT(&htim1);
+
   // Start UART1 reception with DMA
-  //HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
   HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

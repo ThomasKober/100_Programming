@@ -52,7 +52,6 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 
-#define SBUS_START_BYTE 0x0F
 #define SBUS_FRAME_LENGTH 25
 #define SBUS_CHANNEL_COUNT 16
 
@@ -70,19 +69,21 @@ DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
 
-//transmit variable UART2
+// Receive Variable UART1 (sBUS)
+uint8_t sbusBuffer[SBUS_FRAME_LENGTH];
+uint16_t sbusChannels[SBUS_CHANNEL_COUNT];
+
+// Flags byte (byte 24)
+uint8_t flags;
+
+// Individual flags (for example, failsafe)
+uint8_t failsafe;
+uint8_t lost_frame;
+
+// UART2 Transmit Variables
 uint8_t data_sBusTest[] = "sBUS Test!\r\n";
-uint8_t data_sBusOK[] = "sBUS RX OK!\r\n";
-uint8_t data_sBusRxOk[] = "sBUS Frame Correct!\r\n";
-uint8_t data_sBusRxNok[] = "sBUS Frame NOT Correct!\r\n";
 const char *crlf = "\r\n";
 
-//receive variable UART1 (sBUS)
-uint8_t sbusBuffer[SBUS_FRAME_LENGTH];
-volatile uint8_t sbusDataReady = 0;
-
-//sBUS decode
-uint16_t channelValues[SBUS_CHANNEL_COUNT];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -98,100 +99,91 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-//function for parsing sBUS data
-void parseSBUSData(uint8_t *buffer)
+void ParseSBUSData(uint16_t Size)
 {
-    // Check for valid start byte (0x0F)
-    if (buffer[0] != 0x0F || buffer[SBUS_FRAME_LENGTH - 1] != 0x00)
-    {
-        // Invalid frame, return
-    	HAL_UART_Transmit(&huart2, data_sBusRxNok, sizeof(data_sBusRxNok), 100);
-        return;
-    }
+	/*
+	 * sBUS Frame Description
+	 * [Byte 1] --> Start byte (0x0F)
+	 *  - 1 byte (fixed)
+	 *
+	 * [Byte 2-23] --> Channel data (16 channels)
+	 *  - 2 bytes for each channel, little-endian, range 0 to 1023 (10-bit data)
+	 *
+	 * [Byte 24] --> Flags byte (flags and failsafe)
+	 *  - 1 byte (status flags)
+	 * 	- (bit 0)......Failsafe status		:Indicates if the receiver is in failsafe mode (0 = normal, 1 = failsafe)
+		- (bit 1)......Lost Frame			:Indicates whether a frame was lost (1 = lost, 0 = received)
+		- (bits 2-5)...Ch 17 and 18 status  :These bits are often used for additional features like telemetry or other system status information (may not always be used)
+		- (bits 6-7)...Reserved/Other flags	:Can be used for other future features or to store additional flags
 
-    // Valid frame
-    HAL_UART_Transmit(&huart2, data_sBusRxOk, sizeof(data_sBusRxOk), 100);
+	 * [Byte 25] --> End byte (0x00)
+	 *  - 1 byte (fixed)
+	 *  - This byte is always 0x00, marks the end of the frame
+	 */
 
-    // Extract channel values
-    for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
-    {
-        if (i < 8)
-        {
-            // First 8 channels: use first 16 bytes
-            channelValues[i] = (buffer[1 + (i * 2)] & 0x07) | (buffer[2 + (i * 2)] << 3);
-        }
-        else
-        {
-            // Next 8 channels: use last 9 bytes
-            channelValues[i] = (buffer[2 + ((i - 8) * 2)] >> 5) | ((buffer[3 + ((i - 8) * 2)] & 0xFF) << 3);
-        }
-    }
 
-    // Process flags (if necessary)
-    uint8_t flags = buffer[SBUS_FRAME_LENGTH - 2];
-    // Check for failsafe or lost frame conditions
-    if (flags & 0x04)
-    {
-        // Failsafe triggered
-    	// Handle failsafe condition
-    	// For example, set a flag, log the event, or revert to a safe state
-    }
-    if (flags & 0x08)
-    {
-        // Frame lost
-    	// Handle frame loss condition
-    	// You may want to log this or take action to recover
-    }
+	//Checks before extraction: [Frame Length], [Start Byte], [Flags], [End Byte]
+	if ( (Size == SBUS_FRAME_LENGTH) && (sbusBuffer[0] == 0x0F) && (sbusBuffer[23] == 0x00) && (sbusBuffer[24] == 0x00))
+	{
+		for (int i = 0; i < 16; i++)
+		{
+			sbusChannels[i] = ((uint16_t)sbusBuffer[2*i + 1] << 8) | sbusBuffer[2*i]; 	// Combine low byte and high byte
+		}
+	}
+	else
+	{
+		// Flags byte (byte 24)
+		flags = sbusBuffer[23];
+
+
+		if (flags & 0x01)
+		{
+			// Failsafe triggered
+			// Handle failsafe condition
+			// For example, set a flag, log the event, or revert to a safe state
+			// Count errors
+		}
+		if (flags & 0x08)
+		{
+			// Frame lost
+			// Handle frame loss condition
+			// You may want to log this or take action to recover
+			// Count errors
+		}
+	}
 }
 
 
-//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
     if (huart->Instance == USART1)
     {
-    	// Process the received data
-    	parseSBUSData(sbusBuffer);
+    	ParseSBUSData(Size);
 
         // Restart DMA reception
-    	HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
-
-    	HAL_UART_Transmit(&huart2, data_sBusOK, sizeof(data_sBusOK), 100);
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
     }
 }
 
-
-void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+void DisplaySBUSChannels(void)
 {
-    if (huart->Instance == USART1)
-    {
-        // Handle UART2 errors
-        if (huart->ErrorCode & HAL_UART_ERROR_ORE)
-        {
-            // Overrun Error
-        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nOverrun Error UART1!", 50, 100);
-        }
-        if (huart->ErrorCode & HAL_UART_ERROR_FE)
-        {
-            // Framing Error
-        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nFraming Error UART1!", 50, 100);
-        }
-        if (huart->ErrorCode & HAL_UART_ERROR_NE)
-        {
-            // Noise Error
-        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nNoise Error UART1!", 50, 100);
-        }
-        if (huart->ErrorCode & HAL_UART_ERROR_PE)
-        {
-            // Parity Error
-        	HAL_UART_Transmit(&huart2, (uint8_t *)"\r\nParity Error UART1!", 50, 100);
-        }
+	// Example: Process or use the channel values
+	for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
+	{
+	  // Use channelValues[i] for your application
+	  uint8_t dataToSend[2]; // Array to hold the two bytes of the uint16_t value
+	  dataToSend[0] = (sbusChannels[i] & 0xFF);          // Lower byte
+	  dataToSend[1] = (sbusChannels[i] >> 8) & 0xFF;     // Upper byte
 
-        // Optionally reset the UART
-        //HAL_UART_DeInit(huart);
-        //HAL_UART_Init(huart);  // Reinitialize if necessary
-    }
+	  // Transmit the two bytes
+	  HAL_UART_Transmit(&huart2, dataToSend, sizeof(dataToSend), 10);
+	}
+
+	HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
+
+	//HAL_Delay(100); // Adjust as necessary
 }
+
 
 /* USER CODE END 0 */
 
@@ -228,34 +220,17 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  // Start TIM1 in interrupt mode
-  HAL_TIM_Base_Start_IT(&htim1);
-  // Start UART1 reception with DMA
-//  HAL_UART_Receive_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
-  HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+
+  // Start DMA reception
+   HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  // Example: Process or use the channel values
-//	  for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
-//	  {
-//		  // Use channelValues[i] for your application
-//		  uint8_t dataToSend[2]; // Array to hold the two bytes of the uint16_t value
-//		  dataToSend[0] = (channelValues[i] & 0xFF);          // Lower byte
-//		  dataToSend[1] = (channelValues[i] >> 8) & 0xFF;     // Upper byte
-//
-//		  // Transmit the two bytes
-//		  HAL_UART_Transmit(&huart2, dataToSend, sizeof(dataToSend), 10);
-//	  }
-//
-//	  HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
-
-//	  HAL_Delay(100); // Adjust as necessary
-
-
+	  DisplaySBUSChannels();
+	  //HAL_Delay(1000);
 
     /* USER CODE END WHILE */
 
@@ -442,14 +417,17 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-    if (htim->Instance == TIM1)
-    {
-  	  HAL_UART_Transmit(&huart2, data_sBusTest, sizeof(data_sBusTest), 100);
-  	  //HAL_UART_ErrorCallback(&huart1);
-    }
-}
+
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+//{
+//    if (htim->Instance == TIM1)
+//    {
+//  	  HAL_UART_Transmit(&huart2, data_sBusTest, sizeof(data_sBusTest), 100);
+//  	  HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
+//  	  DisplaySBUSChannels();
+//    }
+//}
+
 /* USER CODE END 4 */
 
 /**
