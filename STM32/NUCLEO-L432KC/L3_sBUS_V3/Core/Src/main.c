@@ -41,7 +41,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -75,10 +75,11 @@ uint16_t sbusChannels[SBUS_CHANNEL_COUNT];
 
 // Flags byte (byte 24)
 uint8_t flags;
+uint8_t failsafe;		// Failsafe
+uint8_t lost_frame;		// Lost Frame
 
-// Individual flags (for example, failsafe)
-uint8_t failsafe;
-uint8_t lost_frame;
+// Busy Flag
+bool busy = 0;
 
 // UART2 Transmit Variables
 uint8_t data_sBusTest[] = "sBUS Test!\r\n";
@@ -121,6 +122,7 @@ void ParseSBUSData(uint16_t Size)
 	 *  - This byte is always 0x00, marks the end of the frame
 	 */
 
+	busy = 1;
 
 	//Checks before extraction: [Frame Length], [Start Byte], [Flags], [End Byte]
 	if ( (Size == SBUS_FRAME_LENGTH) && (sbusBuffer[0] == 0x0F) && (sbusBuffer[23] == 0x00) && (sbusBuffer[24] == 0x00))
@@ -151,6 +153,8 @@ void ParseSBUSData(uint16_t Size)
 			// Count errors
 		}
 	}
+
+	busy = 0;
 }
 
 
@@ -167,21 +171,24 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 
 void DisplaySBUSChannels(void)
 {
-	// Example: Process or use the channel values
-	for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
+	if (busy != 1)
 	{
-	  // Use channelValues[i] for your application
-	  uint8_t dataToSend[2]; // Array to hold the two bytes of the uint16_t value
-	  dataToSend[0] = (sbusChannels[i] & 0xFF);          // Lower byte
-	  dataToSend[1] = (sbusChannels[i] >> 8) & 0xFF;     // Upper byte
+		// Example: Process or use the channel values
+		for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
+		{
+		  // Use channelValues[i] for your application
+		  uint8_t dataToSend[2]; // Array to hold the two bytes of the uint16_t value
+		  dataToSend[0] = (sbusChannels[i] & 0xFF);          // Lower byte
+		  dataToSend[1] = (sbusChannels[i] >> 8) & 0xFF;     // Upper byte
 
-	  // Transmit the two bytes
-	  HAL_UART_Transmit(&huart2, dataToSend, sizeof(dataToSend), 10);
+		  // Transmit the two bytes
+		  HAL_UART_Transmit(&huart2, dataToSend, sizeof(dataToSend), 10);
+		}
+
+		HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
+
+		HAL_Delay(100); // Adjust as necessary
 	}
-
-	HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
-
-	//HAL_Delay(100); // Adjust as necessary
 }
 
 
@@ -230,7 +237,7 @@ int main(void)
   while (1)
   {
 	  DisplaySBUSChannels();
-	  //HAL_Delay(1000);
+	  //HAL_Delay(500);
 
     /* USER CODE END WHILE */
 
