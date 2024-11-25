@@ -34,6 +34,26 @@
  * - cubeIDE stm32 dont jump into void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
  */
 
+/*
+ * sBUS Frame Description
+ * [Byte 1] --> Start byte (0x0F)
+ *  - 1 byte (fixed)
+ *
+ * [Byte 2-23] --> Channel data (16 channels)
+ *  - 2 bytes for each channel, little-endian, range 0 to 1023 (10-bit data)
+ *
+ * [Byte 24] --> Flags byte (flags and failsafe)
+ *  - 1 byte (status flags)
+ * 	- (bit 0)......Failsafe status		:Indicates if the receiver is in failsafe mode (0 = normal, 1 = failsafe)
+	- (bit 1)......Lost Frame			:Indicates whether a frame was lost (1 = lost, 0 = received)
+	- (bits 2-5)...Ch 17 and 18 status  :These bits are often used for additional features like telemetry or other system status information (may not always be used)
+	- (bits 6-7)...Reserved/Other flags	:Can be used for other future features or to store additional flags
+
+ * [Byte 25] --> End byte (0x00)
+ *  - 1 byte (fixed)
+ *  - This byte is always 0x00, marks the end of the frame
+ */
+
 
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
@@ -41,7 +61,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdbool.h>
+#include "stdio.h"
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,21 +90,21 @@ DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
 
-// Receive Variable UART1 (sBUS)
-uint8_t sbusBuffer[SBUS_FRAME_LENGTH];
+// Array for received sBUS Data
+uint8_t sbusData[SBUS_FRAME_LENGTH];
+
+// Array for sBUS channels
 uint16_t sbusChannels[SBUS_CHANNEL_COUNT];
 
-// Flags byte (byte 24)
+// Flags byte (Byte 24)
 uint8_t flags;
 uint8_t failsafe;		// Failsafe
 uint8_t lost_frame;		// Lost Frame
 
-// Busy Flag
-bool busy = 0;
 
 // UART2 Transmit Variables
-uint8_t data_sBusTest[] = "sBUS Test!\r\n";
-const char *crlf = "\r\n";
+char txbuffer[14];
+char txnewline[3];
 
 /* USER CODE END PV */
 
@@ -100,42 +121,40 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-void ParseSBUSData(uint16_t Size)
+
+// Checks received frame and extracts sBUS channels
+void extractSbusChannels(uint16_t size, const uint8_t *sbusData, uint16_t *sbusChannels)
 {
-	/*
-	 * sBUS Frame Description
-	 * [Byte 1] --> Start byte (0x0F)
-	 *  - 1 byte (fixed)
-	 *
-	 * [Byte 2-23] --> Channel data (16 channels)
-	 *  - 2 bytes for each channel, little-endian, range 0 to 1023 (10-bit data)
-	 *
-	 * [Byte 24] --> Flags byte (flags and failsafe)
-	 *  - 1 byte (status flags)
-	 * 	- (bit 0)......Failsafe status		:Indicates if the receiver is in failsafe mode (0 = normal, 1 = failsafe)
-		- (bit 1)......Lost Frame			:Indicates whether a frame was lost (1 = lost, 0 = received)
-		- (bits 2-5)...Ch 17 and 18 status  :These bits are often used for additional features like telemetry or other system status information (may not always be used)
-		- (bits 6-7)...Reserved/Other flags	:Can be used for other future features or to store additional flags
+    if (sbusData == NULL || sbusChannels == NULL)
+    {
+        return;
+    }
 
-	 * [Byte 25] --> End byte (0x00)
-	 *  - 1 byte (fixed)
-	 *  - This byte is always 0x00, marks the end of the frame
-	 */
-
-	busy = 1;
-
-	//Checks before extraction: [Frame Length], [Start Byte], [Flags], [End Byte]
-	if ( (Size == SBUS_FRAME_LENGTH) && (sbusBuffer[0] == 0x0F) && (sbusBuffer[23] == 0x00) && (sbusBuffer[24] == 0x00))
+	// Checks Frame before extraction: [Frame Length], [Start Byte], [Flags], [End Byte]
+	if ( (size == SBUS_FRAME_LENGTH) && (sbusData[0] == 0x0F) && (sbusData[23] == 0x00) && (sbusData[24] == 0x00))
 	{
-		for (int i = 0; i < 16; i++)
-		{
-			sbusChannels[i] = ((uint16_t)sbusBuffer[2*i + 1] << 8) | sbusBuffer[2*i]; 	// Combine low byte and high byte
-		}
+		// Extraction of sBUS channels
+		sbusChannels[0]	= (sbusData[1] >> 0 | (sbusData[2] << 8)) & 0x07FF;
+		sbusChannels[1] = (sbusData[2] >> 3 | (sbusData[3] << 5)) & 0x07FF;
+		sbusChannels[2] = (sbusData[3] >> 6 | (sbusData[4] << 2) | sbusData[5] << 10) & 0x07FF;
+		sbusChannels[3] = (sbusData[5] >> 1 | (sbusData[6] << 7)) & 0x07FF;
+		sbusChannels[4] = (sbusData[6] >> 4 | (sbusData[7] << 4)) & 0x07FF;
+		sbusChannels[5] = (sbusData[7] >> 7 | (sbusData[8] << 1) | sbusData[9] << 9) & 0x07FF;
+		sbusChannels[6] = (sbusData[9] >> 2 | (sbusData[10] << 6)) & 0x07FF;
+		sbusChannels[7] = (sbusData[10] >> 5 | (sbusData[11] << 3)) & 0x07FF;
+		sbusChannels[8] = (sbusData[12] << 0 | (sbusData[13] << 8)) & 0x07FF;
+		sbusChannels[9] = (sbusData[13] >> 3 | (sbusData[14] << 5)) & 0x07FF;
+		sbusChannels[10] = (sbusData[14] >> 6 | (sbusData[15] << 2) | sbusData[16] << 10) & 0x07FF;
+		sbusChannels[11] = (sbusData[16] >> 1 | (sbusData[17] << 7)) & 0x07FF;
+		sbusChannels[12] = (sbusData[17] >> 4 | (sbusData[18] << 4)) & 0x07FF;
+		sbusChannels[13] = (sbusData[18] >> 7 | (sbusData[19] << 1) | sbusData[20] << 9) & 0x07FF;
+		sbusChannels[14] = (sbusData[20] >> 2 | (sbusData[21] << 6)) & 0x07FF;
+		sbusChannels[15] = (sbusData[21] >> 5 | (sbusData[22] << 3)) & 0x07FF;
 	}
 	else
 	{
 		// Flags byte (byte 24)
-		flags = sbusBuffer[23];
+		flags = sbusData[23];
 
 
 		if (flags & 0x01)
@@ -154,41 +173,36 @@ void ParseSBUSData(uint16_t Size)
 		}
 	}
 
-	busy = 0;
+	//
 }
 
 
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
 {
     if (huart->Instance == USART1)
     {
-    	ParseSBUSData(Size);
+    	extractSbusChannels(size, sbusData, sbusChannels);
 
         // Restart DMA reception
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusData, SBUS_FRAME_LENGTH);
     }
 }
 
+
 void DisplaySBUSChannels(void)
 {
-	if (busy != 1)
+	//sprintf(txbuffer, "CH1: %04x | CH2: %04x | CH3: %04x | CH4: %04x | CH5: %04x | CH6: %04x | CH7: %04x | CH8: %04x | CH9: %04x | CH10: %04x | CH11: %04x | CH12: %04x | CH13: %04x | CH14: %04x | CH15: %04x | CH16: %04x \r\n", sbusChannels[0], sbusChannels[1], sbusChannels[2], sbusChannels[3], sbusChannels[4], sbusChannels[5], sbusChannels[6], sbusChannels[7], sbusChannels[8], sbusChannels[9], sbusChannels[10], sbusChannels[11], sbusChannels[12], sbusChannels[13], sbusChannels[14], sbusChannels[15]);
+	for(int i = 0; i < 16; i++)
 	{
-		// Example: Process or use the channel values
-		for (int i = 0; i < SBUS_CHANNEL_COUNT; i++)
-		{
-		  // Use channelValues[i] for your application
-		  uint8_t dataToSend[2]; // Array to hold the two bytes of the uint16_t value
-		  dataToSend[0] = (sbusChannels[i] & 0xFF);          // Lower byte
-		  dataToSend[1] = (sbusChannels[i] >> 8) & 0xFF;     // Upper byte
+		// Clear the string by setting all elements to '\0'
+		memset(txbuffer, '\0', sizeof(txbuffer));
 
-		  // Transmit the two bytes
-		  HAL_UART_Transmit(&huart2, dataToSend, sizeof(dataToSend), 10);
-		}
-
-		HAL_UART_Transmit(&huart2, (uint8_t *)crlf, 2, HAL_MAX_DELAY);
-
-		HAL_Delay(100); // Adjust as necessary
+		sprintf(txbuffer, "CH%02d: %04x | ", i+1, sbusChannels[i]);
+		HAL_UART_Transmit(&huart2, (uint8_t*) txbuffer, sizeof(txbuffer), HAL_MAX_DELAY);
 	}
+
+	sprintf(txnewline, "\r\n");
+	HAL_UART_Transmit(&huart2, (uint8_t*) txnewline, sizeof(txnewline), HAL_MAX_DELAY);
 }
 
 
@@ -229,7 +243,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   // Start DMA reception
-   HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusBuffer, SBUS_FRAME_LENGTH);
+   HAL_UARTEx_ReceiveToIdle_DMA(&huart1, sbusData, SBUS_FRAME_LENGTH);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -237,7 +251,7 @@ int main(void)
   while (1)
   {
 	  DisplaySBUSChannels();
-	  //HAL_Delay(500);
+	  HAL_Delay(100);
 
     /* USER CODE END WHILE */
 
