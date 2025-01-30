@@ -1,0 +1,9 @@
+../gLib/gCore/gTemp.c:94:6:gTempDeInit	1
+../gLib/gCore/gTemp.c:147:12:gTempGetState	1
+../gLib/gCore/gTemp.c:160:9:gTempGetDesiCelsius	1
+../gLib/gCore/gTemp.c:173:6:gTempSetAlarmDesiCelsius	1
+../gLib/gCore/gTemp.c:186:9:gTempGetAlarmDesiCelsius	1
+../gLib/gCore/gTemp.c:198:13:gTempAlarmCallback	1
+../gLib/gCore/gTemp.c:216:9:gTempGet	4
+../gLib/gCore/gTemp.c:67:6:gTempInit	4
+../gLib/gCore/gTemp.c:110:6:gTempLoop	6

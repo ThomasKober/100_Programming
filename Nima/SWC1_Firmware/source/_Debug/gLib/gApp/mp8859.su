@@ -1,0 +1,11 @@
+../gLib/gApp/mp8859.c:231:6:mp8859Enable	8	static
+../gLib/gApp/mp8859.c:82:6:mp8859DeInit	0	static
+../gLib/gApp/mp8859.c:241:6:mp8859CallbackPowerFail	0	static
+../gLib/gApp/mp8859.c:256:6:mp8859WriteReg	32	static
+../gLib/gApp/mp8859.c:118:6:mp8859SetVol	8	static
+../gLib/gApp/mp8859.c:181:6:mp8859SetCur	0	static
+../gLib/gApp/mp8859.c:50:6:mp8859Init	8	static
+../gLib/gApp/mp8859.c:276:6:mp8859ReadReg	24	static
+../gLib/gApp/mp8859.c:92:6:mp8859Loop	16	static
+../gLib/gApp/mp8859.c:150:6:mp8859GetVol	16	static
+../gLib/gApp/mp8859.c:205:6:mp8859GetCur	16	static

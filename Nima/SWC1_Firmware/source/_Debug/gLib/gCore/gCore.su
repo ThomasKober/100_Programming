@@ -1,0 +1,9 @@
+../gLib/gCore/gCore.c:89:6:gCorePreInit	0	static
+../gLib/gCore/gCore.c:150:6:gCoreDeInit	8	static
+../gLib/gCore/gCore.c:211:6:gCoreHalt	8	static,ignoring_inline_asm
+../gLib/gCore/gCore.c:252:6:gCoreBlinker	8	static
+../gLib/gCore/gCore.c:184:6:gCoreLoop	8	static
+../gLib/gCore/gCore.c:286:6:gCoreCheckResetSource	8	static
+../gLib/gCore/gCore.c:115:6:gCoreInit	8	static
+../gLib/gCore/gCore.c:348:5:__io_putchar	0	static,ignoring_inline_asm
+../gLib/gCore/gCore.c:366:6:HAL_RCC_CSSCallback	8	static

@@ -1,0 +1,17 @@
+../gLib/gCore/gCom.c:328:6:gComRxEventCallback	1
+../gLib/gCore/gCom.c:344:6:gComTxDoneCallback	1
+../gLib/gCore/gCom.c:145:6:gComDeInit	1
+../gLib/gCore/gCom.c:204:6:gComRespMake	9
+../gLib/gCore/gCom.c:293:6:gComSetStatusCode	1
+../gLib/gCore/gCom.c:306:10:gComGetStatusCode	1
+../gLib/gCore/gCom.c:376:6:gComRxEnable	2
+../gLib/gCore/gCom.c:86:6:gComInit	8
+../gLib/gCore/gCom.c:360:6:gComErrorCallback	1
+../gLib/gCore/gCom.c:413:6:gComRespSend	4
+../gLib/gCore/gCom.c:460:6:gComStateIdle	7
+../gLib/gCore/gCom.c:507:6:gComStateGotData	8
+../gLib/gCore/gCom.c:587:6:gComStateSemanticCheck	11
+../gLib/gCore/gCom.c:675:6:gComStateSending	3
+../gLib/gCore/gCom.c:698:6:gComStateError	1
+../gLib/gCore/gCom.c:164:6:gComLoop	6
+../gLib/gCore/gCom.c:717:20:cmox_ll_init	1
