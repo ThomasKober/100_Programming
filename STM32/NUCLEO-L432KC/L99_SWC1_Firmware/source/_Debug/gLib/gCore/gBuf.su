@@ -1,0 +1,11 @@
+../gLib/gCore/gBuf.c:63:13:gBufInit	16	static
+../gLib/gCore/gBuf.c:97:6:gBufDeInit	8	static
+../gLib/gCore/gBuf.c:116:6:gBufIsFull	0	static
+../gLib/gCore/gBuf.c:128:6:gBufIsEmpty	0	static
+../gLib/gCore/gBuf.c:140:10:gBufAvailable	0	static
+../gLib/gCore/gBuf.c:152:10:gBufUsed	0	static
+../gLib/gCore/gBuf.c:164:6:gBufFormat	0	static
+../gLib/gCore/gBuf.c:180:6:gBufPush	8	static
+../gLib/gCore/gBuf.c:209:6:gBufPushN	24	static
+../gLib/gCore/gBuf.c:242:7:gBufPop	8	static
+../gLib/gCore/gBuf.c:271:7:gBufPopN	24	static

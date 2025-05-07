@@ -1,0 +1,4 @@
+../gLib/gApp/gApp.c:80:6:gAppPreInit	0	static
+../gLib/gApp/gApp.c:94:6:gAppInit	8	static
+../gLib/gApp/gApp.c:110:6:gAppDeInit	0	static
+../gLib/gApp/gApp.c:124:6:gAppLoop	8	static

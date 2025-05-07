@@ -1,0 +1,7 @@
+../gLib/gCore/gBuz.c:67:6:gBuzInit	2
+../gLib/gCore/gBuz.c:88:6:gBuzDeInit	1
+../gLib/gCore/gBuz.c:183:6:gBuzIsBusy	1
+../gLib/gCore/gBuz.c:203:6:gBuzPlayNote	2
+../gLib/gCore/gBuz.c:137:6:gBuzPlay	3
+../gLib/gCore/gBuz.c:168:6:gBuzStop	1
+../gLib/gCore/gBuz.c:106:6:gBuzLoop	6

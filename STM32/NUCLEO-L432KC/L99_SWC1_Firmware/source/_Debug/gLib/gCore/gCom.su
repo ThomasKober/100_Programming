@@ -1,0 +1,17 @@
+../gLib/gCore/gCom.c:332:6:gComRxEventCallback	0	static
+../gLib/gCore/gCom.c:348:6:gComTxDoneCallback	0	static
+../gLib/gCore/gCom.c:146:6:gComDeInit	8	static
+../gLib/gCore/gCom.c:205:6:gComRespMake	48	static
+../gLib/gCore/gCom.c:294:6:gComSetStatusCode	0	static
+../gLib/gCore/gCom.c:310:10:gComGetStatusCode	0	static
+../gLib/gCore/gCom.c:380:6:gComRxEnable	16	static
+../gLib/gCore/gCom.c:86:6:gComInit	8	static
+../gLib/gCore/gCom.c:364:6:gComErrorCallback	0	static
+../gLib/gCore/gCom.c:417:6:gComRespSend	24	static
+../gLib/gCore/gCom.c:464:6:gComStateIdle	24	static,ignoring_inline_asm
+../gLib/gCore/gCom.c:511:6:gComStateGotData	16	static
+../gLib/gCore/gCom.c:591:6:gComStateSemanticCheck	48	static
+../gLib/gCore/gCom.c:679:6:gComStateSending	8	static
+../gLib/gCore/gCom.c:702:6:gComStateError	8	static
+../gLib/gCore/gCom.c:165:6:gComLoop	0	static
+../gLib/gCore/gCom.c:721:20:cmox_ll_init	8	static

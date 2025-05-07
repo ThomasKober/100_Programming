@@ -1,0 +1,7 @@
+../gLib/gCore/gBuz.c:67:6:gBuzInit	8	static
+../gLib/gCore/gBuz.c:88:6:gBuzDeInit	8	static
+../gLib/gCore/gBuz.c:183:6:gBuzIsBusy	0	static
+../gLib/gCore/gBuz.c:203:6:gBuzPlayNote	8	static
+../gLib/gCore/gBuz.c:137:6:gBuzPlay	16	static
+../gLib/gCore/gBuz.c:168:6:gBuzStop	8	static
+../gLib/gCore/gBuz.c:106:6:gBuzLoop	8	static

@@ -1,0 +1,162 @@
+/// ------------------------------------------------------------
+/// \file gApp.c
+/// \brief This file contains unit tests
+/// \author Alexander Knoll knoll@gtec.at
+/// \date 05.11.2024
+/// \copyright g.tec medical engineering GmbH
+///
+/// \attention: This file is automatically created out of the
+///             according stpl file.
+///             DO NOT EDIT THE .c FILE!!! PLEASE EDIT THE ACCORDING
+///             .c.stpl FILE!!!
+///-------------------------------------------------------------
+
+#include "unity.h"
+#include <stdint.h>
+#include "fff.h"
+
+#include "main.h"
+#include "gApp.h"
+#include "gCore.h"
+
+#include "gBuz.h"
+#include "gVib.h"
+
+% ##############################################################
+% # these variables are passed over from bottle
+% # for clarification they are stored again here
+%
+% rel_root_path = path_to_root
+% path_to_mapping_files = path_to_spec_testdata
+%
+% import sys
+% sys.path.append(rel_root_path + "test_utility/python")
+% import csv_mapper
+% import csv_tools
+%
+% tests_to_run = list()   ###< A global list containing all tests that have to be run.
+%
+% # include the test types template file
+% d = include('test_types.tpl')
+% globals().update(d)
+
+
+///#############################################################
+/// globals
+/// enumeration for commands
+extern const GBuzNoteSequence gbuz_beep_beep_[];
+
+///#############################################################
+///
+
+DEFINE_FFF_GLOBALS;
+
+//Definition of Fake Functions
+FAKE_VOID_FUNC(gVibInit);
+FAKE_VOID_FUNC(gVibLoop);
+FAKE_VOID_FUNC(gVibDeInit);
+
+FAKE_VALUE_FUNC(bool,gBuzPlay, const GBuzNoteSequence *)
+
+#define FFF_FAKES_LIST(FAKE) \
+FAKE(gVibInit) \
+FAKE(gVibLoop) \
+FAKE(gVibDeInit) \
+FAKE(gBuzPlay) \
+
+///-------------------------------------------------------------
+/// \brief Setup function that is run before each test
+void setUp(void)
+{
+  //reset fakes
+  FFF_FAKES_LIST(RESET_FAKE);
+  FFF_RESET_HISTORY();
+}
+
+
+% ###-----------------------------------------------------------
+% ### \brief Check gAppLoop.
+% ###
+% def test_UT_FW_GAPP_001_gAppLoop_do_details(input_data):
+%
+  // fetch input data
+
+  //fetch reference data
+  uint32_t exp_value = (uint32_t){{!csv_mapper.getSingleValueInitialization(input_data[0],"value")}};
+
+  gAppLoop();
+
+	TEST_ASSERT_EQUAL_MESSAGE(exp_value, {{!csv_mapper.getSingleValueInitialization(input_data[0],"function")}}, "wrong value for {{!csv_mapper.getSingleValueInitialization(input_data[0],"function")}}");
+
+% end
+%
+% # call test generation function
+% test_type_2('test_UT_FW_GAPP_001_gAppLoop', 'check_test_UT_FW_GAPP_001_gAppLoop', test_UT_FW_GAPP_001_gAppLoop_do_details)
+
+% ###-----------------------------------------------------------
+% ### \brief Check gAppDeInit
+% ###
+% def test_UT_FW_GAPP_002_gAppDeInit_do_details(input_data):
+%
+  // fetch input data
+
+  //fetch reference data
+  uint32_t exp_value = (uint32_t){{!csv_mapper.getSingleValueInitialization(input_data[0],"value")}};
+
+  gAppDeInit();
+
+  TEST_ASSERT_EQUAL_MESSAGE(exp_value, {{!csv_mapper.getSingleValueInitialization(input_data[0],"function")}}, "wrong value for {{!csv_mapper.getSingleValueInitialization(input_data[0],"function")}}");
+
+% end
+%
+% # call test generation function
+% test_type_2('test_UT_FW_GAPP_002_gAppDeInit', 'check_test_UT_FW_GAPP_002_gAppDeInit', test_UT_FW_GAPP_002_gAppDeInit_do_details)
+
+% ###-----------------------------------------------------------
+% ### \brief Check gAppInit
+% ###
+% def test_UT_FW_GAPP_003_gAppInit_do_details(input_data):
+%
+  // fetch input data
+
+  //fetch reference data
+  uint32_t exp_value = (uint32_t){{!csv_mapper.getSingleValueInitialization(input_data[0],"value")}};
+    gAppInit();
+
+    TEST_ASSERT_EQUAL_MESSAGE(exp_value, {{!csv_mapper.getSingleValueInitialization(input_data[0],"function")}}, "wrong value for {{!csv_mapper.getSingleValueInitialization(input_data[0],"function")}}");
+
+% end
+%
+% # call test generation function
+% test_type_2('test_UT_FW_GAPP_003_gAppInit', 'check_test_UT_FW_GAPP_003_gAppInit', test_UT_FW_GAPP_003_gAppInit_do_details)
+
+% ###-----------------------------------------------------------
+% ### \brief Check gAppPreInit
+% ###
+% def test_UT_FW_GAPP_004_gAppPreInit_do_details(input_data):
+%
+  // fetch input data
+
+  //fetch reference data
+  uint32_t exp_value = (uint32_t){{!csv_mapper.getSingleValueInitialization(input_data[0],"value")}};
+  gAppPreInit();
+
+  TEST_ASSERT_EQUAL_MESSAGE(exp_value, {{!csv_mapper.getSingleValueInitialization(input_data[0],"function")}}, "wrong value for {{!csv_mapper.getSingleValueInitialization(input_data[0],"function")}}");
+
+% end
+%
+% # call test generation function
+% test_type_2('test_UT_FW_GAPP_004_gAppPreInit', 'check_test_UT_FW_GAPP_004_gAppPreInit', test_UT_FW_GAPP_004_gAppPreInit_do_details)
+
+///-------------------------------------------------------------
+/// \brief run Unittest main function
+///
+int main(void)
+{
+  UNITY_BEGIN();
+
+  % # include the test caller that generates a unity RUN_TEST call for every test
+  % include('test_caller.tpl')
+
+  return UNITY_END();
+}

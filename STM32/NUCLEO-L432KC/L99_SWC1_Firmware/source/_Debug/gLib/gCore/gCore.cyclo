@@ -1,0 +1,9 @@
+../gLib/gCore/gCore.c:89:6:gCorePreInit	1
+../gLib/gCore/gCore.c:150:6:gCoreDeInit	1
+../gLib/gCore/gCore.c:211:6:gCoreHalt	1
+../gLib/gCore/gCore.c:252:6:gCoreBlinker	2
+../gLib/gCore/gCore.c:184:6:gCoreLoop	1
+../gLib/gCore/gCore.c:286:6:gCoreCheckResetSource	6
+../gLib/gCore/gCore.c:115:6:gCoreInit	1
+../gLib/gCore/gCore.c:348:5:__io_putchar	4
+../gLib/gCore/gCore.c:366:6:HAL_RCC_CSSCallback	0

@@ -1,0 +1,12 @@
+../gLib/gApp/mp8859.c:234:6:mp8859Enable	8	static
+../gLib/gApp/mp8859.c:85:6:mp8859DeInit	0	static
+../gLib/gApp/mp8859.c:244:6:mp8859IsOverCurrent	0	static
+../gLib/gApp/mp8859.c:253:13:mp8859CallbackOverCurrent	0	static
+../gLib/gApp/mp8859.c:268:6:mp8859WriteReg	32	static
+../gLib/gApp/mp8859.c:120:6:mp8859SetVol	8	static
+../gLib/gApp/mp8859.c:184:6:mp8859SetCur	0	static
+../gLib/gApp/mp8859.c:53:6:mp8859Init	8	static
+../gLib/gApp/mp8859.c:288:6:mp8859ReadReg	24	static
+../gLib/gApp/mp8859.c:95:6:mp8859Loop	24	static
+../gLib/gApp/mp8859.c:153:6:mp8859GetVol	16	static
+../gLib/gApp/mp8859.c:208:6:mp8859GetCur	16	static

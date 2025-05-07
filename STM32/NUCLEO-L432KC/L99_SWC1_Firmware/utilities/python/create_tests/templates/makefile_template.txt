@@ -1,0 +1,98 @@
+#-----------------------------------------------------------------------------------------------------------------------
+#
+# CONFIG
+#
+#-----------------------------------------------------------------------------------------------------------------------
+BUILDDIR_HOST  = build
+TARGETDIR_HOST = dist
+Target         = TestOutput #for map file.. needs to be improved
+
+HEADER =  -I ./test/src \
+          -I ./test/inc \
+          -I ./utilities/unity/src/ \
+          -I ./utilities/fff/ \
+          -I ./source/gLib/gCore \
+          -I ./source/gLib/gApp \
+          -I ./source/Core/Inc \
+          -I ./source/Drivers/STM32H5xx_HAL_Driver/Inc \
+          -I ./source/Drivers/STM32H5xx_HAL_Driver/Inc/Legacy \
+          -I ./source/Drivers/CMSIS/Include \
+          -I ./source/Drivers/CMSIS/Device/ST/STM32H5xx/Include
+
+VPATH =   ./source/gLib \
+          ./source/gLib/gApp \
+          ./source/gLib/gCore \
+          ./source/Core/Src \
+          ./utilities/unity/src \
+          ./source/Drivers/STM32H5xx_HAL_Driver/Src \
+          ./test/src
+
+TEST_SOURCES:=$(wildcard ./test/src/*.c)
+
+#-----------------------------------------------------------------------------------------------------------------------
+# HOST  COMPILER/LINKER
+#-----------------------------------------------------------------------------------------------------------------------
+GCC_CC = gcc
+#-----------------------------------------------------------------------------------------------------------------------
+# COMPILER FLAGS
+#-----------------------------------------------------------------------------------------------------------------------
+GCC_CCFLAGS = -Wall -fprofile-arcs -ftest-coverage -DUNIT_TEST -DACTIVATE_TEST_INTERFACE -DUSE_HAL_DRIVER -DSTM32H562xx $(HEADER)
+#-----------------------------------------------------------------------------------------------------------------------
+# LINKER FLAGS
+#-----------------------------------------------------------------------------------------------------------------------
+GCC_LDFLAGS = $(GCC_CCFLAGS)
+
+#-----------------------------------------------------------------------------------------------------------------------
+#
+# TEST TARGETS
+#
+#-----------------------------------------------------------------------------------------------------------------------
+
+\BLOCK{ for current_unit_name, current_unit_file in zip(unit_names, unit_files) }
+# ----------------------------------------------------------------------------------------------------------------------------
+# TEST \VAR{ current_unit_name.upper() }
+# ----------------------------------------------------------------------------------------------------------------------------
+TEST_\VAR{ current_unit_name.upper() }_TARGET_HOST = $(TARGETDIR_HOST)/test_\VAR{ current_unit_name }.exe
+TEST_\VAR{ current_unit_name.upper() }__OBJS_HOST = test_\VAR{ current_unit_name }.o \VAR{ current_unit_file }.o unity.o
+TEST_\VAR{ current_unit_name.upper() }_OBJS_HOST = $(patsubst %,$(BUILDDIR_HOST)/%,$(TEST_\VAR{ current_unit_name.upper() }__OBJS_HOST))
+
+\BLOCK{ endfor }
+
+#----------------------------------------------------------------------------------------------------------------------------
+#
+# RULES
+#
+#----------------------------------------------------------------------------------------------------------------------------
+
+\BLOCK{ for current_unit in unit_names }
+host: $(TEST_\VAR{ current_unit.upper() }_TARGET_HOST)
+\BLOCK{ endfor }
+
+#----------------------------------------------------------------------------------------------------------------------------
+# BUILD HOST
+#----------------------------------------------------------------------------------------------------------------------------
+#Link HOST
+\BLOCK{ for current_unit in unit_names }
+$(TEST_\VAR{ current_unit.upper() }_TARGET_HOST): $(TEST_\VAR{ current_unit.upper() }_OBJS_HOST)
+	$(GCC_CC) -o $@ $^ $(GCC_LDFLAGS)
+\BLOCK{ endfor }
+
+#include additional dependencies on object file (e.g. header files)
+\BLOCK{ for current_unit in unit_names }
+-include $(TEST_\VAR{ current_unit.upper() }_OBJS_HOST:.o=.d)
+\BLOCK{ endfor }
+
+#Compile HOST
+$(BUILDDIR_HOST)/%.o: %.c
+	mkdir -p $(BUILDDIR_HOST)
+	mkdir -p $(TARGETDIR_HOST)
+	$(GCC_CC) $(GCC_CCFLAGS) -c $< -o $@ -MMD -MF $(BUILDDIR_HOST)/$*.d
+
+#-----------------------------------------------------------------------------------------------------------------------
+# CLEAN
+#-----------------------------------------------------------------------------------------------------------------------
+.PHONY: clean
+clean:
+	if [ -d "./$(BUILDDIR_HOST)" ]; then rm -rf $(BUILDDIR_HOST)/*; fi
+	if [ -d "./$(TARGETDIR_HOST)" ]; then rm -rf $(TARGETDIR_HOST)/*;	fi
+	rm $(TEST_SOURCES)

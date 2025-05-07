@@ -1,0 +1,108 @@
+/// ------------------------------------------------------------
+/// \file \VAR{ unit_name }.c
+/// \brief This file contains unit tests
+/// \author <ENTER USER NAME HERE>
+/// \date \VAR{ today }
+/// \copyright g.tec medical engineering GmbH
+///
+/// \attention: This file is automatically created out of the
+///             according stpl file.
+///             DO NOT EDIT THE .c FILE!!! PLEASE EDIT THE ACCORDING
+///             .c.stpl FILE!!!
+///-------------------------------------------------------------
+
+#include "unity.h"
+#include <stdint.h>
+#include "fff.h"
+
+#include "main.h"
+#include "gApp.h"
+#include "gCore.h"
+
+/// <ADDITIONAL INCLUDE STATEMENTS HERE>
+
+% ##############################################################
+% # these variables are passed over from bottle
+% # for clarification they are stored again here
+%
+% rel_root_path = path_to_root
+% path_to_mapping_files = path_to_spec_testdata
+%
+% import sys
+% sys.path.append(rel_root_path + "test_utility/python")
+% import csv_mapper
+% import csv_tools
+%
+% tests_to_run = list()   ###< A global list containing all tests that have to be run.
+%
+% # include the test types template file
+% d = include('test_types.tpl')
+% globals().update(d)
+
+
+///#############################################################
+/// globals
+
+/// <ENTER GLOBALS HERE>
+
+///#############################################################
+///
+
+DEFINE_FFF_GLOBALS;
+
+//Definition of Fake Functions
+
+/// <ENTER FAKE FUNCTIONS HERE>
+/// Some samples:
+
+/// Void function with two uint8_t input parameters
+FAKE_VOID_FUNC(sampleVoidFunc, uint8_t, uint8_t);
+
+/// Value function that returns a uint16_t that takes in an uint8_t and a uint16_t pointer as input parameters
+FAKE_VALUE_FUNC(uint16_t, sampleValueFunc, uint8_t, uint16_t*);
+
+#define FFF_FAKES_LIST(FAKE) \
+FAKE(sampleVoidFunc) \
+FAKE(sampleValueFunc) \
+
+///-------------------------------------------------------------
+/// \brief Setup function that is run before each test
+void setUp(void)
+{
+  //reset fakes
+  FFF_FAKES_LIST(RESET_FAKE);
+  FFF_RESET_HISTORY();
+}
+
+\BLOCK{ for current_unit_test in unit_tests }
+
+% ###-----------------------------------------------------------
+% ### \brief <BRIEF DESCRIPTION OF THE TEST>
+% ###
+% def \VAR{ current_unit_test }_do_details(input_data):
+%
+
+  // fetch input data
+
+  //fetch reference data
+
+  TEST_FAIL_MESSAGE("test not yet done");
+
+% end
+%
+% # call test generation function
+% test_type_2('\VAR{ current_unit_test }', 'check_\VAR{ current_unit_test }', \VAR{ current_unit_test }_do_details)
+\BLOCK{ endfor }
+
+///-------------------------------------------------------------
+/// \brief run Unittest main function
+///
+int main(void)
+{
+  UNITY_BEGIN();
+
+  % # include the test caller that generates a unity RUN_TEST call for every test
+  % include('test_caller.tpl')
+
+  return UNITY_END();
+}

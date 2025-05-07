@@ -1,0 +1,17 @@
+../gLib/gCore/gInfo.c:179:6:gInfoDeInit	0	static
+../gLib/gCore/gInfo.c:377:6:gInfoReadFw	16	static
+../gLib/gCore/gInfo.c:475:6:gInfoMemInit	0	static
+../gLib/gCore/gInfo.c:503:6:gInfoMemDeInit	0	static
+../gLib/gCore/gInfo.c:516:10:gInfoMemCapacity	0	static
+../gLib/gCore/gInfo.c:530:6:gInfoMemFormat	32	static
+../gLib/gCore/gInfo.c:580:6:gInfoMemRead	24	static
+../gLib/gCore/gInfo.c:195:6:gInfoLoad	0	static
+../gLib/gCore/gInfo.c:241:6:gInfoReadHw	16	static
+../gLib/gCore/gInfo.c:309:6:gInfoReadSn	16	static
+../gLib/gCore/gInfo.c:402:6:gInfoReadIv	8	static
+../gLib/gCore/gInfo.c:621:6:gInfoMemWrite	32	static
+../gLib/gCore/gInfo.c:218:6:gInfoSave	0	static
+../gLib/gCore/gInfo.c:120:6:gInfoInit	8	static
+../gLib/gCore/gInfo.c:269:6:gInfoWriteHw	16	static
+../gLib/gCore/gInfo.c:337:6:gInfoWriteSn	16	static
+../gLib/gCore/gInfo.c:430:6:gInfoWriteIv	16	static
