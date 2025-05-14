@@ -1,1 +1,2 @@
-../Lib/Core/Com.c:42:6:ComLoop	2
+../Lib/Core/Com.c:43:6:ComLoop	2
+../Lib/Core/Com.c:82:6:HAL_UARTEx_RxEventCallback	1

@@ -17,6 +17,16 @@
 #include "main.h"
 
 /**
+* ************************************************************************************************
+* library configuration
+* ************************************************************************************************
+*/
+
+/* USER CODE BEGIN library configuration */
+
+#define	COM_BUFFER_SIZE		2048
+
+/**
  * ************************************************************************************************
  * struct/enum definitions
  * ************************************************************************************************
@@ -32,7 +42,16 @@ typedef enum
 
 typedef struct
 {
-	ComState state;
+	uint8_t		rx[COM_BUFFER_SIZE];
+	uint8_t     tx[COM_BUFFER_SIZE];
+	uint32_t    rx_len;
+	uint32_t    tx_len;
+} ComInstance;
+
+typedef struct
+{
+	ComInstance	instance;
+	ComState 	state;
 } ComHandle;
 
 /**
@@ -49,6 +68,6 @@ void gComLoop(void);
  * ************************************************************************************************
  */
 
-extern ComHandle gcom_;
+extern ComHandle gcom;
 
 #endif /* CORE_COM_H_ */

@@ -13,14 +13,14 @@
  * ************************************************************************************************
  */
 
-//void gComRxEventCallback(UART_HandleTypeDef *huart, uint16_t size);
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size);
 /**
  * ************************************************************************************************
  * global variable
  * ************************************************************************************************
  */
 
-ComHandle com_;
+ComHandle com;
 
 /**
  * ************************************************************************************************
@@ -39,9 +39,10 @@ ComHandle com_;
  *         appropriately to incoming data and events.
  */
 
+
 void ComLoop(void)
 {
-	switch (com_.state)
+	switch (com.state)
 	{
 	case COM_STATE_RECEIVE:
 		//
@@ -63,4 +64,22 @@ void ComLoop(void)
 		//
 		break;
 	}
+}
+
+
+
+/**
+ * ************************************************************************************************
+ * @brief  Callback function for UART receive events
+ * @param  huart [in] Pointer to the UART_HandleTypeDef structure that contains
+ *                    the configuration information for the specified UART module
+ * @param  size [in] The size of the received data in bytes
+ * @return None
+ * @note   This function is called when data is received via UART. It processes
+ *         the incoming data based on the specified size and may trigger further
+ *         actions or state transitions within the communication system.
+ */
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
+{
+	com.instance.rx_len = size;
 }

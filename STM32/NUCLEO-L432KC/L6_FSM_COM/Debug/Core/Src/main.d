@@ -25,7 +25,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- C:/Users/1zwer/Documents/Projects/100_Programming/STM32/NUCLEO-L432KC/L6_FSM_COM/Lib/Core/Core.h
+ D:/7.0_DIYS/STM32CubeIDE/100_Programming/STM32/NUCLEO-L432KC/L6_FSM_COM/Lib/Core/Core.h
 ../Core/Inc/main.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal.h:
 ../Core/Inc/stm32l4xx_hal_conf.h:
@@ -53,4 +53,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-C:/Users/1zwer/Documents/Projects/100_Programming/STM32/NUCLEO-L432KC/L6_FSM_COM/Lib/Core/Core.h:
+D:/7.0_DIYS/STM32CubeIDE/100_Programming/STM32/NUCLEO-L432KC/L6_FSM_COM/Lib/Core/Core.h:
