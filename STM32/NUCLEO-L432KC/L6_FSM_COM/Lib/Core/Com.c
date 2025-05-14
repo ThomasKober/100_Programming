@@ -14,6 +14,8 @@
  */
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size);
+
+void ComStateReceive(void);
 /**
  * ************************************************************************************************
  * global variable
@@ -45,7 +47,7 @@ void ComLoop(void)
 	switch (com.state)
 	{
 	case COM_STATE_RECEIVE:
-		//
+		ComStateReceive();
 		break;
 
 	case COM_STATE_CHECK_FRAME:
@@ -82,4 +84,36 @@ void ComLoop(void)
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
 {
 	com.instance.rx_len = size;
+}
+
+/**
+ * ************************************************************************************************
+ * @brief  Handles the idle state of the communication protocol
+ * @param  None
+ * @return None
+ * @note   This function checks the current state of the communication protocol while in
+ *         idle mode. It updates the state to `GCOM_STATE_GOT_DATA` if any data has
+ *         been received. If a restart is requested, the system is reset using
+ *         `NVIC_SystemReset()`. Additionally, if the synchronization timeout is exceeded,
+ *         it resets the synchronization time and calls the synchronization timeout callback
+ *         function. This allows for proper handling of timeouts in the communication state.
+ */
+void ComStateReceive(void)
+{
+	if(com.instance.rx_len > 0)
+	{
+		com.state = COM_STATE_CHECK_FRAME;
+	}
+
+	// Reset device manually by PC
+
+  if (gcom_.sync_timeout_called == 0)
+  {
+    if (HAL_GetTick() - gcom_.instance.sync_time >= GCOM_SYNC_TIMEOUT)
+    {
+      gcom_.instance.sync_time = HAL_GetTick();
+      gcom_.sync_timeout_called = 1;
+      gComCallbackSyncTimeout();
+    }
+  }
 }
