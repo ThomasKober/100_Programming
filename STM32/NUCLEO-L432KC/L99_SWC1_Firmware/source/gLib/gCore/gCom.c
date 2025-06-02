@@ -465,14 +465,14 @@ void gComStateIdle(void)
 {
   if (gcom_.instance.rx_len > 0)
   {
-#if ((defined DEBUG) && (GCOM_DEBUG == 1))
-  	dprintf("gCom RX [ ");
-  	for (int i = 0; i < gcom_.instance.rx_len; i++)
-  	{
-  		dprintf("%02X ", gcom_.instance.rx[i]);
-  	}
+	#if ((defined DEBUG) && (GCOM_DEBUG == 1))
+		dprintf("gCom RX [ ");
+		for (int i = 0; i < gcom_.instance.rx_len; i++)
+		{
+			dprintf("%02X ", gcom_.instance.rx[i]);
+		}
 		dprintf("]\r\n");
-#endif
+	#endif
     gcom_.state = GCOM_STATE_GOT_DATA;
   }
   if (gcom_.restart_req == 1)

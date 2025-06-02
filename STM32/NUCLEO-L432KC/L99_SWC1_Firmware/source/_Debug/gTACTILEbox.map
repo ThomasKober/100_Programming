@@ -11056,7 +11056,7 @@ LOAD C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x0003f168      0xfaa ./gLib/gCore/gInfo.o
  .debug_line    0x00040112      0xbf2 ./gLib/gCore/gTemp.o
 
-.debug_str      0x00000000   0x1520d2
+.debug_str      0x00000000   0x152138
  .debug_str     0x00000000   0x13f9fd ./Core/Src/adc.o
                              0x140138 (size before relaxing)
  .debug_str     0x0013f9fd      0x1af ./Core/Src/crc.o
@@ -11143,15 +11143,15 @@ LOAD C:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                              0x1400bd (size before relaxing)
  .debug_str     0x0014e00a       0x75 ./gLib/gCore/gBuz.o
                              0x14040e (size before relaxing)
- .debug_str     0x0014e07f     0x3864 ./gLib/gCore/gCom.o
-                             0x144861 (size before relaxing)
- .debug_str     0x001518e3      0x460 ./gLib/gCore/gComCallback.o
+ .debug_str     0x0014e07f     0x38ca ./gLib/gCore/gCom.o
+                             0x144865 (size before relaxing)
+ .debug_str     0x00151949      0x460 ./gLib/gCore/gComCallback.o
                              0x140bf4 (size before relaxing)
- .debug_str     0x00151d43      0x101 ./gLib/gCore/gCore.o
+ .debug_str     0x00151da9      0x101 ./gLib/gCore/gCore.o
                              0x1406ca (size before relaxing)
- .debug_str     0x00151e44      0x201 ./gLib/gCore/gInfo.o
+ .debug_str     0x00151eaa      0x201 ./gLib/gCore/gInfo.o
                              0x14054e (size before relaxing)
- .debug_str     0x00152045       0x8d ./gLib/gCore/gTemp.o
+ .debug_str     0x001520ab       0x8d ./gLib/gCore/gTemp.o
                              0x13ff38 (size before relaxing)
 
 .comment        0x00000000       0x43
