@@ -46,8 +46,8 @@ void ComLoop(void)
 {
 	switch (com.state)
 	{
-	case COM_STATE_RECEIVE:
-		ComStateReceive();
+	case COM_STATE_IDLE:
+		ComStateIdle();
 		break;
 
 	case COM_STATE_CHECK_FRAME:
@@ -83,7 +83,11 @@ void ComLoop(void)
  */
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
 {
-	com.instance.rx_len = size;
+	// Check if the interrupt comes from UART2
+	if(huart->Instance == USART2)
+	{
+		com.instance.rx_len = size;
+	}
 }
 
 /**
@@ -98,7 +102,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
  *         it resets the synchronization time and calls the synchronization timeout callback
  *         function. This allows for proper handling of timeouts in the communication state.
  */
-void ComStateReceive(void)
+void ComStateIdle(void)
 {
 	if(com.instance.rx_len > 0)
 	{
@@ -107,13 +111,5 @@ void ComStateReceive(void)
 
 	// Reset device manually by PC
 
-  if (gcom_.sync_timeout_called == 0)
-  {
-    if (HAL_GetTick() - gcom_.instance.sync_time >= GCOM_SYNC_TIMEOUT)
-    {
-      gcom_.instance.sync_time = HAL_GetTick();
-      gcom_.sync_timeout_called = 1;
-      gComCallbackSyncTimeout();
-    }
-  }
+	// Sync. device
 }

@@ -61,8 +61,8 @@ all: main-build
 main-build: L6_FSM_COM.elf secondary-outputs
 
 # Tool invocations
-L6_FSM_COM.elf L6_FSM_COM.map: $(OBJS) $(USER_OBJS) D:\7.0_DIYS\STM32CubeIDE\100_Programming\STM32\NUCLEO-L432KC\L6_FSM_COM\STM32L432KCUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "L6_FSM_COM.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\7.0_DIYS\STM32CubeIDE\100_Programming\STM32\NUCLEO-L432KC\L6_FSM_COM\STM32L432KCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="L6_FSM_COM.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+L6_FSM_COM.elf L6_FSM_COM.map: $(OBJS) $(USER_OBJS) C:\Users\1zwer\Documents\Projects\100_Programming\STM32\NUCLEO-L432KC\L6_FSM_COM\STM32L432KCUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "L6_FSM_COM.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\1zwer\Documents\Projects\100_Programming\STM32\NUCLEO-L432KC\L6_FSM_COM\STM32L432KCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="L6_FSM_COM.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
