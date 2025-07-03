@@ -69,7 +69,7 @@
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c:558:19:HAL_MultiProcessor_Init	7
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c:2996:19:HAL_MultiProcessor_EnableMuteMode	3
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c:3016:19:HAL_MultiProcessor_DisableMuteMode	3
-../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c:3570:19:UART_Start_Receive_IT	15
+../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c:3570:19:UART_Start_Receive_IT	17
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c:1389:19:HAL_UART_Receive_IT	9
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c:3643:19:UART_Start_Receive_DMA	12
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_uart.c:1555:19:HAL_UART_Receive_DMA	8

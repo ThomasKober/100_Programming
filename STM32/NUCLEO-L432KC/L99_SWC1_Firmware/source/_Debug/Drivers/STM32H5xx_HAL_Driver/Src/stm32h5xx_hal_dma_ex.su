@@ -26,8 +26,8 @@
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:2685:19:HAL_DMAEx_List_SetCircularModeConfig	56	static
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:2780:19:HAL_DMAEx_List_SetCircularMode	56	static
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:2863:19:HAL_DMAEx_List_ClearCircularMode	40	static
-../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:2934:19:HAL_DMAEx_List_ConvertQToDynamic	160	static
-../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:3036:19:HAL_DMAEx_List_ConvertQToStatic	136	static
+../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:2934:19:HAL_DMAEx_List_ConvertQToDynamic	152	static
+../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:3036:19:HAL_DMAEx_List_ConvertQToStatic	128	static
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:3113:19:HAL_DMAEx_List_LinkQ	8	static
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:3200:19:HAL_DMAEx_List_UnLinkQ	0	static
 ../Drivers/STM32H5xx_HAL_Driver/Src/stm32h5xx_hal_dma_ex.c:3275:19:HAL_DMAEx_ConfigDataHandling	8	static

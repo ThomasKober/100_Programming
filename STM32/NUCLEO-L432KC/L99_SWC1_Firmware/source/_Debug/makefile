@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (12.3.rel1)
+# Toolchain: GNU Tools for STM32 (13.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -65,8 +65,8 @@ all: main-build
 main-build: gTACTILEbox.elf secondary-outputs
 
 # Tool invocations
-gTACTILEbox.elf gTACTILEbox.map: $(OBJS) $(USER_OBJS) C:\Users\1zwer\Documents\Projects\100_Programming\STM32\NUCLEO-L432KC\SWC1_Firmware\source\STM32H562RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "gTACTILEbox.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"C:\Users\1zwer\Documents\Projects\100_Programming\STM32\NUCLEO-L432KC\SWC1_Firmware\source\STM32H562RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="gTACTILEbox.map" -Wl,--gc-sections -static -L../Middlewares/Third_Party/gtec_Driver/gCore/crypto -L../Middlewares/Third_Party/gtec_Driver/gCore --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+gTACTILEbox.elf gTACTILEbox.map: $(OBJS) $(USER_OBJS) D:\7.0_DIYS\STM32CubeIDE\100_Programming\STM32\NUCLEO-L432KC\L99_SWC1_Firmware\source\STM32H562RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "gTACTILEbox.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m33 -T"D:\7.0_DIYS\STM32CubeIDE\100_Programming\STM32\NUCLEO-L432KC\L99_SWC1_Firmware\source\STM32H562RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="gTACTILEbox.map" -Wl,--gc-sections -static -L../Middlewares/Third_Party/gtec_Driver/gCore/crypto -L../Middlewares/Third_Party/gtec_Driver/gCore --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
