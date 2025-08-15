@@ -1,12 +1,70 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E983C8CE-89E9-4045-A23E-0FED11359465}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E983C8CE-89E9-4045-A23E-0FED11359465}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E983C8CE-89E9-4045-A23E-0FED11359465}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\views\\devicescanview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E983C8CE-89E9-4045-A23E-0FED11359465}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\views\\devicescanview.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E983C8CE-89E9-4045-A23E-0FED11359465}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\views\\devicescanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E983C8CE-89E9-4045-A23E-0FED11359465}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\views\\devicescanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\App.xaml.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\App.xaml.cs",
+              "RelativeToolTip": "BLE-Interface\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T19:48:50.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DeviceScanView.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Views\\DeviceScanView.xaml.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Views\\DeviceScanView.xaml.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Views\\DeviceScanView.xaml.cs",
+              "RelativeToolTip": "BLE-Interface\\Views\\DeviceScanView.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T19:48:35.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DeviceScanView.xaml",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Views\\DeviceScanView.xaml",
+              "RelativeDocumentMoniker": "BLE-Interface\\Views\\DeviceScanView.xaml",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Views\\DeviceScanView.xaml",
+              "RelativeToolTip": "BLE-Interface\\Views\\DeviceScanView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-15T19:48:05.637Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

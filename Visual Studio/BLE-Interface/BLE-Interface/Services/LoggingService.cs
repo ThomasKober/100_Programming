@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BLE_Interface.Services
+public class LoggingService
 {
-    internal class LoggingService
+    public void Log(string message)
     {
+        // Log to file, console, or UI
+        Console.WriteLine($"[BLE] {DateTime.Now}: {message}");
     }
 }
