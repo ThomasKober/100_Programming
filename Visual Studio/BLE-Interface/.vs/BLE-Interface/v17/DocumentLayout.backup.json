@@ -3,8 +3,60 @@
   "WorkspaceRootPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\utilities\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\utilities\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\utilities\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\utilities\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\utilities\\valueconverters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\utilities\\valueconverters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\views\\devicedetailview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\views\\devicedetailview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\views\\devicescanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\views\\devicescanview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\viewmodels\\devicedetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\viewmodels\\devicedetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\viewmodels\\devicescanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\viewmodels\\devicescanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\services\\bleconnectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\services\\bleconnectionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\services\\blescannerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\services\\blescannerservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\services\\loggingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\services\\loggingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\models\\blecharacteristic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\models\\blecharacteristic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\models\\bleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\models\\bleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\ble-interface\\ble-interface\\models\\bledevice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBA5AFE4-0C24-4D4C-846D-2D88C53AB1BA}|BLE-Interface\\BLE-Interface.csproj|solutionrelative:ble-interface\\models\\bledevice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +71,181 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "BLE-Interface\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\MainWindow.xaml.cs",
-              "RelativeToolTip": "BLE-Interface\\MainWindow.xaml.cs",
+              "Title": "Extensions.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Utilities\\Extensions.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Utilities\\Extensions.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Utilities\\Extensions.cs",
+              "RelativeToolTip": "BLE-Interface\\Utilities\\Extensions.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-17T08:18:41.092Z",
+              "WhenOpened": "2025-08-17T13:19:53.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Constants.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Utilities\\Constants.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Utilities\\Constants.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Utilities\\Constants.cs",
+              "RelativeToolTip": "BLE-Interface\\Utilities\\Constants.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:19:44.858Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ValueConverters.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Utilities\\ValueConverters.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Utilities\\ValueConverters.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Utilities\\ValueConverters.cs",
+              "RelativeToolTip": "BLE-Interface\\Utilities\\ValueConverters.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:19:33.898Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DeviceDetailView.xaml",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Views\\DeviceDetailView.xaml",
+              "RelativeDocumentMoniker": "BLE-Interface\\Views\\DeviceDetailView.xaml",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Views\\DeviceDetailView.xaml",
+              "RelativeToolTip": "BLE-Interface\\Views\\DeviceDetailView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-17T13:18:55.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DeviceScanView.xaml",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Views\\DeviceScanView.xaml",
+              "RelativeDocumentMoniker": "BLE-Interface\\Views\\DeviceScanView.xaml",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Views\\DeviceScanView.xaml",
+              "RelativeToolTip": "BLE-Interface\\Views\\DeviceScanView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-17T13:18:24.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DeviceDetailViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\ViewModels\\DeviceDetailViewModel.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\ViewModels\\DeviceDetailViewModel.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\ViewModels\\DeviceDetailViewModel.cs",
+              "RelativeToolTip": "BLE-Interface\\ViewModels\\DeviceDetailViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:16:16.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DeviceScanViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\ViewModels\\DeviceScanViewModel.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\ViewModels\\DeviceScanViewModel.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\ViewModels\\DeviceScanViewModel.cs",
+              "RelativeToolTip": "BLE-Interface\\ViewModels\\DeviceScanViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:16:00.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "BLE-Interface\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:15:44.842Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BleConnectionService.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Services\\BleConnectionService.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Services\\BleConnectionService.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Services\\BleConnectionService.cs",
+              "RelativeToolTip": "BLE-Interface\\Services\\BleConnectionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:15:15.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BleScannerService.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Services\\BleScannerService.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Services\\BleScannerService.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Services\\BleScannerService.cs",
+              "RelativeToolTip": "BLE-Interface\\Services\\BleScannerService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:14:54.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LoggingService.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Services\\LoggingService.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Services\\LoggingService.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Services\\LoggingService.cs",
+              "RelativeToolTip": "BLE-Interface\\Services\\LoggingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:14:42.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BleCharacteristic.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Models\\BleCharacteristic.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Models\\BleCharacteristic.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Models\\BleCharacteristic.cs",
+              "RelativeToolTip": "BLE-Interface\\Models\\BleCharacteristic.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:14:12.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BleService.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Models\\BleService.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Models\\BleService.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Models\\BleService.cs",
+              "RelativeToolTip": "BLE-Interface\\Models\\BleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:13:57.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "BleDevice.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Models\\BleDevice.cs",
+              "RelativeDocumentMoniker": "BLE-Interface\\Models\\BleDevice.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Models\\BleDevice.cs",
+              "RelativeToolTip": "BLE-Interface\\Models\\BleDevice.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-17T13:13:37.41Z",
               "EditorCaption": ""
             }
           ]
