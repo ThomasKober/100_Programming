@@ -2,6 +2,6 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.windows.sdk.contracts\10.0.26100.4948\build\Microsoft.Windows.SDK.Contracts.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.sdk.contracts\10.0.26100.4948\build\Microsoft.Windows.SDK.Contracts.targets')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.windows.cswinrt\2.2.0\build\Microsoft.Windows.CsWinRT.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.cswinrt\2.2.0\build\Microsoft.Windows.CsWinRT.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.windows.cswinrt\2.3.0-prerelease.250720.1\build\Microsoft.Windows.CsWinRT.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.cswinrt\2.3.0-prerelease.250720.1\build\Microsoft.Windows.CsWinRT.targets')" />
   </ImportGroup>
 </Project>

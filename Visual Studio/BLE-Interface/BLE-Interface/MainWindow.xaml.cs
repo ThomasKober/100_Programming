@@ -44,7 +44,7 @@ namespace Interface_BLE
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Fehler beim Scannen: {ex.Message}");
+                System.Windows.MessageBox.Show($"Fehler beim Scannen: {ex.Message}");
             }
         }
 
@@ -80,41 +80,41 @@ namespace Interface_BLE
 
                                         if (status == GattCommunicationStatus.Success)
                                         {
-                                            MessageBox.AppendText("Verbunden und Benachrichtigungen aktiviert.\n");
+                                            OutputTextBox.AppendText("Verbunden und Benachrichtigungen aktiviert.\n");
                                         }
                                         else
                                         {
-                                            MessageBox.AppendText("Fehler beim Aktivieren der Benachrichtigungen.\n");
+                                            OutputTextBox.AppendText("Fehler beim Aktivieren der Benachrichtigungen.\n");
                                         }
                                     }
                                     else
                                     {
-                                        MessageBox.AppendText("Characteristic nicht gefunden.\n");
+                                        OutputTextBox.AppendText("Characteristic nicht gefunden.\n");
                                     }
                                 }
                                 else
                                 {
-                                    MessageBox.AppendText("Fehler beim Abrufen der Characteristics.\n");
+                                    OutputTextBox.AppendText("Fehler beim Abrufen der Characteristics.\n");
                                 }
                             }
                             else
                             {
-                                MessageBox.AppendText("Service nicht gefunden.\n");
+                                OutputTextBox.AppendText("Service nicht gefunden.\n");
                             }
                         }
                         else
                         {
-                            MessageBox.AppendText("Fehler beim Abrufen der Services.\n");
+                            OutputTextBox.AppendText("Fehler beim Abrufen der Services.\n");
                         }
                     }
                     else
                     {
-                        MessageBox.AppendText("Fehler beim Verbinden mit dem Gerät.\n");
+                        OutputTextBox.AppendText("Fehler beim Verbinden mit dem Gerät.\n");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Fehler beim Verbinden: {ex.Message}");
+                    System.Windows.MessageBox.Show($"Fehler beim Verbinden: {ex.Message}");
                 }
             }
         }
@@ -127,36 +127,37 @@ namespace Interface_BLE
                 var data = new byte[args.CharacteristicValue.Length];
                 DataReader.FromBuffer(args.CharacteristicValue).ReadBytes(data);
                 var message = Encoding.UTF8.GetString(data, 0, data.Length);
-                Dispatcher.Invoke(() => MessageBox.AppendText($"Empfangen: {message}\n"));
+                Dispatcher.Invoke(() => OutputTextBox.AppendText($"Empfangen: {message}\n"));
             }
             catch (Exception ex)
             {
-                Dispatcher.Invoke(() => MessageBox.AppendText($"Fehler beim Empfangen: {ex.Message}\n"));
+                Dispatcher.Invoke(() => OutputTextBox.AppendText($"Fehler beim Empfangen: {ex.Message}\n"));
             }
         }
 
         // Event-Handler für den "Senden"-Button
         private async void Send_Click(object sender, RoutedEventArgs e)
         {
-            if (_characteristic != null && !string.IsNullOrEmpty(MessageBox.Text))
+            if (_characteristic != null && !string.IsNullOrEmpty(InputTextBox.Text))
             {
                 try
                 {
-                    var data = Encoding.UTF8.GetBytes(MessageBox.Text);
+                    var data = Encoding.UTF8.GetBytes(InputTextBox.Text);
                     var result = await _characteristic.WriteValueAsync(data.AsBuffer());
 
                     if (result == GattCommunicationStatus.Success)
                     {
-                        MessageBox.AppendText($"Gesendet: {MessageBox.Text}\n");
+                        OutputTextBox.AppendText($"Gesendet: {InputTextBox.Text}\n");
+                        InputTextBox.Clear();
                     }
                     else
                     {
-                        MessageBox.AppendText("Fehler beim Senden.\n");
+                        OutputTextBox.AppendText("Fehler beim Senden.\n");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.AppendText($"Fehler beim Senden: {ex.Message}\n");
+                    OutputTextBox.AppendText($"Fehler beim Senden: {ex.Message}\n");
                 }
             }
         }

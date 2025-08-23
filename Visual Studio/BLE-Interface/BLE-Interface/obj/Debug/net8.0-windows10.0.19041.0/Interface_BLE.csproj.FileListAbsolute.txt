@@ -1,0 +1,11 @@
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\Interface_BLE.csproj.AssemblyReference.cache
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\MainWindow.baml
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\MainWindow.g.cs
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\App.g.cs
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\Interface_BLE_MarkupCompile.cache
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\Interface_BLE.g.resources
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\Interface_BLE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\Interface_BLE.AssemblyInfoInputs.cache
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\Interface_BLE.AssemblyInfo.cs
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\Interface_BLE.csproj.CoreCompileInputs.cache
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net8.0-windows10.0.19041.0\Interface_BLE.sourcelink.json

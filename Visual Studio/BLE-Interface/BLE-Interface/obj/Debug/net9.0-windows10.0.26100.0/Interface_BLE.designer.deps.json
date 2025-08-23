@@ -8,19 +8,263 @@
     ".NETCoreApp,Version=v9.0": {
       "Microsoft.NETCore.Platforms/3.0.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
-      "Microsoft.Windows.CsWinRT/2.2.0": {
-        "runtime": {
-          "lib/net8.0/WinRT.Runtime.dll": {
-            "assemblyVersion": "2.2.0.0",
-            "fileVersion": "2.2.0.48161"
+      "Microsoft.Web.WebView2/1.0.3179.45": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.3179.45"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.3179.45"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.3179.45"
           }
         }
       },
+      "Microsoft.Windows.CsWinRT/2.3.0-prerelease.250720.1": {
+        "runtime": {
+          "lib/net9.0/WinRT.Host.Shim.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/net9.0/WinRT.Runtime.dll": {
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.0.20671"
+          }
+        }
+      },
+      "Microsoft.Windows.SDK.BuildTools/10.0.26100.4654": {},
+      "Microsoft.Windows.SDK.BuildTools.MSIX/1.7.20250806.1": {},
       "Microsoft.Windows.SDK.Contracts/10.0.26100.4948": {
         "dependencies": {
           "System.Runtime.InteropServices.WindowsRuntime": "4.3.0",
           "System.Runtime.WindowsRuntime": "4.6.0",
           "System.Runtime.WindowsRuntime.UI.Xaml": "4.6.0"
+        }
+      },
+      "Microsoft.WindowsAppSDK/1.8.250814004-preview": {
+        "dependencies": {
+          "Microsoft.Windows.SDK.BuildTools.MSIX": "1.7.20250806.1",
+          "Microsoft.WindowsAppSDK.AI": "1.8.20-preview",
+          "Microsoft.WindowsAppSDK.Base": "1.8.250730001-preview",
+          "Microsoft.WindowsAppSDK.DWrite": "1.8.25073101-preview",
+          "Microsoft.WindowsAppSDK.Foundation": "1.8.250803001-preview",
+          "Microsoft.WindowsAppSDK.InteractiveExperiences": "1.8.250801002-preview",
+          "Microsoft.WindowsAppSDK.Runtime": "1.8.250814004-preview",
+          "Microsoft.WindowsAppSDK.Widgets": "1.8.250801001-preview",
+          "Microsoft.WindowsAppSDK.WinUI": "1.8.250803000-preview"
+        }
+      },
+      "Microsoft.WindowsAppSDK.AI/1.8.20-preview": {
+        "dependencies": {
+          "Microsoft.WindowsAppSDK.Base": "1.8.250730001-preview",
+          "Microsoft.WindowsAppSDK.Foundation": "1.8.250803001-preview"
+        },
+        "runtime": {
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Graphics.Imaging.Projection.dll": {
+            "assemblyVersion": "1.8.19.28107",
+            "fileVersion": "1.8.19.28107"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.AI.ContentSafety.Projection.dll": {
+            "assemblyVersion": "1.8.19.28107",
+            "fileVersion": "1.8.19.28107"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.AI.Foundation.Projection.dll": {
+            "assemblyVersion": "1.8.19.28107",
+            "fileVersion": "1.8.19.28107"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.AI.Imaging.Projection.dll": {
+            "assemblyVersion": "1.8.19.28107",
+            "fileVersion": "1.8.19.28107"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.AI.Projection.dll": {
+            "assemblyVersion": "1.8.19.28107",
+            "fileVersion": "1.8.19.28107"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.AI.Text.Projection.dll": {
+            "assemblyVersion": "1.8.19.28107",
+            "fileVersion": "1.8.19.28107"
+          }
+        }
+      },
+      "Microsoft.WindowsAppSDK.Base/1.8.250730001-preview": {
+        "dependencies": {
+          "Microsoft.Windows.SDK.BuildTools": "10.0.26100.4654",
+          "Microsoft.Windows.SDK.BuildTools.MSIX": "1.7.20250806.1"
+        }
+      },
+      "Microsoft.WindowsAppSDK.DWrite/1.8.25073101-preview": {
+        "dependencies": {
+          "Microsoft.WindowsAppSDK.Base": "1.8.250730001-preview"
+        }
+      },
+      "Microsoft.WindowsAppSDK.Foundation/1.8.250803001-preview": {
+        "dependencies": {
+          "Microsoft.WindowsAppSDK.Base": "1.8.250730001-preview",
+          "Microsoft.WindowsAppSDK.InteractiveExperiences": "1.8.250801002-preview"
+        },
+        "runtime": {
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Security.Authentication.OAuth.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.AppLifecycle.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.AppNotifications.Builder.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.AppNotifications.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.ApplicationModel.Background.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.ApplicationModel.Resources.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.BadgeNotifications.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.Management.Deployment.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.Media.Capture.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.PushNotifications.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.Security.AccessControl.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.Storage.Pickers.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.Storage.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.System.Power.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.System.Projection.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          },
+          "lib/net6.0-windows10.0.17763.0/Microsoft.WindowsAppRuntime.Bootstrap.Net.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.8.0.0"
+          },
+          "runtimes/win-arm64/native/Microsoft.WindowsAppRuntime.Bootstrap.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.8.0.0"
+          },
+          "runtimes/win-arm64ec/native/Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll": {
+            "rid": "win-arm64ec",
+            "assetType": "native",
+            "fileVersion": "1.8.0.0"
+          },
+          "runtimes/win-arm64ec/native/Microsoft.WindowsAppRuntime.Bootstrap.dll": {
+            "rid": "win-arm64ec",
+            "assetType": "native",
+            "fileVersion": "1.8.0.0"
+          },
+          "runtimes/win-x64/native/Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.8.0.0"
+          },
+          "runtimes/win-x64/native/Microsoft.WindowsAppRuntime.Bootstrap.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.8.0.0"
+          },
+          "runtimes/win-x86/native/Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.8.0.0"
+          },
+          "runtimes/win-x86/native/Microsoft.WindowsAppRuntime.Bootstrap.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.8.0.0"
+          }
+        }
+      },
+      "Microsoft.WindowsAppSDK.InteractiveExperiences/1.8.250801002-preview": {
+        "dependencies": {
+          "Microsoft.WindowsAppSDK.Base": "1.8.250730001-preview"
+        },
+        "runtime": {
+          "lib/net6.0-windows10.0.18362.0/Microsoft.InteractiveExperiences.Projection.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.26108.1817"
+          }
+        }
+      },
+      "Microsoft.WindowsAppSDK.Runtime/1.8.250814004-preview": {
+        "dependencies": {
+          "Microsoft.WindowsAppSDK.Base": "1.8.250730001-preview"
+        }
+      },
+      "Microsoft.WindowsAppSDK.Widgets/1.8.250801001-preview": {
+        "dependencies": {
+          "Microsoft.WindowsAppSDK.Base": "1.8.250730001-preview"
+        },
+        "runtime": {
+          "lib/net6.0-windows10.0.17763.0/Microsoft.Windows.Widgets.Projection.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Microsoft.WindowsAppSDK.WinUI/1.8.250803000-preview": {
+        "dependencies": {
+          "Microsoft.Web.WebView2": "1.0.3179.45",
+          "Microsoft.WindowsAppSDK.Base": "1.8.250730001-preview",
+          "Microsoft.WindowsAppSDK.Foundation": "1.8.250803001-preview",
+          "Microsoft.WindowsAppSDK.InteractiveExperiences": "1.8.250801002-preview"
+        },
+        "runtime": {
+          "lib/net6.0-windows10.0.17763.0/Microsoft.WinUI.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.2508"
+          }
         }
       },
       "System.Runtime/4.3.0": {
@@ -96,12 +340,33 @@
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
     },
-    "Microsoft.Windows.CsWinRT/2.2.0": {
+    "Microsoft.Web.WebView2/1.0.3179.45": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-R8MDVawukHrKgYCFgYaoLfbAna/FrImEFRxDK9k8ITbrXv3KLE5uN6tRqrNV83H4MFdqJ/uiA/hg1cSsXkl0vw==",
-      "path": "microsoft.windows.cswinrt/2.2.0",
-      "hashPath": "microsoft.windows.cswinrt.2.2.0.nupkg.sha512"
+      "sha512": "sha512-3pokSH5CnN0G6rGhGFo1y87inxYhNxBQ2Vdf0wlvBj99KHxQJormjDACmqRnFeUsmuNFIhWwfAL1ztq7wD5qRA==",
+      "path": "microsoft.web.webview2/1.0.3179.45",
+      "hashPath": "microsoft.web.webview2.1.0.3179.45.nupkg.sha512"
+    },
+    "Microsoft.Windows.CsWinRT/2.3.0-prerelease.250720.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2Anaw2yEhLgBXt5Uif3HWuqC+VfjEgnUNlQ9aLKPJcyLGQseB7Nk/TTRt+c6Jv4ud7Ss9Q9pGsFIdnpU2jc3iw==",
+      "path": "microsoft.windows.cswinrt/2.3.0-prerelease.250720.1",
+      "hashPath": "microsoft.windows.cswinrt.2.3.0-prerelease.250720.1.nupkg.sha512"
+    },
+    "Microsoft.Windows.SDK.BuildTools/10.0.26100.4654": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2mgcOlj/t2RfSyyw+pVESfO+Tk1RkfQzto9Vrq42M1lUQIfQEwbi8QLha9GXWIOj+TFzeHIEJckIoF25mgiM8A==",
+      "path": "microsoft.windows.sdk.buildtools/10.0.26100.4654",
+      "hashPath": "microsoft.windows.sdk.buildtools.10.0.26100.4654.nupkg.sha512"
+    },
+    "Microsoft.Windows.SDK.BuildTools.MSIX/1.7.20250806.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZDH2YMn9J3sYXEV0OJ3sPtUje6pdkG9aBRppZUzMj2OuXrPnyFEGKUFRNqXm+kv6Bj0xKlMQIU6n6laHbA4HXQ==",
+      "path": "microsoft.windows.sdk.buildtools.msix/1.7.20250806.1",
+      "hashPath": "microsoft.windows.sdk.buildtools.msix.1.7.20250806.1.nupkg.sha512"
     },
     "Microsoft.Windows.SDK.Contracts/10.0.26100.4948": {
       "type": "package",
@@ -109,6 +374,69 @@
       "sha512": "sha512-c1+nxEUowRagzF7RSw01aU/ePZH50mmsPunNqUKrU4WqPJE+WORdimsKc5NVcoy1KbHm2dERSUg/GaDBlR0yEA==",
       "path": "microsoft.windows.sdk.contracts/10.0.26100.4948",
       "hashPath": "microsoft.windows.sdk.contracts.10.0.26100.4948.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK/1.8.250814004-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FAxPcyFW+w99O32N2VcKTkgKLu55bJ9qj5sVgoj1PNWlSpOWTe9rgxiRal1T4M+wvb9sGCP9n3Ru8nE2Uftcgg==",
+      "path": "microsoft.windowsappsdk/1.8.250814004-preview",
+      "hashPath": "microsoft.windowsappsdk.1.8.250814004-preview.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK.AI/1.8.20-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LOChjPBrwpnWQddrdzsqfTo5NVSlXUM1cfXSC1sHb5QzBo+S4uCw+AKTwyFvSG92m8AxS55eqN1DmeNpWwnolA==",
+      "path": "microsoft.windowsappsdk.ai/1.8.20-preview",
+      "hashPath": "microsoft.windowsappsdk.ai.1.8.20-preview.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK.Base/1.8.250730001-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VA40ychmBayUzM4aAcqAfILsKUReGaFDNcBSIzJ374zn68S7iuKo65Bmue5B9gZSszuen4Na2jj4i/rr3IEDsQ==",
+      "path": "microsoft.windowsappsdk.base/1.8.250730001-preview",
+      "hashPath": "microsoft.windowsappsdk.base.1.8.250730001-preview.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK.DWrite/1.8.25073101-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NImLa2WmwaDCXEFRIuky0wlZLSKZh9Rq/d9nkVF2CcMKAz1E2yDsC5ONg6FlwPL1hORV2Xvsmvg3llPtSFoA4g==",
+      "path": "microsoft.windowsappsdk.dwrite/1.8.25073101-preview",
+      "hashPath": "microsoft.windowsappsdk.dwrite.1.8.25073101-preview.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK.Foundation/1.8.250803001-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-48rNGqI7mgH5LMmumac0ibC77F7MZlnElD7PjTWYR7SsqxogPIqO2xlzH7IDFAFMhg6/nn9CPC+PrjCn/b0pNg==",
+      "path": "microsoft.windowsappsdk.foundation/1.8.250803001-preview",
+      "hashPath": "microsoft.windowsappsdk.foundation.1.8.250803001-preview.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK.InteractiveExperiences/1.8.250801002-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iFDNCUGzPoioI9S6QNzOmP1EI9qJcZWzvlBICMMNuKOrSWOFiIcLR63kdaB2YYjn3PvPkBTiQyt/xtuxrb+jDQ==",
+      "path": "microsoft.windowsappsdk.interactiveexperiences/1.8.250801002-preview",
+      "hashPath": "microsoft.windowsappsdk.interactiveexperiences.1.8.250801002-preview.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK.Runtime/1.8.250814004-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t3qQglE8EBQBip9vWEleztywkN017+2YM8M96E4X9EeO0lVPVCY00IBcoOB5T68F51gAHaQEkjEdn3QNVR6c4w==",
+      "path": "microsoft.windowsappsdk.runtime/1.8.250814004-preview",
+      "hashPath": "microsoft.windowsappsdk.runtime.1.8.250814004-preview.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK.Widgets/1.8.250801001-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oYetA4Q7QWtwfl7l8z50KcYOg93WTEv3iICtPkVgTjl9tAzb20dK1/TDPdREZeBGSwt0hIC9YdX96repxnaU2A==",
+      "path": "microsoft.windowsappsdk.widgets/1.8.250801001-preview",
+      "hashPath": "microsoft.windowsappsdk.widgets.1.8.250801001-preview.nupkg.sha512"
+    },
+    "Microsoft.WindowsAppSDK.WinUI/1.8.250803000-preview": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UiCXsTzowaqBX46kXYZDiEHZNjzTRy7Y4WiXtBsGi9hKW3HkGms5JLdK7MzoFGAtm4UnjK152vblBAL1xR3Wtg==",
+      "path": "microsoft.windowsappsdk.winui/1.8.250803000-preview",
+      "hashPath": "microsoft.windowsappsdk.winui.1.8.250803000-preview.nupkg.sha512"
     },
     "System.Runtime/4.3.0": {
       "type": "package",

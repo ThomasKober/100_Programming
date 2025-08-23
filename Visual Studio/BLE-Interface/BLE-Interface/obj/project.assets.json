@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net9.0-windows10.0.26100": {
+    "net8.0-windows10.0.19041": {
       "Microsoft.NETCore.Platforms/3.0.0": {
         "type": "package",
         "compile": {
@@ -20,12 +20,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.Windows.CsWinRT/2.2.0": {
+      "Microsoft.Windows.CsWinRT/2.3.0-prerelease.250720.1": {
         "type": "package",
         "compile": {
+          "lib/net8.0/WinRT.Host.Shim.dll": {},
           "lib/net8.0/WinRT.Runtime.dll": {}
         },
         "runtime": {
+          "lib/net8.0/WinRT.Host.Shim.dll": {},
           "lib/net8.0/WinRT.Runtime.dll": {}
         },
         "build": {
@@ -243,32 +245,25 @@
         "runtime.json"
       ]
     },
-    "Microsoft.Windows.CsWinRT/2.2.0": {
-      "sha512": "R8MDVawukHrKgYCFgYaoLfbAna/FrImEFRxDK9k8ITbrXv3KLE5uN6tRqrNV83H4MFdqJ/uiA/hg1cSsXkl0vw==",
+    "Microsoft.Windows.CsWinRT/2.3.0-prerelease.250720.1": {
+      "sha512": "2Anaw2yEhLgBXt5Uif3HWuqC+VfjEgnUNlQ9aLKPJcyLGQseB7Nk/TTRt+c6Jv4ud7Ss9Q9pGsFIdnpU2jc3iw==",
       "type": "package",
-      "path": "microsoft.windows.cswinrt/2.2.0",
+      "path": "microsoft.windows.cswinrt/2.3.0-prerelease.250720.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE",
         "NOTICE.txt",
-        "analyzers/dotnet/cs/WinRT.SourceGenerator.dll",
-        "analyzers/dotnet/cs/de-DE/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/es-ES/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/fr-FR/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/it-IT/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/ja-JP/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/ko-KR/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/pt-BR/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/ru-RU/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/zh-CN/CsWinRTDiagnosticStrings.resx",
-        "analyzers/dotnet/cs/zh-TW/CsWinRTDiagnosticStrings.resx",
+        "analyzers/dotnet/cs/roslyn4.12/WinRT.SourceGenerator.dll",
+        "analyzers/dotnet/cs/roslyn4.8/WinRT.SourceGenerator.dll",
         "build/Microsoft.Windows.CsWinRT.Authoring.Transitive.targets",
         "build/Microsoft.Windows.CsWinRT.Authoring.targets",
+        "build/Microsoft.Windows.CsWinRT.BeforeMicrosoftNetSdk.targets",
         "build/Microsoft.Windows.CsWinRT.Embedded.targets",
         "build/Microsoft.Windows.CsWinRT.IIDOptimizer.targets",
         "build/Microsoft.Windows.CsWinRT.props",
         "build/Microsoft.Windows.CsWinRT.targets",
+        "build/sources/StubExe.c",
         "build/tools/IIDOptimizer/IIDOptimizer.deps.json",
         "build/tools/IIDOptimizer/IIDOptimizer.dll",
         "build/tools/IIDOptimizer/IIDOptimizer.exe",
@@ -336,33 +331,33 @@
         "embedded/any/Uri.cs",
         "embedded/any/WinRTRuntimeErrorStrings.Designer.cs",
         "embedded/any/WuxMuxProjectedTypeAttribute.cs",
-        "embedded/net6.0/AttributeMessages.net5.cs",
-        "embedded/net6.0/Bindable.net5.cs",
-        "embedded/net6.0/CollectionHybrid.net5.cs",
-        "embedded/net6.0/ComWrappersSupport.net5.cs",
-        "embedded/net6.0/ExceptionErrorInfo.net5.cs",
-        "embedded/net6.0/ExceptionHelpers.Windows.net5.cs",
-        "embedded/net6.0/GenericDelegateHelper.net5.cs",
-        "embedded/net6.0/IAgileReference.net5.cs",
-        "embedded/net6.0/ICommand.net5.cs",
-        "embedded/net6.0/ICustomPropertyProvider.net5.cs",
-        "embedded/net6.0/IDictionary.net5.cs",
-        "embedded/net6.0/IDisposable.net5.cs",
-        "embedded/net6.0/IEnumerable.net5.cs",
-        "embedded/net6.0/IInspectable.net5.cs",
-        "embedded/net6.0/IList.net5.cs",
-        "embedded/net6.0/IMarshal.net5.cs",
-        "embedded/net6.0/INotifyCollectionChanged.net5.cs",
-        "embedded/net6.0/INotifyDataErrorInfo.net5.cs",
-        "embedded/net6.0/INotifyPropertyChanged.net5.cs",
-        "embedded/net6.0/IPropertyValue.net5.cs",
-        "embedded/net6.0/IReadOnlyDictionary.net5.cs",
-        "embedded/net6.0/IReadOnlyList.net5.cs",
-        "embedded/net6.0/IReferenceArray.net5.cs",
-        "embedded/net6.0/IServiceProvider.net5.cs",
-        "embedded/net6.0/IWeakReferenceSource.net5.cs",
-        "embedded/net6.0/IWinRTObject.net5.cs",
-        "embedded/net6.0/SingleInterfaceOptimizedObject.net5.cs",
+        "embedded/net8.0/AttributeMessages.net5.cs",
+        "embedded/net8.0/Bindable.net5.cs",
+        "embedded/net8.0/CollectionHybrid.net5.cs",
+        "embedded/net8.0/ComWrappersSupport.net5.cs",
+        "embedded/net8.0/ExceptionErrorInfo.net5.cs",
+        "embedded/net8.0/ExceptionHelpers.Windows.net5.cs",
+        "embedded/net8.0/GenericDelegateHelper.net5.cs",
+        "embedded/net8.0/IAgileReference.net5.cs",
+        "embedded/net8.0/ICommand.net5.cs",
+        "embedded/net8.0/ICustomPropertyProvider.net5.cs",
+        "embedded/net8.0/IDictionary.net5.cs",
+        "embedded/net8.0/IDisposable.net5.cs",
+        "embedded/net8.0/IEnumerable.net5.cs",
+        "embedded/net8.0/IInspectable.net5.cs",
+        "embedded/net8.0/IList.net5.cs",
+        "embedded/net8.0/IMarshal.net5.cs",
+        "embedded/net8.0/INotifyCollectionChanged.net5.cs",
+        "embedded/net8.0/INotifyDataErrorInfo.net5.cs",
+        "embedded/net8.0/INotifyPropertyChanged.net5.cs",
+        "embedded/net8.0/IPropertyValue.net5.cs",
+        "embedded/net8.0/IReadOnlyDictionary.net5.cs",
+        "embedded/net8.0/IReadOnlyList.net5.cs",
+        "embedded/net8.0/IReferenceArray.net5.cs",
+        "embedded/net8.0/IServiceProvider.net5.cs",
+        "embedded/net8.0/IWeakReferenceSource.net5.cs",
+        "embedded/net8.0/IWinRTObject.net5.cs",
+        "embedded/net8.0/SingleInterfaceOptimizedObject.net5.cs",
         "embedded/netstandard2.0/Bindable.netstandard2.0.cs",
         "embedded/netstandard2.0/ComWrappersSupport.netstandard2.0.cs",
         "embedded/netstandard2.0/ExceptionErrorInfo.netstandard2.0.cs",
@@ -420,21 +415,32 @@
         "hosting/x86/native/ru-RU/WinRT.Host.dll.mui",
         "hosting/x86/native/zh-CN/WinRT.Host.dll.mui",
         "hosting/x86/native/zh-TW/WinRT.Host.dll.mui",
-        "lib/net6.0/WinRT.Host.Shim.dll",
-        "lib/net6.0/WinRT.Runtime.dll",
-        "lib/net6.0/de-DE/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/es-ES/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/fr-FR/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/it-IT/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/ja-JP/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/ko-KR/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/pt-BR/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/ru-RU/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/zh-CN/WinRTRuntimeErrorStrings.resx",
-        "lib/net6.0/zh-TW/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/WinRT.Host.Shim.dll",
         "lib/net8.0/WinRT.Runtime.dll",
+        "lib/net8.0/de-DE/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/es-ES/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/fr-FR/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/it-IT/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/ja-JP/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/ko-KR/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/pt-BR/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/ru-RU/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/zh-CN/WinRTRuntimeErrorStrings.resx",
+        "lib/net8.0/zh-TW/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/WinRT.Host.Shim.dll",
+        "lib/net9.0/WinRT.Runtime.dll",
+        "lib/net9.0/de-DE/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/es-ES/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/fr-FR/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/it-IT/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/ja-JP/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/ko-KR/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/pt-BR/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/ru-RU/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/zh-CN/WinRTRuntimeErrorStrings.resx",
+        "lib/net9.0/zh-TW/WinRTRuntimeErrorStrings.resx",
         "metadata/WinRT.Interop.winmd",
-        "microsoft.windows.cswinrt.2.2.0.nupkg.sha512",
+        "microsoft.windows.cswinrt.2.3.0-prerelease.250720.1.nupkg.sha512",
         "microsoft.windows.cswinrt.nuspec",
         "readme.txt"
       ]
@@ -925,8 +931,8 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net9.0-windows10.0.26100": [
-      "Microsoft.Windows.CsWinRT >= 2.2.0",
+    "net8.0-windows10.0.19041": [
+      "Microsoft.Windows.CsWinRT >= 2.3.0-prerelease.250720.1",
       "Microsoft.Windows.SDK.Contracts >= 10.0.26100.4948"
     ]
   },
@@ -952,15 +958,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net9.0-windows10.0.26100.0"
+        "net8.0-windows10.0.19041.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net9.0-windows10.0.26100": {
-          "targetAlias": "net9.0-windows10.0.26100.0",
+        "net8.0-windows10.0.19041": {
+          "targetAlias": "net8.0-windows10.0.19041.0",
           "projectReferences": {}
         }
       },
@@ -977,12 +983,12 @@
       "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
-      "net9.0-windows10.0.26100": {
-        "targetAlias": "net9.0-windows10.0.26100.0",
+      "net8.0-windows10.0.19041": {
+        "targetAlias": "net8.0-windows10.0.19041.0",
         "dependencies": {
           "Microsoft.Windows.CsWinRT": {
             "target": "Package",
-            "version": "[2.2.0, )"
+            "version": "[2.3.0-prerelease.250720.1, )"
           },
           "Microsoft.Windows.SDK.Contracts": {
             "target": "Package",
@@ -1003,7 +1009,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.Windows.SDK.NET.Ref",
-            "version": "[10.0.26100.57, 10.0.26100.57]"
+            "version": "[10.0.19041.38, 10.0.19041.38]"
           }
         ],
         "frameworkReferences": {

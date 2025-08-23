@@ -15,6 +15,6 @@
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.windows.sdk.contracts\10.0.26100.4948\build\Microsoft.Windows.SDK.Contracts.props" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.sdk.contracts\10.0.26100.4948\build\Microsoft.Windows.SDK.Contracts.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.windows.cswinrt\2.2.0\build\Microsoft.Windows.CsWinRT.props" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.cswinrt\2.2.0\build\Microsoft.Windows.CsWinRT.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.windows.cswinrt\2.3.0-prerelease.250720.1\build\Microsoft.Windows.CsWinRT.props" Condition="Exists('$(NuGetPackageRoot)microsoft.windows.cswinrt\2.3.0-prerelease.250720.1\build\Microsoft.Windows.CsWinRT.props')" />
   </ImportGroup>
 </Project>
