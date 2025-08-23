@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 
-namespace BLE_Interface
+namespace Interface_BLE
+
 {
     /// <summary>
     /// Interaction logic for App.xaml

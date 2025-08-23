@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<EnableWinRT>true</EnableWinRT>
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Wichtige NuGet-Pakete für WinRT und Bluetooth -->
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Windows.SDK.Contracts" Version="10.0.26100.4948" />
+	</ItemGroup>
+</Project>

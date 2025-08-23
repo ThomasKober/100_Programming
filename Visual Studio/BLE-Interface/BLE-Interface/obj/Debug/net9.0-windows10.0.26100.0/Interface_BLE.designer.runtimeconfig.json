@@ -1,0 +1,31 @@
+{
+  "runtimeOptions": {
+    "tfm": "net9.0",
+    "frameworks": [
+      {
+        "name": "Microsoft.NETCore.App",
+        "version": "9.0.0"
+      },
+      {
+        "name": "Microsoft.WindowsDesktop.App",
+        "version": "9.0.0"
+      }
+    ],
+    "additionalProbingPaths": [
+      "C:\\Users\\1zwer\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\1zwer\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+    ],
+    "configProperties": {
+      "CSWINRT_ENABLE_DYNAMIC_OBJECTS_SUPPORT": true,
+      "CSWINRT_USE_EXCEPTION_RESOURCE_KEYS": false,
+      "CSWINRT_ENABLE_DEFAULT_CUSTOM_TYPE_MAPPINGS": true,
+      "CSWINRT_ENABLE_ICUSTOMPROPERTYPROVIDER_SUPPORT": true,
+      "CSWINRT_ENABLE_IREFERENCE_SUPPORT": true,
+      "CSWINRT_ENABLE_IDYNAMICINTERFACECASTABLE": true,
+      "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false,
+      "CSWINRT_USE_WINDOWS_UI_XAML_PROJECTIONS": false,
+      "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true
+    }
+  }
+}

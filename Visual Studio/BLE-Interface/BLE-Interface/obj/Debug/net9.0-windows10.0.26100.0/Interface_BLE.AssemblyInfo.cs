@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("BLE-Interface")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Interface_BLE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19db7d7c132b46b0ec90d75c64d9ae258b356dc2")]
-[assembly: System.Reflection.AssemblyProductAttribute("BLE-Interface")]
-[assembly: System.Reflection.AssemblyTitleAttribute("BLE-Interface")]
+[assembly: System.Reflection.AssemblyProductAttribute("Interface_BLE")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Interface_BLE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows10.0.26100.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows10.0.26100.0")]

@@ -9,7 +9,7 @@ using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.Storage.Streams;
 
-namespace BLE_Interface
+namespace Interface_BLE
 {
     public partial class MainWindow : Window
     {

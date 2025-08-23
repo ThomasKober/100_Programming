@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\BLE-Interface.csproj": {}
+    "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Interface_BLE.csproj": {}
   },
   "projects": {
-    "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\BLE-Interface.csproj": {
+    "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Interface_BLE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\BLE-Interface.csproj",
-        "projectName": "BLE-Interface",
-        "projectPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\BLE-Interface.csproj",
+        "projectUniqueName": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Interface_BLE.csproj",
+        "projectName": "Interface_BLE",
+        "projectPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\Interface_BLE.csproj",
         "packagesPath": "C:\\Users\\1zwer\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BLE-Interface\\BLE-Interface\\obj\\",
         "projectStyle": "PackageReference",
