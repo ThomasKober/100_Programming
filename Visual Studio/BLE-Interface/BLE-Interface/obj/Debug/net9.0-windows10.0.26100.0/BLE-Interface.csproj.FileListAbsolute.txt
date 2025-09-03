@@ -1,1 +1,0 @@
-C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BLE-Interface\BLE-Interface\obj\Debug\net9.0-windows10.0.26100.0\BLE-Interface.csproj.AssemblyReference.cache
