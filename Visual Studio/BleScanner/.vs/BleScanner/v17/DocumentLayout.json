@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BleScanner\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A5E7B13F-80B7-407B-9C5B-150FB0CE532E}|BleScanner\\BleScanner.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\blescanner\\blescanner\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{A5E7B13F-80B7-407B-9C5B-150FB0CE532E}|BleScanner\\BleScanner.csproj|solutionrelative:blescanner\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{22AE1E56-40B7-4587-864E-95C1F3E901C9}|BleScanner\\BleScanner.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\blescanner\\blescanner\\doku.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{22AE1E56-40B7-4587-864E-95C1F3E901C9}|BleScanner\\BleScanner.csproj|solutionrelative:blescanner\\doku.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A5E7B13F-80B7-407B-9C5B-150FB0CE532E}|BleScanner\\BleScanner.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\blescanner\\blescanner\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A5E7B13F-80B7-407B-9C5B-150FB0CE532E}|BleScanner\\BleScanner.csproj|solutionrelative:blescanner\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{22AE1E56-40B7-4587-864E-95C1F3E901C9}|BleScanner\\BleScanner.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\blescanner\\blescanner\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{22AE1E56-40B7-4587-864E-95C1F3E901C9}|BleScanner\\BleScanner.csproj|solutionrelative:blescanner\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{22AE1E56-40B7-4587-864E-95C1F3E901C9}|BleScanner\\BleScanner.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\blescanner\\blescanner\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{22AE1E56-40B7-4587-864E-95C1F3E901C9}|BleScanner\\BleScanner.csproj|solutionrelative:blescanner\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,18 +27,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Doku.md",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BleScanner\\BleScanner\\Doku.md",
+              "RelativeDocumentMoniker": "BleScanner\\Doku.md",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BleScanner\\BleScanner\\Doku.md",
+              "RelativeToolTip": "BleScanner\\Doku.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-09-03T21:45:05.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BleScanner\\BleScanner\\MainWindow.xaml",
               "RelativeDocumentMoniker": "BleScanner\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BleScanner\\BleScanner\\MainWindow.xaml",
               "RelativeToolTip": "BleScanner\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-03T19:10:48.239Z",
+              "WhenOpened": "2025-09-03T21:44:15.383Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\BleScanner\\BleScanner\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "BleScanner\\MainWindow.xaml.cs",
@@ -42,7 +59,7 @@
               "RelativeToolTip": "BleScanner\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-03T19:10:46.295Z",
+              "WhenOpened": "2025-09-03T21:44:13.75Z",
               "EditorCaption": ""
             }
           ]

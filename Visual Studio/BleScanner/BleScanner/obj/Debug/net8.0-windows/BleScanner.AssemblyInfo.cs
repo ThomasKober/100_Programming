@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BleScanner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64b38855a3d7dada725242f7ca01bf76feca2e3a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+503e1af8f0fa173a6fb2b3f7453bedbf9564a3f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("BleScanner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BleScanner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
