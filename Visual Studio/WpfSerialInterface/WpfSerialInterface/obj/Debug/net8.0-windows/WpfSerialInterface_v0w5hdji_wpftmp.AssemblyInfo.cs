@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WpfSerialInterface")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f8884367cc73ab29c8653531504e9e9eb9baa95")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4b76c848ea11e0bb03d9d3715093414e8656eef")]
 [assembly: System.Reflection.AssemblyProductAttribute("WpfSerialInterface")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WpfSerialInterface")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
