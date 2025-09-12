@@ -1,0 +1,14 @@
+App.xbf
+MainPage.xbf
+Scenario1_Discovery.xbf
+Scenario2_Client.xbf
+Scenario3_ServerForeground.xbf
+Scenario4_ServerBackground.xbf
+Styles\Styles.xbf
+Assets\microsoft-sdk.png
+Assets\smallTile-sdk.png
+Assets\splash-sdk.png
+Assets\squareTile-sdk.png
+Assets\storeLogo-sdk.png
+Assets\tile-sdk.png
+Assets\windows-sdk.png
