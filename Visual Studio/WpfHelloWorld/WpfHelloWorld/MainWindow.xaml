@@ -1,0 +1,16 @@
+﻿<Window x:Class="WpfHelloWorld.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfHelloWorld"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="btnDisplay">
+        <TextBlock x:Name="txtBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Select a message option and then choose the Display button." VerticalAlignment="Center" TextAlignment="Center"/>
+        <RadioButton x:Name="btnrHello" Content="Hello!" HorizontalAlignment="Left" Margin="238,291,0,0" VerticalAlignment="Top" Checked="btnrHello_Checked"/>
+        <RadioButton x:Name="btnrGoodBy" Content="Good By!" HorizontalAlignment="Left" Margin="477,291,0,0" VerticalAlignment="Top" Checked="btnrGoodBy_Checked"/>
+        <Button x:Name="btn" Content="Button" HorizontalAlignment="Center" Margin="0,349,0,0" VerticalAlignment="Top" Click="btn_Click"/>
+
+    </Grid>
+</Window>
