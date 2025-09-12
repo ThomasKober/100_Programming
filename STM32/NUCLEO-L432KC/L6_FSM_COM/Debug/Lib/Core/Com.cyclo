@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
 ../Lib/Core/Com.c:45:6:ComLoop	3
 ../Lib/Core/Com.c:84:6:HAL_UARTEx_RxEventCallback	2
 ../Lib/Core/Com.c:105:6:ComStateIdle	2
+=======
+../Lib/Core/Com.c:44:6:ComLoop	2
+>>>>>>> Stashed changes

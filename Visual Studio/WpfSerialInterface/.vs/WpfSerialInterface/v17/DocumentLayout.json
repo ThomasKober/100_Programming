@@ -3,13 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\1zwer\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\wpfserialinterface\\wpfserialinterface\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterface.csproj|solutionrelative:wpfserialinterface\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\wpfserialinterface\\wpfserialinterface\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterface.csproj|solutionrelative:wpfserialinterface\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -30,44 +23,18 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ResourcePart.cs",
-              "DocumentMoniker": "C:\\Users\\1zwer\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs",
-              "ToolTip": "C:\\Users\\1zwer\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\b49ace08f4cd26a4f275d628999a0f91ccb8a1892704530d9e6f5bd1284082f1\\ResourcePart.cs [Read Only]",
-              "ViewState": "AgIAABYAAAAAAAAAAAAjwCcAAAAEAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T22:08:57.376Z",
-              "EditorCaption": " [Read Only]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "WpfSerialInterface\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\MainWindow.xaml.cs",
-              "RelativeToolTip": "WpfSerialInterface\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-12T22:08:38.363Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\MainWindow.xaml",
               "RelativeDocumentMoniker": "WpfSerialInterface\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\MainWindow.xaml",
               "RelativeToolTip": "WpfSerialInterface\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-09-12T21:50:19.224Z",
+              "WhenOpened": "2025-09-12T22:14:18.547Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Docu.md",
               "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\Docu.md",
               "RelativeDocumentMoniker": "WpfSerialInterface\\Docu.md",
@@ -75,7 +42,8 @@
               "RelativeToolTip": "WpfSerialInterface\\Docu.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-09-12T21:45:24.372Z"
+              "WhenOpened": "2025-09-12T21:45:24.372Z",
+              "EditorCaption": ""
             }
           ]
         }
