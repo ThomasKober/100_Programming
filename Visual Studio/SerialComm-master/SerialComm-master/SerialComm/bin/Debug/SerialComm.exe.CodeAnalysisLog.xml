@@ -1,0 +1,797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files\microsoft visual studio\2022\community\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="17.0">
+ <Namespaces>
+  <Namespace Name="SerialComm">
+   <Messages>
+    <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Comm' in namespace name 'SerialComm'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="SerialComm.Converter">
+   <Messages>
+    <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Comm' in namespace name 'SerialComm.Converter'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="SerialComm.Helper">
+   <Messages>
+    <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Comm' in namespace name 'SerialComm.Helper'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="SerialComm.Model">
+   <Messages>
+    <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Comm' in namespace name 'SerialComm.Model'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="SerialComm.View">
+   <Messages>
+    <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Comm' in namespace name 'SerialComm.View'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="SerialComm.ViewModel">
+   <Messages>
+    <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+     <Issue Name="Namespace" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Comm' in namespace name 'SerialComm.ViewModel'.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+ </Namespaces>
+ <Targets>
+  <Target Name="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\bin\Debug\SerialComm.exe">
+   <Modules>
+    <Module Name="serialcomm.exe">
+     <Messages>
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+       <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Sign 'SerialComm.exe' with a strong name key.</Issue>
+      </Message>
+      <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+       <Issue Name="Assembly" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Comm' in assembly name 'SerialComm.exe'.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Error">Mark 'SerialComm.exe' with CLSCompliant(true) because it exposes externally visible types.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithNeutralResourcesLanguage" Category="Microsoft.Performance" CheckId="CA1824" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Warning">Because assembly 'SerialComm.exe' contains a ResX-based resource file, mark it with the NeutralResourcesLanguage attribute, specifying the language of the resources within the assembly. This could improve lookup performance the first time a resource is retrieved.</Issue>
+      </Message>
+     </Messages>
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="SingletonBase`1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+           <Issue Certainty="95" Level="Error">'SingletonBase&lt;T&gt;' should be declared inside a namespace.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#Instance" Kind="Property" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SingletonBase.cs" Line="23">Remove 'SingletonBase&lt;T&gt;.Instance' from 'SingletonBase&lt;T&gt;' or make it an instance member.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SerialComm">
+       <Types>
+        <Type Name="App" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Application_DispatcherUnhandledException(System.Object,System.Windows.Threading.DispatcherUnhandledExceptionEventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm" File="App.xaml.cs" Line="20">'App.Application_DispatcherUnhandledException(object, DispatcherUnhandledExceptionEventArgs)' appears to have no upstream public or protected callers.</Issue>
+            </Message>
+            <Message Id="System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm" File="App.xaml.cs" Line="20">Method 'App.Application_DispatcherUnhandledException(object, DispatcherUnhandledExceptionEventArgs)' passes a literal string as parameter 'caption' of a call to 'MessageBox.Show(string, string, MessageBoxButton, MessageBoxImage)'. Retrieve the following string(s) from a resource table instead: "Application Error".</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SerialComm.Helper">
+       <Types>
+        <Type Name="TextBoxAutomaticScrollingExtension" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+           <Issue Name="CSharp2_0" Certainty="90" Level="Error">Because type 'TextBoxAutomaticScrollingExtension' contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#GetScrollOnTextChanged(System.Windows.DependencyObject)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Helper" File="TextBoxAutomaticScrollingExtension.cs" Line="68">In externally visible method 'TextBoxAutomaticScrollingExtension.GetScrollOnTextChanged(DependencyObject)', validate parameter 'dependencyObject' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#OnTextBoxLoaded(System.Object,System.Windows.RoutedEventArgs)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Helper" File="TextBoxAutomaticScrollingExtension.cs" Line="56">In method 'TextBoxAutomaticScrollingExtension.OnTextBoxLoaded(object, RoutedEventArgs)', call System.IDisposable.Dispose on object 'new TextBoxAutomaticScrollingExtension.TextBoxScrollingTrigger(textBox)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SetScrollOnTextChanged(System.Windows.DependencyObject,System.Boolean)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Helper" File="TextBoxAutomaticScrollingExtension.cs" Line="73">In externally visible method 'TextBoxAutomaticScrollingExtension.SetScrollOnTextChanged(DependencyObject, bool)', validate parameter 'dependencyObject' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SerialComm.Model">
+       <Types>
+        <Type Name="FileExportSettingsModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#getFileExtensions" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Because field 'FileExportSettingsModel.getFileExtensions' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SerialPortSettingsModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#DeviceID" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="ID" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="MemberAbbreviation" Certainty="85" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="16">Correct the casing of 'ID' in member name 'SerialPortSettingsModel.DeviceID' by changing it to 'Id'. 'Id' is an abbreviation and therefore is not subject to acronym casing guidelines.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#getBaudRates()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="50">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialPortSettingsModel.getBaudRates()' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="50">Correct the casing of 'get' in member name 'SerialPortSettingsModel.getBaudRates()' by changing it to 'Get'.</Issue>
+            </Message>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="50">The 'this' parameter (or 'Me' in Visual Basic) of 'SerialPortSettingsModel.getBaudRates()' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="50">Change 'SerialPortSettingsModel.getBaudRates()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#getCommPorts()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="22">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialPortSettingsModel.getCommPorts()' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="22">Correct the casing of 'get' in member name 'SerialPortSettingsModel.getCommPorts()' by changing it to 'Get'.</Issue>
+            </Message>
+            <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="22">Correct the spelling of 'Comm' in member name 'SerialPortSettingsModel.getCommPorts()' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="22">The 'this' parameter (or 'Me' in Visual Basic) of 'SerialPortSettingsModel.getCommPorts()' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="22">Change 'SerialPortSettingsModel.getCommPorts()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#getDataBits" Kind="Field" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Because field 'SerialPortSettingsModel.getDataBits' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#getLineEndings()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="103">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialPortSettingsModel.getLineEndings()' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="103">Correct the casing of 'get' in member name 'SerialPortSettingsModel.getLineEndings()' by changing it to 'Get'.</Issue>
+            </Message>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="103">The 'this' parameter (or 'Me' in Visual Basic) of 'SerialPortSettingsModel.getLineEndings()' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="103">Change 'SerialPortSettingsModel.getLineEndings()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#getParities()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="68">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialPortSettingsModel.getParities()' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="68">Correct the casing of 'get' in member name 'SerialPortSettingsModel.getParities()' by changing it to 'Get'.</Issue>
+            </Message>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="68">The 'this' parameter (or 'Me' in Visual Basic) of 'SerialPortSettingsModel.getParities()' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="68">Change 'SerialPortSettingsModel.getParities()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#getStopBits()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="88">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialPortSettingsModel.getStopBits()' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+            <Message Id="get" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="88">Correct the casing of 'get' in member name 'SerialPortSettingsModel.getStopBits()' by changing it to 'Get'.</Issue>
+            </Message>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="88">The 'this' parameter (or 'Me' in Visual Basic) of 'SerialPortSettingsModel.getStopBits()' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\Model" File="SerialPortSettingsModel.cs" Line="88">Change 'SerialPortSettingsModel.getStopBits()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="SerialComm.ViewModel">
+       <Types>
+        <Type Name="RelayCommand" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#CanExecute(System.Object)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="RelayCommand.cs" Line="47">In member 'RelayCommand.CanExecute(object)', change parameter name 'parameters' to 'parameter' in order to match the identifier as it has been declared in 'ICommand.CanExecute(object)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Execute(System.Object)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="RelayCommand.cs" Line="58">In member 'RelayCommand.Execute(object)', change parameter name 'parameters' to 'parameter' in order to match the identifier as it has been declared in 'ICommand.Execute(object)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SerialCommViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Comm' in type name 'SerialCommViewModel'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="225">Modify 'SerialCommViewModel.SerialCommViewModel()' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#AssemblyDirectory" Kind="Property" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#get_AssemblyDirectory()" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="PassSystemUriObjectsInsteadOfStrings" Category="Microsoft.Usage" CheckId="CA2234" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+               <Issue Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="63">Modify 'SerialCommViewModel.AssemblyDirectory.get()' to call 'UriBuilder.UriBuilder(Uri)' instead of 'UriBuilder.UriBuilder(string)'.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#BaudRates" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="45">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialCommViewModel.BaudRates' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ChangeFileLocationMethod()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="468">In method 'SerialCommViewModel.ChangeFileLocationMethod()', call System.IDisposable.Dispose on object 'dlg' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#CommPorts" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="43">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialCommViewModel.CommPorts' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+            <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="43">Correct the spelling of 'Comm' in member name 'SerialCommViewModel.CommPorts' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DataBits" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="51">Change 'SerialCommViewModel.DataBits' to return a collection or make it a method.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DataReceivedEvent(System.Object,System.IO.Ports.SerialDataReceivedEventArgs)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="272">Method 'SerialCommViewModel.DataReceivedEvent(object, SerialDataReceivedEventArgs)' passes a literal string as parameter 'caption' of a call to 'MessageBox.Show(string, string, MessageBoxButton, MessageBoxImage)'. Retrieve the following string(s) from a resource table instead: "Error".</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="270">Modify 'SerialCommViewModel.DataReceivedEvent(object, SerialDataReceivedEventArgs)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExportFileCanExecute()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Name="IsNullOrEmpty" Certainty="95" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="553">Replace the call to 'string.operator !=(string, string)' in 'SerialCommViewModel.ExportFileCanExecute()' with a call to 'String.IsNullOrEmpty'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExportFileMethod()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="498">Method 'SerialCommViewModel.ExportFileMethod()' passes a literal string as parameter 'caption' of a call to 'MessageBox.Show(string, string, MessageBoxButton)'. Retrieve the following string(s) from a resource table instead: "Overwrite Confirmation".</Issue>
+            </Message>
+            <Message Id="System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="546">Method 'SerialCommViewModel.ExportFileMethod()' passes a literal string as parameter 'caption' of a call to 'MessageBox.Show(string, string, MessageBoxButton, MessageBoxImage)'. Retrieve the following string(s) from a resource table instead: "Error".</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="539">Modify 'SerialCommViewModel.ExportFileMethod()' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.DateTime.ToString(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="515">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'SerialCommViewModel.ExportFileMethod()' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="516">Because the behavior of 'DateTime.ToString(string)' could vary based on the current user's locale settings, replace this call in 'SerialCommViewModel.ExportFileMethod()' with a call to 'DateTime.ToString(string, IFormatProvider)'. If the result of 'DateTime.ToString(string, IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#FileExtensions" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="69">Change 'SerialCommViewModel.FileExtensions' to return a collection or make it a method.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#IsAutoscrollChecked" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Autoscroll" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="MemberShouldBeCompoundWord" Certainty="80" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="98">The discrete term 'Autoscroll' in member name 'SerialCommViewModel.IsAutoscrollChecked' should be expressed as a compound word, 'AutoScroll'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#IsDTR" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="DTR" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="55">Correct the casing of 'DTR' in member name 'SerialCommViewModel.IsDTR' by changing it to 'Dtr'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#IsRTS" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="RTS" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="56">Correct the casing of 'RTS' in member name 'SerialCommViewModel.IsRTS' by changing it to 'Rts'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LineEndings" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="53">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialCommViewModel.LineEndings' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#OnWindowClosing(System.Object,System.ComponentModel.CancelEventArgs)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="310">Method 'SerialCommViewModel.OnWindowClosing(object, CancelEventArgs)' passes a literal string as parameter 'caption' of a call to 'MessageBox.Show(string, string, MessageBoxButton, MessageBoxImage)'. Retrieve the following string(s) from a resource table instead: "Error".</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="308">Modify 'SerialCommViewModel.OnWindowClosing(object, CancelEventArgs)' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Parities" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="47">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialCommViewModel.Parities' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RefreshPortsMethod()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="460">Modify 'SerialCommViewModel.RefreshPortsMethod()' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ScrollConfirm" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="92">The 'this' parameter (or 'Me' in Visual Basic) of 'SerialCommViewModel.ScrollConfirm' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SelectedCommPort" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Comm" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="44">Correct the spelling of 'Comm' in member name 'SerialCommViewModel.SelectedCommPort' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#StartListening()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="375">Method 'SerialCommViewModel.StartListening()' passes a literal string as parameter 'caption' of a call to 'MessageBox.Show(string, string, MessageBoxButton, MessageBoxImage)'. Retrieve the following string(s) from a resource table instead: "Error".</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="373">Modify 'SerialCommViewModel.StartListening()' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="368">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'SerialCommViewModel.StartListening()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="368">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'SerialCommViewModel.StartListening()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#StopBitsList" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="49">Change 'List&lt;SerialPortSettingsModel&gt;' in 'SerialCommViewModel.StopBitsList' to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#StopListening()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="426">Method 'SerialCommViewModel.StopListening()' passes a literal string as parameter 'caption' of a call to 'MessageBox.Show(string, string, MessageBoxButton, MessageBoxImage)'. Retrieve the following string(s) from a resource table instead: "Error".</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="424">Modify 'SerialCommViewModel.StopListening()' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#WriteData()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message Id="System.Windows.MessageBox.Show(System.String,System.String,System.Windows.MessageBoxButton,System.Windows.MessageBoxImage)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="332">Method 'SerialCommViewModel.WriteData()' passes a literal string as parameter 'caption' of a call to 'MessageBox.Show(string, string, MessageBoxButton, MessageBoxImage)'. Retrieve the following string(s) from a resource table instead: "Error".</Issue>
+            </Message>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="SerialCommViewModel.cs" Line="330">Modify 'SerialCommViewModel.WriteData()' to catch a more specific exception than 'Exception' or rethrow the exception.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ViewModelBase" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RaisePropertyChanged(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UseEventsWhereAppropriate" Category="Microsoft.Design" CheckId="CA1030" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="ViewModelBase.cs" Line="52">Consider making 'ViewModelBase.RaisePropertyChanged(string)' an event.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ThrowOnInvalidPropertyName" Kind="Property" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#set_ThrowOnInvalidPropertyName(System.Boolean)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+             <Messages>
+              <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="NonBreaking">
+               <Issue Certainty="75" Level="Warning" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="ViewModelBase.cs" Line="40">'ViewModelBase.ThrowOnInvalidPropertyName.set(bool)' appears to have no upstream public or protected callers.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#VerifyPropertyName(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Status="Active" Created="2025-09-06 13:10:53Z" FixCategory="Breaking">
+             <Issue Name="TooGeneric" Certainty="95" Level="Error" Path="C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\SerialComm-master\SerialComm-master\SerialComm\ViewModel" File="ViewModelBase.cs" Line="28">'ViewModelBase.VerifyPropertyName(string)' creates an exception of type 'Exception', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+   <Name>Assemblies should have valid strong names</Name>
+   <Description>Either the assembly has no strong name, an invalid one, or the strong name is valid only because of the computer configuration. The assembly should not be deployed in this state. The most common causes of this are: 1) The assembly's contents were modified after it was signed. 2) The signing process failed. 3) The assembly was delay-signed. 4) A registry key existed that allowed the check to pass (where it would not have otherwise).</Description>
+   <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182127.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+   <Name>Avoid uncalled private code</Name>
+   <Description>There is uncalled code that is not externally visible and is not a known runtime entry point. If this violation fires in error, please send a problem report to the Visual Studio Code Analysis team.</Description>
+   <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182264.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702">
+   <Name>Compound words should be cased correctly</Name>
+   <Description>Avoid creating compound words from terms which exist in the dictionary as discrete terms. Do not create a compound word such as 'StopWatch' or 'PopUp'. These terms are recognized in the dictionary and should be cased as 'Stopwatch' and 'Popup'.</Description>
+   <Resolution Name="MemberShouldBeCompoundWord">The discrete term '{0}' in member name {1} should be expressed as a compound word, '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264474.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="80">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="DeclareTypesInNamespaces" Category="Microsoft.Design" CheckId="CA1050">
+   <Name>Declare types in namespaces</Name>
+   <Description>A type should be defined inside a namespace to avoid duplication.</Description>
+   <Resolution Name="Default">{0} should be declared inside a namespace.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182134.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>Dispose objects before losing scope</Name>
+   <Description>If a disposable object is not explicitly disposed before all references to it are out of scope, the object will be disposed at some indeterminate time when the garbage collector runs the finalizer of the object. Because an exceptional event might occur that will prevent the finalizer of the object from running, the object should be explicitly disposed instead.</Description>
+   <Resolution Name="NonExceptionEdge">In method {0}, call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303">
+   <Name>Do not pass literals as localized parameters</Name>
+   <Description>Literal strings that are embedded in source code are difficult to localize. Avoid passing literal strings as arguments in circumstances where a localized string is generally expected.</Description>
+   <Resolution Name="KnownValue">Method {0} passes a literal string as parameter '{1}' of a call to {2}. Retrieve the following string(s) from a resource table instead: {3}.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182187.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+   <Name>Do not catch general exception types</Name>
+   <Description>You should not catch Exception or SystemException. Catching generic exception types can hide run-time problems from the library user, and can complicate debugging. You should catch only those exceptions that you can handle gracefully.</Description>
+   <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182137.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000">
+   <Name>Do not declare static members on generic types</Name>
+   <Description>The syntax for calling static members on generic types is complex as the type parameter has to be specified for each call.</Description>
+   <Resolution Name="Default">Remove {0} from {1} or make it an instance member.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182139.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051">
+   <Name>Do not declare visible instance fields</Name>
+   <Description>Instance fields that are visible outside of the type that declares them, limit your ability to change the implementation details for those data items. Use properties instead. They do not compromise usability or performance and they do provide flexibility in that they conceal the implementation details of the underlying data.</Description>
+   <Resolution Name="Default">Because field {0} is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182141.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002">
+   <Name>Do not expose generic lists</Name>
+   <Description>Do not expose List&lt;T&gt; in object models. Use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt; instead. List&lt;T&gt; is meant to be used from implementation, not in object model API. List&lt;T&gt; is optimized for performance at the cost of long term versioning. For example, if you return List&lt;T&gt; to the client code, you will not ever be able to receive notifications when client code modifies the collection.</Description>
+   <Resolution Name="Default">Change {0} in {1} to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182142.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201">
+   <Name>Do not raise reserved exception types</Name>
+   <Description>User code should not create and raise exceptions of certain types that are reserved by the runtime or which are of a too general exception type. Exception types that are too general include Exception, SystemException, and ApplicationException. Exception types that are reserved by the runtime include ThreadAbortException, OutOfMemoryException, ExecutionEngineException, and IndexOutOfRangeException.</Description>
+   <Resolution Name="TooGeneric">{0} creates an exception of type {1}, an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182338.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+   <Name>Identifiers should be cased correctly</Name>
+   <Description>Type, namespace, and member identifiers are Pascal-cased. Parameter identifiers are camel-cased. Two letter acronyms within these identifiers should be upper-cased, for example, use System.IO instead of System.Io. Acronyms of three or more letters should be Pascal-cased, for example, use System.Xml instead of System.XML. The pascal-casing convention capitalizes the first letter of each word, as in BackColor. The camel-casing convention formats the first letter of the first word in lowercase and capitalizes the first letter of all subsequent words, as in backgroundColor. Although it may be common practice for some two letter acronyms to not be fully capitalized, violations of this rule should not be excluded for this reason. For example, 'DbConnection', is common but incorrect; use DBConnection. A violation of this rule might be required for compatibility with existing, non-managed symbol schemes. In general, however, these symbols should not be visible outside the assembly that uses them.</Description>
+   <Resolution Name="Member">Correct the casing of '{0}' in member name {1} by changing it to '{2}'.</Resolution>
+   <Resolution Name="MemberAbbreviation">Correct the casing of '{0}' in member name {1} by changing it to '{2}'. '{2}' is an abbreviation and therefore is not subject to acronym casing guidelines.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182240.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="85">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+   <Name>Identifiers should be spelled correctly</Name>
+   <Description>The individual words that make up an identifier should not be abbreviated and should be spelled correctly. If this rule generates a false positive on a term that should be recognized, add the word to the FxCop custom dictionary.</Description>
+   <Resolution Name="Assembly">Correct the spelling of '{0}' in assembly name {1}.</Resolution>
+   <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="Namespace">Correct the spelling of '{0}' in namespace name '{1}'.</Resolution>
+   <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264492.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
+   <Name>Mark assemblies with CLSCompliantAttribute</Name>
+   <Description>Assemblies should explicitly state their CLS compliance using the CLSCompliant attribute. An assembly without this attribute is not CLS-compliant. Assemblies, modules, and types can be CLS-compliant even if some parts of the assembly, module, or type are not CLS-compliant. The following rules apply: 1) If the element is marked CLSCompliant, any noncompliant members must have the CLSCompliant attribute present with its argument set to false. 2) A comparable CLS-compliant alternative member must be supplied for each member that is not CLS-compliant.</Description>
+   <Resolution Name="Default">Mark {0} with CLSCompliant(true) because it exposes externally visible types.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182156.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkAssembliesWithNeutralResourcesLanguage" Category="Microsoft.Performance" CheckId="CA1824">
+   <Name>Mark assemblies with NeutralResourcesLanguageAttribute</Name>
+   <Description>The NeutralResourcesLanguage attribute informs the ResourceManager of the language used to render the neutral culture's resources for an assembly. When looking up resources in the same culture as the neutral resources language, the ResourceManager automatically uses the resources located in the main assembly, instead of searching for a satellite assembly with the current user interface culture for the current thread. This will improve lookup performance for the first resource you load and can reduce your working set.</Description>
+   <Resolution Name="Default">Because assembly {0} contains a ResX-based resource file, mark it with the NeutralResourcesLanguage attribute, specifying the language of the resources within the assembly. This could improve lookup performance the first time a resource is retrieved.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb385967.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
+   <Name>Mark members as static</Name>
+   <Description>Methods which do not access instance data or call instance methods can be marked as static (Shared in Visual Basic). After doing so, the compiler will emit non-virtual call sites to these members which will prevent a check at runtime for each call that ensures the current object pointer is non-null. This can result in a measurable performance gain for performance-sensitive code. In some cases, the failure to access the current object instance represents a correctness issue.</Description>
+   <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms245046.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725">
+   <Name>Parameter names should match base declaration</Name>
+   <Description>For usability reasons, parameter names in overridden methods should match those of the base declaration.</Description>
+   <Resolution Name="Default">In member {0}, change parameter name {1} to {2} in order to match the identifier as it has been declared in {3}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182251.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="PassSystemUriObjectsInsteadOfStrings" Category="Microsoft.Usage" CheckId="CA2234">
+   <Name>Pass System.Uri objects instead of strings</Name>
+   <Description>If there are two overloads one taking System.Uri and one taking System.String, library code should never call the string-based overload.</Description>
+   <Resolution Name="Default">Modify {0} to call {1} instead of {2}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182360.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="usagerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="PropertiesShouldNotReturnArrays" Category="Microsoft.Performance" CheckId="CA1819">
+   <Name>Properties should not return arrays</Name>
+   <Description>Properties that return arrays are prone to code inefficiencies. Consider using a collection or making this a method. See the design guidelines for more information.</Description>
+   <Resolution Name="Default">Change {0} to return a collection or make it a method.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/0fss9skc.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+   <Name>Specify IFormatProvider</Name>
+   <Description>If an overload exists that takes an IFormatProvider argument, it should always be called in favor of an overload that does not. Some methods in the runtime convert a value to or from a string representation and take a string parameter that contains one or more characters, called format specifiers, which indicate how the value is to be converted. If the meaning of the format specifier varies by culture, a formatting object supplies the actual characters used in the string representation. In scenarios where sorting and comparison behavior should never change between cultures, specify CultureInfo.InvariantCulture, otherwise, specify CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="IFormatProviderAlternateString">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182190.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="StaticHolderTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1053">
+   <Name>Static holder types should not have constructors</Name>
+   <Description>Instances of types that define only static members do not need to be created. Many compilers will automatically add a public default constructor if no constructor is specified. To prevent this, adding an empty private constructor may be required.</Description>
+   <Resolution Name="CSharp2_0">Because type {0} contains only 'static' members, mark it as 'static' to prevent the compiler from adding a default public constructor.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182169.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="TestForEmptyStringsUsingStringLength" Category="Microsoft.Performance" CheckId="CA1820">
+   <Name>Test for empty strings using string length</Name>
+   <Description>To test for empty strings, check if String.Length is equal to zero. Constructs such as "".Equals(someString) and String.Empty.Equals(someString) are less efficient than testing the string length. Replace these with checks for someString.Length == 0.</Description>
+   <Resolution Name="IsNullOrEmpty">Replace the call to {0} in {1} with a call to 'String.IsNullOrEmpty'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182279.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="UseEventsWhereAppropriate" Category="Microsoft.Design" CheckId="CA1030">
+   <Name>Use events where appropriate</Name>
+   <Description>A method name suggestive of event functionality was encountered.</Description>
+   <Resolution Name="Default">Consider making {0} an event.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182177.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
+   <Name>Use properties where appropriate</Name>
+   <Description>Properties should be used instead of Get/Set methods in most situations. Methods are preferable to properties in the following situations: the operation is a conversion, is expensive or has an observable side-effect; the order of execution is important; calling the member twice in succession creates different results; a member is static but returns a mutable value; or the member returns an array.</Description>
+   <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182181.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="17.0.0.0" />
+  </Rule>
+  <Rule TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062">
+   <Name>Validate arguments of public methods</Name>
+   <Description>All reference arguments passed to externally visible methods should be checked against null (Nothing in VB). If appropriate, throw a System.ArgumentNullException when the argument is null.</Description>
+   <Resolution Name="Default">In externally visible method {0}, validate parameter '{1}' before using it.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182182.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="17.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+</FxCopReport>
