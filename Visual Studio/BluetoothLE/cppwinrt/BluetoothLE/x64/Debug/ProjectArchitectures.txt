@@ -1,0 +1,1 @@
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\BluetoothLE\cppwinrt\BluetoothLE.vcxproj;x64
