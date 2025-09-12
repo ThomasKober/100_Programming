@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Serial-Interface")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f22f9c9355e190fe9ec27ae4ec35a39b451744cd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+087b3aa9f1d873e7df0118d7304d5969f981a5ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("Serial-Interface")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Serial-Interface")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

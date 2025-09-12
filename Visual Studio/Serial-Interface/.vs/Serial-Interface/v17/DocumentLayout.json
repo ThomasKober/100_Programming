@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\Serial-Interface\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FBB24DC5-38D2-47A7-A483-7F4BFA92D55E}|Serial-Interface\\Serial-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\serial-interface\\serial-interface\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FBB24DC5-38D2-47A7-A483-7F4BFA92D55E}|Serial-Interface\\Serial-Interface.csproj|solutionrelative:serial-interface\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FBB24DC5-38D2-47A7-A483-7F4BFA92D55E}|Serial-Interface\\Serial-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\serial-interface\\serial-interface\\services\\serialportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FBB24DC5-38D2-47A7-A483-7F4BFA92D55E}|Serial-Interface\\Serial-Interface.csproj|solutionrelative:serial-interface\\services\\serialportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FBB24DC5-38D2-47A7-A483-7F4BFA92D55E}|Serial-Interface\\Serial-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\serial-interface\\serial-interface\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBB24DC5-38D2-47A7-A483-7F4BFA92D55E}|Serial-Interface\\Serial-Interface.csproj|solutionrelative:serial-interface\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FBB24DC5-38D2-47A7-A483-7F4BFA92D55E}|Serial-Interface\\Serial-Interface.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\serial-interface\\serial-interface\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,11 +38,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\Serial-Interface\\Serial-Interface\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "Serial-Interface\\AssemblyInfo.cs",
@@ -55,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SerialPortService.cs",
               "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\Serial-Interface\\Serial-Interface\\Services\\SerialPortService.cs",
               "RelativeDocumentMoniker": "Serial-Interface\\Services\\SerialPortService.cs",
@@ -76,8 +76,7 @@
               "RelativeToolTip": "Serial-Interface\\ViewModels\\MainViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T21:21:53.265Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T21:21:53.265Z"
             },
             {
               "$type": "Document",
@@ -88,8 +87,7 @@
               "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\Serial-Interface\\Serial-Interface\\Views\\MainWindow.xaml",
               "RelativeToolTip": "Serial-Interface\\Views\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-13T21:21:34.924Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T21:21:34.924Z"
             },
             {
               "$type": "Document",
@@ -101,8 +99,7 @@
               "RelativeToolTip": "Serial-Interface\\Views\\MainWindow.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T21:21:21.798Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T21:21:21.798Z"
             },
             {
               "$type": "Document",
@@ -114,8 +111,7 @@
               "RelativeToolTip": "Serial-Interface\\App.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-13T21:16:44.144Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T21:16:44.144Z"
             },
             {
               "$type": "Document",
@@ -126,8 +122,7 @@
               "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\Serial-Interface\\Serial-Interface\\App.xaml",
               "RelativeToolTip": "Serial-Interface\\App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-13T21:16:04.132Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-13T21:16:04.132Z"
             }
           ]
         }
