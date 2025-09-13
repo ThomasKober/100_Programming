@@ -14,15 +14,10 @@ namespace WpfSerialInterface.Views
 {
     public partial class MainWindow : Window
     {
-        public MainWindow() // Parameterloser Konstruktor für XAML
+        public MainWindow()
         {
             InitializeComponent();
-        }
-
-        // Methode zum Setzen des ViewModels (wird von App.xaml.cs aufgerufen)
-        public void SetDataContext(MainViewModel viewModel)
-        {
-            DataContext = viewModel;
+            // DataContext wird von App.xaml.cs gesetzt!
         }
     }
 }

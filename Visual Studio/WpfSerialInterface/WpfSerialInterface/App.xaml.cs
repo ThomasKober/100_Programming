@@ -1,11 +1,12 @@
-﻿using System.Configuration;
+﻿
+using Microsoft.Extensions.DependencyInjection;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 using WpfSerialInterface.Core.Interfaces;
 using WpfSerialInterface.Core.Services;
 using WpfSerialInterface.ViewModels;
 using WpfSerialInterface.Views;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace WpfSerialInterface
 {
@@ -15,11 +16,17 @@ namespace WpfSerialInterface
 
         public App()
         {
+            // Dependency Injection konfigurieren
             var services = new ServiceCollection();
+            ConfigureServices(services);
+            _serviceProvider = services.BuildServiceProvider();
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
             services.AddSingleton<ISerialPortService, SerialPortService>();
             services.AddSingleton<MainViewModel>();
-            services.AddSingleton<MainWindow>();
-            _serviceProvider = services.BuildServiceProvider();
+            services.AddSingleton<MainWindow>(); // MainWindow als Singleton registrieren
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -30,8 +37,8 @@ namespace WpfSerialInterface
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
 
-            // ViewModel an das Fenster binden
-            mainWindow.SetDataContext(mainViewModel);
+            // ViewModel als DataContext setzen
+            mainWindow.DataContext = mainViewModel;
 
             // Fenster anzeigen
             mainWindow.Show();
