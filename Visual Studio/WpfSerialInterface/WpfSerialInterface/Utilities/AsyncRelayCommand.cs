@@ -33,6 +33,7 @@ namespace WpfSerialInterface.Utilities
                 finally
                 {
                     _isExecuting = false;
+                    CommandManager.InvalidateRequerySuggested(); // Wichtig für CanExecute-Updates!
                 }
             }
         }

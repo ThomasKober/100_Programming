@@ -22,9 +22,23 @@ namespace WpfSerialInterface.ViewModels
         public ObservableCollection<string> AvailablePorts { get; } = new ObservableCollection<string>();
         public string SelectedPort { get; set; }
 
-        public string Status { get => _status; set { _status = value; OnPropertyChanged(); } }
-        public string ReceivedData { get => _receivedData; set { _receivedData = value; OnPropertyChanged(); } }
-        public string SendData { get => _sendData; set { _sendData = value; OnPropertyChanged(); } }
+        public string Status
+        {
+            get => _status;
+            set { _status = value; OnPropertyChanged(); }
+        }
+
+        public string ReceivedData
+        {
+            get => _receivedData;
+            set { _receivedData = value; OnPropertyChanged(); }
+        }
+
+        public string SendData
+        {
+            get => _sendData;
+            set { _sendData = value; OnPropertyChanged(); }
+        }
 
         public ICommand ConnectCommand { get; }
         public ICommand DisconnectCommand { get; }
@@ -33,13 +47,17 @@ namespace WpfSerialInterface.ViewModels
         public MainViewModel(ISerialPortService serialPortService)
         {
             _serialPortService = serialPortService;
-            _serialPortService.DataReceived += data => Application.Current.Dispatcher.Invoke(() => ReceivedData += data + "\n");
-            _serialPortService.ConnectionChanged += isConnected => Application.Current.Dispatcher.Invoke(() => Status = isConnected ? $"Verbunden mit {SelectedPort}" : "Getrennt");
 
+            // Commands initialisieren
+            ConnectCommand = new AsyncRelayCommand(ConnectAsync, () => !string.IsNullOrEmpty(SelectedPort));
+            DisconnectCommand = new AsyncRelayCommand(DisconnectAsync, () => _serialPortService != null);
+            SendCommand = new AsyncRelayCommand(SendDataAsync, () => !string.IsNullOrEmpty(SendData));
 
-            ConnectCommand = new AsyncRelayCommand(async () => await ConnectAsync(), () => !string.IsNullOrEmpty(SelectedPort));
-            DisconnectCommand = new AsyncRelayCommand(async () => await DisconnectAsync(), () => _serialPortService != null);
-            SendCommand = new AsyncRelayCommand(async () => await SendDataAsync(), () => !string.IsNullOrEmpty(SendData));
+            // Events abonnieren
+            _serialPortService.DataReceived += data =>
+                Application.Current.Dispatcher.Invoke(() => ReceivedData += data + "\n");
+            _serialPortService.ConnectionChanged += isConnected =>
+                Application.Current.Dispatcher.Invoke(() => Status = isConnected ? $"Verbunden mit {SelectedPort}" : "Getrennt");
 
             LoadPorts();
         }
@@ -51,12 +69,20 @@ namespace WpfSerialInterface.ViewModels
                 AvailablePorts.Add(port);
         }
 
-        private async Task ConnectAsync() => await _serialPortService.ConnectAsync(SelectedPort);
+        private async Task ConnectAsync()
+        {
+            if (string.IsNullOrEmpty(SelectedPort)) return;
+            bool success = await _serialPortService.ConnectAsync(SelectedPort);
+            if (!success)
+                Status = "Verbindung fehlgeschlagen";
+        }
+
         private async Task DisconnectAsync() => await _serialPortService.DisconnectAsync();
+
         private async Task SendDataAsync()
         {
             await _serialPortService.SendDataAsync(SendData);
-            SendData = "";
+            SendData = ""; // TextBox leeren
         }
     }
 }

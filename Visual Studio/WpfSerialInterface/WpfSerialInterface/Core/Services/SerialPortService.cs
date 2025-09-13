@@ -63,7 +63,7 @@ namespace WpfSerialInterface.Core.Services
             if (_serialPort?.IsOpen == true)
             {
                 _cancellationTokenSource?.Cancel();
-                await Task.Run(() => _serialPort.Close()); // Asynchron ausführen
+                await Task.Run(() => _serialPort.Close());
                 ConnectionChanged?.Invoke(false);
             }
         }
@@ -71,7 +71,7 @@ namespace WpfSerialInterface.Core.Services
         public async Task SendDataAsync(string data)
         {
             if (_serialPort?.IsOpen == true)
-                await Task.Run(() => _serialPort.WriteLine(data)); // Asynchron ausführen
+                await Task.Run(() => _serialPort.WriteLine(data));
         }
 
         public void Dispose()

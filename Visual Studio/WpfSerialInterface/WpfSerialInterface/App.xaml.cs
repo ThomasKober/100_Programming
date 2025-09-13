@@ -32,15 +32,9 @@ namespace WpfSerialInterface
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
-            // MainWindow und ViewModel aus dem DI-Container holen
             var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
             var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
-
-            // ViewModel als DataContext setzen
-            mainWindow.DataContext = mainViewModel;
-
-            // Fenster anzeigen
+            mainWindow.DataContext = mainViewModel; // Wichtig!
             mainWindow.Show();
         }
     }
