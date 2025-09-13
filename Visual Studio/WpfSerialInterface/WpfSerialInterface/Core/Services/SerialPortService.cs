@@ -11,12 +11,12 @@ namespace WpfSerialInterface.Core.Services
 {
     public class SerialPortService : ISerialPortService
     {
-        private SerialPort _serialPort;
-        private CancellationTokenSource _cancellationTokenSource;
+        private SerialPort? _serialPort;
+        private CancellationTokenSource? _cancellationTokenSource;
         private bool _isDisposed;
 
-        public event Action<string> DataReceived;
-        public event Action<bool> ConnectionChanged;
+        public event Action<string>? DataReceived;
+        public event Action<bool>? ConnectionChanged;
 
         public string[] GetAvailablePorts() => SerialPort.GetPortNames();
 
@@ -44,7 +44,7 @@ namespace WpfSerialInterface.Core.Services
             {
                 while (!cancellationToken.IsCancellationRequested && !_isDisposed)
                 {
-                    if (_serialPort.IsOpen && _serialPort.BytesToRead > 0)
+                    if (_serialPort?.IsOpen == true && _serialPort.BytesToRead > 0)
                     {
                         string data = _serialPort.ReadLine();
                         DataReceived?.Invoke(data);
@@ -63,7 +63,7 @@ namespace WpfSerialInterface.Core.Services
             if (_serialPort?.IsOpen == true)
             {
                 _cancellationTokenSource?.Cancel();
-                _serialPort.Close();
+                await Task.Run(() => _serialPort.Close()); // Asynchron ausführen
                 ConnectionChanged?.Invoke(false);
             }
         }
@@ -71,7 +71,7 @@ namespace WpfSerialInterface.Core.Services
         public async Task SendDataAsync(string data)
         {
             if (_serialPort?.IsOpen == true)
-                await Task.Run(() => _serialPort.WriteLine(data));
+                await Task.Run(() => _serialPort.WriteLine(data)); // Asynchron ausführen
         }
 
         public void Dispose()

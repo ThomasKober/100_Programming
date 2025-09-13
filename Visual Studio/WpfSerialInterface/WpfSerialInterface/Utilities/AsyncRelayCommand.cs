@@ -10,28 +10,34 @@ namespace WpfSerialInterface.Utilities
     public class AsyncRelayCommand : ICommand
     {
         private readonly Func<Task> _execute;
-        private readonly Func<bool> _canExecute;
+        private readonly Func<bool>? _canExecute;
         private bool _isExecuting;
 
-        public AsyncRelayCommand(Func<Task> execute, Func<bool> canExecute = null)
+        public AsyncRelayCommand(Func<Task> execute, Func<bool>? canExecute = null)
         {
             _execute = execute;
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) => !_isExecuting && (_canExecute?.Invoke() ?? true);
+        public bool CanExecute(object? parameter) => !_isExecuting && (_canExecute?.Invoke() ?? true);
 
-        public async void Execute(object parameter)
+        public async void Execute(object? parameter)
         {
             if (CanExecute(parameter))
             {
                 _isExecuting = true;
-                try { await _execute(); }
-                finally { _isExecuting = false; }
+                try
+                {
+                    await _execute();
+                }
+                finally
+                {
+                    _isExecuting = false;
+                }
             }
         }
 
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;

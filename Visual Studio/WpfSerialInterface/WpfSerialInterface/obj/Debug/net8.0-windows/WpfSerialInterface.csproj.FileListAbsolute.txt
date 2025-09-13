@@ -40,3 +40,5 @@ C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfa
 C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterface\WpfSerialInterface\obj\Debug\net8.0-windows\ref\WpfSerialInterface.dll
 C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterface\WpfSerialInterface\obj\Debug\net8.0-windows\Views\MainWindow.g.cs
 C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterface\WpfSerialInterface\obj\Debug\net8.0-windows\Views\MainWindow.baml
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterface\WpfSerialInterface\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterface\WpfSerialInterface\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll

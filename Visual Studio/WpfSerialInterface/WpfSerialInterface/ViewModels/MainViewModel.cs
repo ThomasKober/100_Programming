@@ -8,6 +8,7 @@ using System.Windows.Input;
 using WpfSerialInterface.Core.Interfaces;
 using WpfSerialInterface.Utilities;
 using WpfSerialInterface.ViewModels.Base;
+using System.Windows;
 
 namespace WpfSerialInterface.ViewModels
 {
@@ -34,6 +35,7 @@ namespace WpfSerialInterface.ViewModels
             _serialPortService = serialPortService;
             _serialPortService.DataReceived += data => Application.Current.Dispatcher.Invoke(() => ReceivedData += data + "\n");
             _serialPortService.ConnectionChanged += isConnected => Application.Current.Dispatcher.Invoke(() => Status = isConnected ? $"Verbunden mit {SelectedPort}" : "Getrennt");
+
 
             ConnectCommand = new AsyncRelayCommand(async () => await ConnectAsync(), () => !string.IsNullOrEmpty(SelectedPort));
             DisconnectCommand = new AsyncRelayCommand(async () => await DisconnectAsync(), () => _serialPortService != null);
