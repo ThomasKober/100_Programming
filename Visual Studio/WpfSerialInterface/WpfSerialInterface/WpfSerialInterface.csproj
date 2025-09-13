@@ -12,4 +12,14 @@
     <PackageReference Include="System.IO.Ports" Version="10.0.0-rc.1.25451.107" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core\Interfaces\" />
+    <Folder Include="Core\Services\" />
+    <Folder Include="Models\" />
+    <Folder Include="Properties\" />
+    <Folder Include="Views\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="ViewModels\Base\" />
+  </ItemGroup>
+
 </Project>
