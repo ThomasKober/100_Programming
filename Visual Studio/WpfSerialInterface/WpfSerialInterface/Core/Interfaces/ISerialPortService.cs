@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace WpfSerialInterface.Core.Interfaces
 {
-    internal class ISerialPortService
+    public interface ISerialPortService : IDisposable
     {
+        event Action<string> DataReceived;
+        event Action<bool> ConnectionChanged;
+        string[] GetAvailablePorts();
+        Task<bool> ConnectAsync(string portName, int baudRate = 9600);
+        Task DisconnectAsync();
+        Task SendDataAsync(string data);
     }
 }
