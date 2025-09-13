@@ -1,4 +1,4 @@
-﻿Projektstruktur
+﻿Projektstruktur:
 
 WpfSerialInterface/
 ├── Core/
@@ -27,3 +27,21 @@ WpfSerialInterface/
 │
 └── Properties/
     └── ...                                // Standard-Eigenschaften (AssemblyInfo, etc.)
+
+
+
+Zusammenfassung der Struktur:
+
+Core:           Enthält Interfaces und Services für die serielle Kommunikation.
+Utilities:      Hilfsklassen wie AsyncRelayCommand für asynchrone Commands.
+ViewModels:     Enthält die Logik und bindet an die UI.
+Views:          Definiert die UI (XAML).
+App.xaml.cs:    Konfiguriert die Dependency Injection.
+
+
+Vorteile:
+✅ Multi-Threading:      Serielle Kommunikation läuft im Hintergrund.
+✅ MVVM-Pattern:         Klare Trennung von UI, Logik und Daten.
+✅ Dependency Injection: Einfaches Testen und Austauschen von Komponenten.
+✅ Asynchrone Commands:  Keine Blockierung der UI.
+Falls du spezifische Anpassungen brauchst (z. B. Logging, Hex-Daten oder Protokoll-Parser), lass es mich wissen!
