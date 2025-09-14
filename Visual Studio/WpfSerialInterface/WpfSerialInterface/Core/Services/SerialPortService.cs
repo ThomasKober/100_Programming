@@ -20,21 +20,57 @@ namespace WpfSerialInterface.Core.Services
 
         public string[] GetAvailablePorts() => SerialPort.GetPortNames();
 
+        private CancellationTokenSource _portStatusCheckTokenSource;
+
         public async Task<bool> ConnectAsync(string portName, int baudRate = 9600)
         {
             try
             {
                 _serialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
                 _cancellationTokenSource = new CancellationTokenSource();
+                _portStatusCheckTokenSource = new CancellationTokenSource();
+
                 _serialPort.Open();
                 ConnectionChanged?.Invoke(true);
+
+                // Start reading data
                 _ = Task.Run(() => ReadDataAsync(_cancellationTokenSource.Token));
+
+                // Start checking port status periodically
+                _ = Task.Run(() => CheckPortStatusAsync(_portStatusCheckTokenSource.Token));
+
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Fehler: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
                 return false;
+            }
+        }
+
+        private async Task CheckPortStatusAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                while (!cancellationToken.IsCancellationRequested && !_isDisposed)
+                {
+                    await Task.Delay(1000, cancellationToken); // Check every second
+
+                    if (_serialPort?.IsOpen != true)
+                    {
+                        // Port is closed or lost
+                        ConnectionChanged?.Invoke(false);
+                        break;
+                    }
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                // Expected when cancellation is requested
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Port status check error: {ex.Message}");
             }
         }
 
@@ -44,17 +80,42 @@ namespace WpfSerialInterface.Core.Services
             {
                 while (!cancellationToken.IsCancellationRequested && !_isDisposed)
                 {
-                    if (_serialPort?.IsOpen == true && _serialPort.BytesToRead > 0)
+                    if (_serialPort?.IsOpen == true)
                     {
-                        string data = _serialPort.ReadLine();
-                        DataReceived?.Invoke(data);
+                        try
+                        {
+                            // Try to read data
+                            string data = _serialPort.ReadLine();
+                            DataReceived?.Invoke(data);
+                        }
+                        catch (TimeoutException)
+                        {
+                            // No data received (normal case)
+                        }
+                        catch (Exception ex)
+                        {
+                            // Connection lost or error occurred
+                            Console.WriteLine($"Connection error: {ex.Message}");
+                            ConnectionChanged?.Invoke(false); // Notify disconnection
+                            break; // Exit the read loop
+                        }
+                    }
+                    else
+                    {
+                        // Port is closed
+                        ConnectionChanged?.Invoke(false);
+                        break;
                     }
                     await Task.Delay(100, cancellationToken);
                 }
             }
+            catch (OperationCanceledException)
+            {
+                // Expected when cancellation is requested
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Lesefehler: {ex.Message}");
+                Console.WriteLine($"Read error: {ex.Message}");
             }
         }
 
@@ -63,6 +124,7 @@ namespace WpfSerialInterface.Core.Services
             if (_serialPort?.IsOpen == true)
             {
                 _cancellationTokenSource?.Cancel();
+                _portStatusCheckTokenSource?.Cancel();
                 await Task.Run(() => _serialPort?.Close());
                 ConnectionChanged?.Invoke(false);
             }

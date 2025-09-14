@@ -91,10 +91,8 @@ namespace WpfSerialInterface.ViewModels
             _portsRefreshTimer.Start();
 
             // Events abonnieren
-            _serialPortService.DataReceived += data =>
-                Application.Current.Dispatcher.Invoke(() => ReceivedData += data + "\n");
-            _serialPortService.ConnectionChanged += isConnected =>
-                Application.Current.Dispatcher.Invoke(() => IsConnected = isConnected);
+            _serialPortService.DataReceived += data => Application.Current.Dispatcher.Invoke(() => ReceivedData += data + "\n");
+            _serialPortService.ConnectionChanged += isConnected => Application.Current.Dispatcher.Invoke(() => IsConnected = isConnected);
 
             // Timer für regelmäßige Aktualisierung der COM-Ports
             _portsRefreshTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
