@@ -62,16 +62,9 @@ namespace WpfSerialInterface.Core.Services
         {
             if (_serialPort?.IsOpen == true)
             {
-                try
-                {
-                    _cancellationTokenSource?.Cancel();
-                    await Task.Run(() => _serialPort?.Close());
-                    ConnectionChanged?.Invoke(false);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Fehler beim Trennen: {ex.Message}");
-                }
+                _cancellationTokenSource?.Cancel();
+                await Task.Run(() => _serialPort?.Close());
+                ConnectionChanged?.Invoke(false);
             }
         }
 
