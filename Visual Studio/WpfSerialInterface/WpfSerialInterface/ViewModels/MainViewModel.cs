@@ -94,6 +94,15 @@ namespace WpfSerialInterface.ViewModels
             _serialPortService.DataReceived += data => Application.Current.Dispatcher.Invoke(() => ReceivedData += data + "\n");
             _serialPortService.ConnectionChanged += isConnected => Application.Current.Dispatcher.Invoke(() => IsConnected = isConnected);
 
+            _serialPortService.ConnectionChanged += isConnected =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    IsConnected = isConnected;
+                    Status = isConnected ? $"Verbunden mit {SelectedPort}" : "Getrennt (Verbindung verloren)";
+                });
+            };
+
             // Timer für regelmäßige Aktualisierung der COM-Ports
             _portsRefreshTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
             _portsRefreshTimer.Tick += (sender, e) => LoadPorts();
