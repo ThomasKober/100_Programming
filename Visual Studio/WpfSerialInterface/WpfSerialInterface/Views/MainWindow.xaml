@@ -27,10 +27,11 @@
         <ComboBox
             ItemsSource="{Binding AvailablePorts}"
             SelectedItem="{Binding SelectedPort, Mode=TwoWay}"
-            Margin="0,26,0,0"
+            Margin="0,26,127,0"
             VerticalAlignment="Top"
             Grid.Column="0"
-            DisplayMemberPath="Name" />
+            Foreground="Black" 
+            Background="White"/>
         <!-- Optional: Falls AvailablePorts Objekte mit 'Name'-Eigenschaft sind -->
 
         <!-- Connect-Button -->
@@ -76,21 +77,18 @@
         <TextBox
             Text="{Binding SendData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Grid.Column="1"
-            Margin="0,333,0,0"
+            Margin="54,333,0,0"
             TextWrapping="Wrap"
             VerticalAlignment="Top"
-            Width="546"
             Height="101"/>
 
         <!-- Senden-Button -->
         <Button
             Content="Senden"
             Command="{Binding SendCommand}"
-            Grid.Column="1"
-            Margin="0,434,0,0"
+            Margin="0,333,492,0"
             VerticalAlignment="Top"
-            Width="546"
-            Height="30"/>
+            Height="101" Grid.Column="1"/>
 
         <!-- Fortschrittsbalken -->
         <ProgressBar

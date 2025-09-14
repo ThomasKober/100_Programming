@@ -62,16 +62,26 @@ namespace WpfSerialInterface.Core.Services
         {
             if (_serialPort?.IsOpen == true)
             {
-                _cancellationTokenSource?.Cancel();
-                await Task.Run(() => _serialPort.Close());
-                ConnectionChanged?.Invoke(false);
+                try
+                {
+                    _cancellationTokenSource?.Cancel();
+                    await Task.Run(() => _serialPort?.Close());
+                    ConnectionChanged?.Invoke(false);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Fehler beim Trennen: {ex.Message}");
+                }
             }
         }
 
         public async Task SendDataAsync(string data)
         {
             if (_serialPort?.IsOpen == true)
-                await Task.Run(() => _serialPort.WriteLine(data));
+            {
+                // Verwende Task.Run, um das Senden im Hintergrund-Thread auszuführen
+                await Task.Run(() => _serialPort?.WriteLine(data));
+            }
         }
 
         public void Dispose()
