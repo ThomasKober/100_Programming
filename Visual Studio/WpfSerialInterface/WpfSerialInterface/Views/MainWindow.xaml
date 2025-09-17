@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSerialInterface.ViewModels"
         mc:Ignorable="d"
-        Title="Serial Interface" Height="450" Width="800">
-
+        Title="Serial Interface"
+        SizeToContent="WidthAndHeight"
+        MinWidth="400"
+        MinHeight="300"
+        Width="800"
+        Height="450">
     <Grid>
-        <!-- Spaltendefinitionen -->
+        <!-- Spaltendefinitionen (proportional beibehalten) -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="127*"/>
             <ColumnDefinition Width="273*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Verbindung (Label) -->
+        <!-- Verbindung (Label) - bleibt zentriert oben -->
         <Label
             Content="Connection"
             FontWeight="Bold"
@@ -23,18 +27,18 @@
             VerticalAlignment="Top"
             Margin="0,0,0,10"/>
 
-        <!-- COM-Port-Auswahl (ComboBox) -->
+        <!-- COM-Port-Auswahl (ComboBox) - behält Position, aber passt Breite an -->
         <ComboBox
             ItemsSource="{Binding AvailablePorts}"
             SelectedItem="{Binding SelectedPort, Mode=TwoWay}"
             Margin="0,26,127,0"
             VerticalAlignment="Top"
             Grid.Column="0"
-            Foreground="Black" 
-            Background="White"/>
-        <!-- Optional: Falls AvailablePorts Objekte mit 'Name'-Eigenschaft sind -->
+            Foreground="Black"
+            Background="White"
+            MinWidth="120"/>
 
-        <!-- Connect-Button -->
+        <!-- Connect-Button - behält Position, aber passt Breite an -->
         <Button
             Content="Connect"
             Command="{Binding ConnectCommand}"
@@ -44,7 +48,7 @@
             Height="22"
             Grid.Column="0"/>
 
-        <!-- Disconnect-Button -->
+        <!-- Disconnect-Button - behält Position -->
         <Button
             Content="Disconnect"
             Command="{Binding DisconnectCommand}"
@@ -54,7 +58,7 @@
             Height="22"
             Grid.Column="0"/>
 
-        <!-- Status (Label) -->
+        <!-- Status (Label) - bleibt zentriert oben -->
         <Label
             Content="{Binding Status}"
             FontWeight="Bold"
@@ -63,38 +67,30 @@
             VerticalAlignment="Top"
             Margin="0,0,0,10"/>
 
-        <!-- Empfangene Daten (TextBlock) -->
-        <TextBlock
-            Text="{Binding ReceivedData}"
-            Grid.Column="1"
-            Margin="0,26,0,0"
-            TextWrapping="Wrap"
-            VerticalAlignment="Top"
-            Height="302"
-            Width="546"/>
+        <!-- Empfangene Daten (TextBlock) - behält Position, aber wird scrollbar -->
+        <ScrollViewer Grid.Column="1" Margin="0,26,0,0" VerticalAlignment="Top" Height="302" Width="546">
+            <TextBlock
+                Text="{Binding ReceivedData}"
+                TextWrapping="Wrap"
+                HorizontalAlignment="Stretch"/>
+        </ScrollViewer>
 
-        <!-- Daten senden (TextBox) -->
+        <!-- Daten senden (TextBox) - behält Position, aber passt Breite an -->
         <TextBox
             Text="{Binding SendData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Grid.Column="1"
             Margin="54,333,0,0"
             TextWrapping="Wrap"
             VerticalAlignment="Top"
-            Height="101"/>
-
-        <!-- Senden-Button -->
+            Height="101"
+            Width="492"/>
+        <!-- Senden-Button - behält Position, aber passt Breite an -->
         <Button
             Content="Senden"
             Command="{Binding SendCommand}"
             Margin="0,333,492,0"
             VerticalAlignment="Top"
-            Height="101" Grid.Column="1"/>
-
-        <!-- Fortschrittsbalken -->
-        <ProgressBar
-            HorizontalAlignment="Center"
-            Height="20"
-            VerticalAlignment="Center"
-            Width="162"/>
+            Height="101"
+            Grid.Column="1"/>
     </Grid>
 </Window>

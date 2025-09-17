@@ -14,14 +14,13 @@ namespace WpfSerialInterface.Core.Services
     {
         private SerialPort? _serialPort;
         private CancellationTokenSource? _cancellationTokenSource;
+        private CancellationTokenSource? _portStatusCheckTokenSource; // Hier nullable gemacht
         private bool _isDisposed;
 
         public event Action<string>? DataReceived;
         public event Action<bool>? ConnectionChanged;
 
         public string[] GetAvailablePorts() => SerialPort.GetPortNames();
-
-        private CancellationTokenSource _portStatusCheckTokenSource;
 
         public bool IsPortOpen()
         {
@@ -40,7 +39,7 @@ namespace WpfSerialInterface.Core.Services
 
                 _serialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
                 _cancellationTokenSource = new CancellationTokenSource();
-                _portStatusCheckTokenSource = new CancellationTokenSource();
+                _portStatusCheckTokenSource = new CancellationTokenSource(); // Hier initialisiert
 
                 _serialPort.Open();
                 ConnectionChanged?.Invoke(true);
@@ -178,9 +177,7 @@ namespace WpfSerialInterface.Core.Services
             {
                 _cancellationTokenSource?.Cancel();
                 _portStatusCheckTokenSource?.Cancel();
-
                 await Task.Run(() => _serialPort?.Close());
-
                 ConnectionChanged?.Invoke(false);
                 Debug.WriteLine("Disconnected from port.");
             }
@@ -190,7 +187,6 @@ namespace WpfSerialInterface.Core.Services
         {
             if (_serialPort?.IsOpen == true)
             {
-                // Verwende Task.Run, um das Senden im Hintergrund-Thread auszuführen
                 await Task.Run(() => _serialPort?.WriteLine(data));
             }
         }
@@ -200,6 +196,7 @@ namespace WpfSerialInterface.Core.Services
             if (!_isDisposed)
             {
                 _cancellationTokenSource?.Cancel();
+                _portStatusCheckTokenSource?.Cancel();
                 _serialPort?.Dispose();
                 _isDisposed = true;
             }

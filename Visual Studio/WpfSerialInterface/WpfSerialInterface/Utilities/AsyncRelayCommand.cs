@@ -13,15 +13,15 @@ namespace WpfSerialInterface.Utilities
         private readonly Func<bool>? _canExecute;
         private bool _isExecuting;
 
-        public AsyncRelayCommand(Func<Task> execute, Func<bool> canExecute)
+        public AsyncRelayCommand(Func<Task> execute, Func<bool>? canExecute = null)
         {
-            _execute = execute;
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) => !_isExecuting && _canExecute();
+        public bool CanExecute(object? parameter) => !_isExecuting && (_canExecute?.Invoke() ?? true);
 
-        public async void Execute(object parameter)
+        public async void Execute(object? parameter)
         {
             if (CanExecute(parameter))
             {
@@ -33,12 +33,12 @@ namespace WpfSerialInterface.Utilities
                 finally
                 {
                     _isExecuting = false;
-                    CommandManager.InvalidateRequerySuggested(); // Wichtig für UI-Updates!
+                    CommandManager.InvalidateRequerySuggested();
                 }
             }
         }
 
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
