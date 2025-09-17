@@ -26,8 +26,8 @@
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\Views\\MainWindow.xaml",
               "RelativeDocumentMoniker": "WpfSerialInterface\\Views\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\Views\\MainWindow.xaml",
-              "RelativeToolTip": "WpfSerialInterface\\Views\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\Views\\MainWindow.xaml*",
+              "RelativeToolTip": "WpfSerialInterface\\Views\\MainWindow.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-09-17T19:00:54.774Z",
               "EditorCaption": ""
@@ -42,8 +42,7 @@
               "RelativeToolTip": "WpfSerialInterface\\Core\\Services\\SerialPortService.cs",
               "ViewState": "AgIAAKQAAAAAAAAAAAAwwMoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-14T17:59:36.93Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-14T17:59:36.93Z"
             }
           ]
         }
