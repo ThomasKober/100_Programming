@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using WpfSerialInterface.Core.Interfaces;
+using WpfSerialInterface.Properties;
 using WpfSerialInterface.Utilities;
 using WpfSerialInterface.ViewModels.Base;
 
@@ -27,6 +28,18 @@ namespace WpfSerialInterface.ViewModels
         private bool _isConnected;
 
         public ObservableCollection<string> AvailablePorts { get; } = new ObservableCollection<string>();
+
+        private bool _isDarkMode;
+        public bool IsDarkMode
+        {
+            get => _isDarkMode;
+            set
+            {
+                _isDarkMode = value;
+                OnPropertyChanged();
+                UpdateTheme();
+            }
+        }
 
         public bool IsConnected
         {
@@ -72,6 +85,7 @@ namespace WpfSerialInterface.ViewModels
         public ICommand ConnectCommand { get; }
         public ICommand DisconnectCommand { get; }
         public ICommand SendCommand { get; }
+        public ICommand ToggleThemeCommand { get; }
 
         public MainViewModel(ISerialPortService serialPortService)
         {
@@ -81,6 +95,9 @@ namespace WpfSerialInterface.ViewModels
             ConnectCommand = new AsyncRelayCommand(ConnectAsync, () => !string.IsNullOrEmpty(SelectedPort) && !IsConnected);
             DisconnectCommand = new AsyncRelayCommand(DisconnectAsync, () => IsConnected);
             SendCommand = new AsyncRelayCommand(SendDataAsync, () => !string.IsNullOrEmpty(SendData));
+
+            ToggleThemeCommand = new RelayCommand(_ => ToggleTheme());
+            IsDarkMode = Settings.Default.IsDarkMode;
 
             // Timer für regelmäßige Aktualisierung der COM-Ports
             _portsRefreshTimer = new DispatcherTimer
@@ -110,6 +127,30 @@ namespace WpfSerialInterface.ViewModels
 
             // Ports beim Start laden
             LoadPorts();
+        }
+
+        private void ToggleTheme()
+        {
+            IsDarkMode = !IsDarkMode;
+            Settings.Default.IsDarkMode = IsDarkMode;
+            Settings.Default.Save();
+        }
+
+        public void UpdateTheme()  // <-- PUBLIC (zugänglich)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var resources = Application.Current.Resources.MergedDictionaries;
+                if (resources.Count > 0)
+                    resources.Clear();
+
+                resources.Add(new ResourceDictionary
+                {
+                    Source = new Uri(
+                        IsDarkMode ? "/Themes/DarkTheme.xaml" : "/Themes/LightTheme.xaml",
+                        UriKind.Relative)
+                });
+            });
         }
 
         private void LoadPorts()

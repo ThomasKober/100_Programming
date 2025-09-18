@@ -17,7 +17,7 @@ namespace WpfSerialInterface.Views
         public MainWindow()
         {
             InitializeComponent();
-            // DataContext wird von App.xaml.cs gesetzt!
+            // DataContext wird jetzt in App.xaml.cs gesetzt
         }
     }
 }

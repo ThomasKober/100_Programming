@@ -13,87 +13,10 @@
         Height="550"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
-        Background="#FFF5F5F5">
+        Background="{DynamicResource BackgroundBrush}">
 
-    <!-- Ressourcen für konsistentes Styling -->
+    <!-- Ressourcen-Block bleibt leer, da alle Styles aus Theme-Dateien kommen -->
     <Window.Resources>
-        <!-- Moderner Button-Stil mit angepasster Höhe -->
-        <Style x:Key="ModernButton" TargetType="Button">
-            <Setter Property="Background" Value="#FF3F51B5"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Margin" Value="0,0,0,0"/>
-            <Setter Property="Padding" Value="8,4"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Height" Value="80"/>
-            <!-- Höhe an TextBox angepasst -->
-            <Setter Property="MinWidth" Value="100"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border"
-                                Background="{TemplateBinding Background}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                CornerRadius="4">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FF3A4A9D"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FF2A3A7D"/>
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="border" Property="Background" Value="#FFB0B0B0"/>
-                                <Setter Property="Foreground" Value="#FF606060"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <!-- Moderner ComboBox-Stil -->
-        <Style x:Key="ModernComboBox" TargetType="ComboBox">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="#FF333333"/>
-            <Setter Property="BorderBrush" Value="#FFCCCCCC"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="5,2"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="MinWidth" Value="150"/>
-        </Style>
-
-        <!-- Moderner SectionLabel-Stil für Überschriften -->
-        <Style x:Key="SectionLabel" TargetType="Label">
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Foreground" Value="#FF2A3A7D"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Margin" Value="0,0,0,5"/>
-        </Style>
-
-        <!-- Moderner Border-Stil -->
-        <Style x:Key="ModernBorder" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#FFCCCCCC"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="3"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-        </Style>
-
-        <!-- Moderner ContentBorder-Stil -->
-        <Style x:Key="ContentBorder" TargetType="Border">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#FFCCCCCC"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="3"/>
-            <Setter Property="Margin" Value="0,0,0,10"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        </Style>
     </Window.Resources>
 
     <Grid>
@@ -103,24 +26,42 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Zeilendefinitionen für bessere Struktur -->
+        <!-- Zeilendefinitionen -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Titel -->
+            <!-- Row 0: Theme-Toggle-Button -->
             <RowDefinition Height="Auto"/>
-            <!-- Controls (ComboBox, Buttons) -->
+            <!-- Row 1: Titel -->
             <RowDefinition Height="Auto"/>
-            <!-- Received Data Label -->
+            <!-- Row 2: Controls (ComboBox, Buttons) -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 3: Status -->
+            <RowDefinition Height="Auto"/>
+            <!-- Row 4: Received Data Label -->
             <RowDefinition Height="*"/>
-            <!-- Received Data TextBlock -->
+            <!-- Row 5: Received Data (ScrollViewer) -->
             <RowDefinition Height="Auto"/>
-            <!-- Send Data Label -->
+            <!-- Row 6: Send Data Label -->
             <RowDefinition Height="Auto"/>
-            <!-- Send Data Bereich -->
+            <!-- Row 7: Send Data (TextBox + Button) -->
         </Grid.RowDefinitions>
 
-        <!-- Verbindung (Label) - moderner Titel -->
-        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="Transparent" Margin="0,0,0,15">
+        <!-- Theme-Toggle-Button (Row 0) -->
+        <Button
+            Grid.Row="0"
+            Grid.Column="1"
+            Content="🌓"
+            Command="{Binding ToggleThemeCommand}"
+            ToolTip="Toggle Dark/Light Mode"
+            Style="{DynamicResource ModernButton}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Margin="0,5,10,5"
+            Width="40"
+            Height="30"/>
+
+        <!-- Titel (Row 1) -->
+        <Border Grid.Row="1" Grid.ColumnSpan="2" Background="Transparent" Margin="0,0,0,15">
             <Label
                 Content="Serial Port Connection"
                 FontWeight="Bold"
@@ -128,97 +69,79 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Padding="5"
-                Foreground="#FF2A3A7D"/>
+                Foreground="{DynamicResource LabelBrush}"/>
         </Border>
 
-        <!-- Linke Spalte mit Controls -->
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Margin="10,0,10,0">
-            <!-- Available Ports Label -->
-            <Label Content="Available Ports:" Style="{StaticResource SectionLabel}"/>
-
-            <!-- COM-Port-Auswahl (ComboBox) -->
+        <!-- Linke Spalte mit Controls (Row 2) -->
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Vertical" Margin="10,0,10,0">
+            <Label Content="Available Ports:" Style="{DynamicResource SectionLabel}"/>
             <ComboBox
                 ItemsSource="{Binding AvailablePorts}"
                 SelectedItem="{Binding SelectedPort, Mode=TwoWay}"
-                Style="{StaticResource ModernComboBox}"/>
-
-            <!-- Connect-Button -->
+                Style="{DynamicResource ModernComboBox}"/>
             <Button
                 Content="Connect"
                 Command="{Binding ConnectCommand}"
-                Style="{StaticResource ModernButton}"
+                Style="{DynamicResource ModernButton}"
                 Height="35"/>
-            <!-- Standardhöhe für diese Buttons -->
-
-            <!-- Disconnect-Button -->
             <Button
                 Content="Disconnect"
                 Command="{Binding DisconnectCommand}"
-                Style="{StaticResource ModernButton}"
+                Style="{DynamicResource ModernButton}"
                 Height="35"/>
-            <!-- Standardhöhe für diese Buttons -->
         </StackPanel>
 
-        <!-- Status (Label) - rechts oben -->
-        <Border Grid.Row="1" Grid.Column="1" Margin="0,0,0,10">
+        <!-- Status (Row 3) -->
+        <Border Grid.Row="3" Grid.Column="1" Margin="0,0,0,10">
             <Label
                 Content="{Binding Status}"
                 FontWeight="Bold"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
-                Foreground="#FF2A3A7D"
+                Foreground="{DynamicResource LabelBrush}"
                 FontSize="14"
                 Margin="0,5,0,0"/>
         </Border>
 
-        <!-- Received Data Label -->
+        <!-- Received Data Label (Row 4) -->
         <Label
-            Grid.Row="2"
+            Grid.Row="4"
             Grid.Column="1"
             Content="Received Data:"
-            Style="{StaticResource SectionLabel}"
-            Margin="0,0,0,0"/>
+            Style="{DynamicResource SectionLabel}"/>
 
-        <!-- Empfangene Daten (TextBlock) mit ScrollViewer -->
-        <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource ContentBorder}">
+        <!-- Received Data (Row 5) -->
+        <Border Grid.Row="5" Grid.Column="1" Style="{DynamicResource ContentBorder}">
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
                 <TextBlock
                     Text="{Binding ReceivedData}"
                     TextWrapping="Wrap"
                     Padding="8"
-                    Foreground="#FF333333"/>
+                    Foreground="{DynamicResource TextBrush}"/>
             </ScrollViewer>
         </Border>
 
-        <!-- Send Data Label -->
+        <!-- Send Data Label (Row 6) -->
         <Label
-            Grid.Row="4"
+            Grid.Row="6"
             Grid.Column="1"
             Content="Send Data:"
-            Style="{StaticResource SectionLabel}"
-            Margin="0,0,0,0"/>
+            Style="{DynamicResource SectionLabel}"/>
 
-        <!-- Send Data Bereich mit horizontaler Anordnung -->
-        <Grid Grid.Row="5" Grid.Column="1" Margin="0,0,0,10">
+        <!-- Send Data (Row 7) -->
+        <Grid Grid.Row="6" Margin="120,27,0,0" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <!-- Send Button -->
                 <ColumnDefinition Width="*"/>
-                <!-- TextBox -->
             </Grid.ColumnDefinitions>
-
-            <!-- Send Button - jetzt mit gleicher Höhe wie TextBox (80px) -->
             <Button
                 Grid.Column="0"
                 Content="Send"
                 Command="{Binding SendCommand}"
-                Style="{StaticResource ModernButton}"
-                Margin="0,0,10,0"
+                Style="{DynamicResource ModernButton}"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"/>
-
-            <!-- TextBox für Send Data - Höhe 80px -->
-            <Border Grid.Column="1" Style="{StaticResource ContentBorder}">
+                VerticalAlignment="Center" Height="82"/>
+            <Border Grid.Column="1" Style="{DynamicResource ContentBorder}">
                 <TextBox
                     Text="{Binding SendData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     AcceptsReturn="True"
@@ -226,7 +149,7 @@
                     VerticalScrollBarVisibility="Auto"
                     BorderThickness="0"
                     Padding="8,4"
-                    Foreground="#FF333333"/>
+                    Foreground="{DynamicResource TextBrush}" Margin="21,0,0,0"/>
             </Border>
         </Grid>
     </Grid>

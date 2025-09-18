@@ -1,47 +1,88 @@
-﻿Projektstruktur:
+﻿1. Vollständige Projektstruktur
 
 WpfSerialInterface/
-├── Core/
-│   ├── Interfaces/
-│   │   └── ISerialPortService.cs          // Interface für die serielle Kommunikation
-│   └── Services/
-│       └── SerialPortService.cs           // Implementierung des SerialPortService
 │
-├── Models/
-│   └── SerialDataModel.cs                 // (Optional) Datenmodell für empfangene/sendende Daten
+├── **Properties/**
+│   ├── Settings.settings       # Benutzereinstellungen (z.B. DarkMode)
+│   └── Settings.Designer.cs   # Automatisch generierter Code für Settings
 │
-├── Utilities/
-│   ├── RelayCommand.cs                    // Synchroner RelayCommand
-│   └── AsyncRelayCommand.cs               // Asynchroner RelayCommand für Task-Unterstützung
+├── **Core/**
+│   ├── **Interfaces/**
+│   │   └── ISerialPortService.cs  # Schnittstelle für serielle Kommunikation
+│   │
+│   └── **Services/**
+│       └── SerialPortService.cs    # Implementierung der seriellen Kommunikation
 │
-├── ViewModels/
-│   ├── Base/
-│   │   └── ViewModelBase.cs               // Basisklasse für ViewModels (INotifyPropertyChanged)
-│   └── MainViewModel.cs                   // Haupt-ViewModel mit Logik für die UI
+├── **Models/**
+│   └── SerialDataModel.cs      # (Leeres) Datenmodell für serielle Daten
 │
-├── Views/
-│   └── MainWindow.xaml                    // UI-Definition (XAML)
+├── **Utilities/**
+│   ├── AsyncRelayCommand.cs    # Asynchrone Command-Implementierung
+│   └── RelayCommand.cs         # Synchrone Command-Implementierung
 │
-├── App.xaml                               // WPF-Anwendungseinstieg
-├── App.xaml.cs                            // Konfiguration der Dependency Injection
+├── **ViewModels/**
+│   ├── **Base/**
+│   │   └── ViewModelBase.cs    # Basis-Klasse für ViewModels (INotifyPropertyChanged)
+│   │
+│   └── MainViewModel.cs        # Haupt-ViewModel für die UI-Logik
 │
-└── Properties/
-    └── ...                                // Standard-Eigenschaften (AssemblyInfo, etc.)
+├── **Views/**
+│   └── MainWindow.xaml         # Hauptfenster (UI)
+│
+├── **Themes/**
+│   ├── DarkTheme.xaml          # Dark-Mode-Styles/Ressourcen
+│   └── LightTheme.xaml         # Light-Mode-Styles/Ressourcen
+│
+├── App.xaml                    # Anwendungseinstiegspunkt (DI-Container)
+├── App.xaml.cs                 # Logik für App.xaml (Dependency Injection)
+└── App.config                  # Konfiguration (Benutzereinstellungen)
+
+
+2. Zusammenfassung der Funktionalität
+
+Das Projekt ist eine WPF-Anwendung für serielle Kommunikation 
+(z.B. mit Arduino, Mikrocontrollern oder anderen Geräten über COM-Ports). Die wichtigsten Features:
+
+
+Kernfunktionen:
+
+
+Serielle Verbindung:
+
+Auflistung verfügbarer COM-Ports (automatische Aktualisierung alle 2 Sekunden).
+Verbindung zu einem ausgewählten Port mit konfigurierbarer Baudrate (Standard: 9600).
+Automatische Wiederverbindungsversuche bei Verbindungstrennung (max. 5 Versuche).
+Senden/Empfangen von Daten als Text (Zeilenbasiert mit ReadLine/WriteLine).
 
 
 
-Zusammenfassung der Struktur:
+UI & Benutzerfreundlichkeit:
 
-Core:           Enthält Interfaces und Services für die serielle Kommunikation.
-Utilities:      Hilfsklassen wie AsyncRelayCommand für asynchrone Commands.
-ViewModels:     Enthält die Logik und bindet an die UI.
-Views:          Definiert die UI (XAML).
-App.xaml.cs:    Konfiguriert die Dependency Injection.
+Dark/Light-Mode: Theme-Umschaltung mit Speicherung der Einstellung (Settings.Default).
+Echtzeit-Anzeige: Empfangene Daten werden in einem ScrollViewer angezeigt.
+Statusmeldungen: Visualisierung des Verbindungsstatus (z.B. "Verbunden mit COM3").
+Responsive Design: Modernes UI mit abgerundeten Buttons, Farbkontrast und dynamischen Ressourcen.
 
 
-Vorteile:
-✅ Multi-Threading:      Serielle Kommunikation läuft im Hintergrund.
-✅ MVVM-Pattern:         Klare Trennung von UI, Logik und Daten.
-✅ Dependency Injection: Einfaches Testen und Austauschen von Komponenten.
-✅ Asynchrone Commands:  Keine Blockierung der UI.
-Falls du spezifische Anpassungen brauchst (z. B. Logging, Hex-Daten oder Protokoll-Parser), lass es mich wissen!
+
+Architektur:
+
+MVVM-Pattern: Trennung von UI (MainWindow.xaml), Logik (MainViewModel) und Dienst (SerialPortService).
+Dependency Injection: Verwaltet Abhängigkeiten (z.B. ISerialPortService) über Microsoft.Extensions.DependencyInjection.
+Asynchrone Operationen: Nicht-blockierende Verbindung/Datenübertragung mit Task und CancellationToken.
+Event-basierte Kommunikation: Events wie DataReceived oder ConnectionChanged für Echtzeit-Updates.
+
+
+
+Fehlerbehandlung:
+
+Robuste Behandlung von Port-Fehlern (z.B. Zeitüberschreitungen, unerwartete Trennungen).
+Debug-Ausgaben für Diagnose (via Debug.WriteLine).
+
+
+
+Technische Highlights:
+
+Automatische Port-Erkennung: Nutzt SerialPort.GetPortNames() für dynamische Aktualisierung.
+Thread-Safety: UI-Updates werden über Application.Current.Dispatcher.Invoke sichergestellt.
+Konfigurierbarkeit: Einstellungen (z.B. DarkMode) werden in App.config persistiert.
