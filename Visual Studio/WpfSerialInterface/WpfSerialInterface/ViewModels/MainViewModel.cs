@@ -94,7 +94,7 @@ namespace WpfSerialInterface.ViewModels
             // Commands initialisieren
             ConnectCommand = new AsyncRelayCommand(ConnectAsync, () => !string.IsNullOrEmpty(SelectedPort) && !IsConnected);
             DisconnectCommand = new AsyncRelayCommand(DisconnectAsync, () => IsConnected);
-            SendCommand = new AsyncRelayCommand(SendDataAsync, () => !string.IsNullOrEmpty(SendData));
+            SendCommand = new AsyncRelayCommand(SendDataAsync, () => IsConnected && !string.IsNullOrEmpty(SendData));
 
             ToggleThemeCommand = new RelayCommand(_ => ToggleTheme());
             IsDarkMode = Settings.Default.IsDarkMode;
