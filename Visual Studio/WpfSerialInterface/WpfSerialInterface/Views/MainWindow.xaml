@@ -17,8 +17,10 @@
     <Grid>
         <!-- Spaltendefinitionen -->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="200"/>
+            <!-- Feste Breite für linke Spalte -->
             <ColumnDefinition Width="*"/>
+            <!-- Flexible Breite für rechte Spalte -->
         </Grid.ColumnDefinitions>
         <!-- Zeilendefinitionen -->
         <Grid.RowDefinitions>
@@ -96,19 +98,21 @@
                     Content="Disconnect"
                     Command="{Binding DisconnectCommand}"
                     Style="{DynamicResource ModernButton}"
-                    Height="35"/>
+                    Height="35"
+                    Margin="0,5,0,5"/>
             </StackPanel>
         </Border>
 
-        <!-- Status (Row 2, rechts) -->
+        <!-- Status (Row 2, rechts) - Optimierte Breite -->
         <Border
             Grid.Row="2"
             Grid.Column="1"
             BorderBrush="{DynamicResource BorderBrush}"
             BorderThickness="1"
             CornerRadius="4"
-            Margin="0,0,10,10"
-            Padding="8">
+            Margin="5,0,10,10"
+            Padding="15,8"
+            HorizontalAlignment="Stretch">
             <Label
                 Content="{Binding Status}"
                 FontWeight="Bold"
@@ -154,32 +158,51 @@
             Foreground="{DynamicResource LabelBrush}"
             Margin="10,10,10,5"/>
 
-        <!-- Send Data (Row 6) -->
+        <!-- Send Data (Row 6) - Ausrichtung wie oben -->
         <Grid Grid.Row="6" Grid.ColumnSpan="2" Margin="10,0,10,10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="200"/>
+                <!-- Gleiche Breite wie linke Spalte -->
                 <ColumnDefinition Width="*"/>
+                <!-- Gleiche Breite wie Status -->
             </Grid.ColumnDefinitions>
-            <Button
+
+            <!-- Send-Button - gleiche Breite wie Disconnect Button -->
+            <Border
                 Grid.Column="0"
-                Content="Send"
-                Command="{Binding SendCommand}"
-                Style="{DynamicResource ModernButton}"
-                Width="109"
-                Height="35"
-                Margin="0,0,10,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"/>
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Margin="10,0,5,0"
+                Padding="8">
+                <Button
+                    Content="Send"
+                    Command="{Binding SendCommand}"
+                    Style="{DynamicResource ModernButton}"
+                    Height="35"
+                    Margin="0,5,0,5"/>
+            </Border>
+
+            <!-- TextBox - gleiche Breite wie Status -->
             <Border
                 Grid.Column="1"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="1"
                 CornerRadius="4"
-                Padding="0">
+                Margin="5,0,10,0"
+                Padding="8">
                 <TextBox
                     Text="{Binding SendData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Style="{DynamicResource ModernTextBox}"
-                    Height="35"/>
+                    Height="35"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalContentAlignment="Center"
+                    Padding="8">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding SendCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
             </Border>
         </Grid>
     </Grid>

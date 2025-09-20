@@ -24,6 +24,7 @@
     <Style x:Key="SectionLabel" TargetType="Label">
         <Setter Property="Foreground" Value="{DynamicResource LabelBrush}"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        
         <Setter Property="FontSize" Value="13"/>
     </Style>
 </ResourceDictionary>
