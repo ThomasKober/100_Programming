@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Dark Theme Brushes -->
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#FF2D2D30"/>
+    <SolidColorBrush x:Key="ContentBrush" Color="#FF1E1E1E"/>
+    <SolidColorBrush x:Key="TextBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="#FF5A6BBF"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#FF444444"/>
+    <SolidColorBrush x:Key="LabelBrush" Color="#FFE0E0E0"/>
+
+    <!-- Styles für Dark Mode -->
+    <Style x:Key="ModernTextBox" TargetType="TextBox">
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8,4"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="AcceptsReturn" Value="True"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}"/>
+    </Style>
+
+    <Style x:Key="SectionLabel" TargetType="Label">
+        <Setter Property="Foreground" Value="{DynamicResource LabelBrush}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+</ResourceDictionary>
