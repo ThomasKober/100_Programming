@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
-using WpfSerialInterface.Core.Interfaces;
-using WpfSerialInterface.Properties;
-using WpfSerialInterface.Utilities;
-using WpfSerialInterface.ViewModels.Base;
+using WpfSerialInterfaceWithProtocol.Core.Interfaces;
+using WpfSerialInterfaceWithProtocol.Properties;
+using WpfSerialInterfaceWithProtocol.Utilities;
+using WpfSerialInterfaceWithProtocol.ViewModels.Base;
 
 
-namespace WpfSerialInterface.ViewModels
+namespace WpfSerialInterfaceWithProtocol.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {

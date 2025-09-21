@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using WpfSerialInterface.Core.Interfaces;
+using WpfSerialInterfaceWithProtocol.Core.Interfaces;
 
-namespace WpfSerialInterface.Core.Services
+namespace WpfSerialInterfaceWithProtocol.Core.Services
 {
     public class SerialPortService : ISerialPortService
     {

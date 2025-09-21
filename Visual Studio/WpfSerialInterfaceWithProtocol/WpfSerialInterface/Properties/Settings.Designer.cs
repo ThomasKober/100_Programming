@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfSerialInterface.Properties {
+namespace WpfSerialInterfaceWithProtocol.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfSerialInterface.Core.Interfaces
+namespace WpfSerialInterfaceWithProtocol.Core.Interfaces
 {
     public interface ISerialPortService : IDisposable
     {

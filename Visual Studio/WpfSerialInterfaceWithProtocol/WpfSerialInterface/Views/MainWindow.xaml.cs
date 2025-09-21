@@ -8,9 +8,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfSerialInterface.ViewModels;
+using WpfSerialInterfaceWithProtocol.ViewModels;
 
-namespace WpfSerialInterface.Views
+namespace WpfSerialInterfaceWithProtocol.Views
 {
     public partial class MainWindow : Window
     {

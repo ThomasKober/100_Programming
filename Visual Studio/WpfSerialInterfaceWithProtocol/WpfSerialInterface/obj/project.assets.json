@@ -1822,11 +1822,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\WpfSerialInterface.csproj",
-      "projectName": "WpfSerialInterface",
-      "projectPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\WpfSerialInterface.csproj",
+      "projectUniqueName": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj",
+      "projectName": "WpfSerialInterfaceWithProtocol",
+      "projectPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj",
       "packagesPath": "C:\\Users\\1zwer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterface\\WpfSerialInterface\\obj\\",
+      "outputPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

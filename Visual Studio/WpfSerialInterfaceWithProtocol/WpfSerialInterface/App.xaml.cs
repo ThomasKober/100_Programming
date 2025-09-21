@@ -1,12 +1,12 @@
 ﻿
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
-using WpfSerialInterface.Core.Interfaces;
-using WpfSerialInterface.Core.Services;
-using WpfSerialInterface.ViewModels;
-using WpfSerialInterface.Views;
+using WpfSerialInterfaceWithProtocol.Core.Interfaces;
+using WpfSerialInterfaceWithProtocol.Core.Services;
+using WpfSerialInterfaceWithProtocol.ViewModels;
+using WpfSerialInterfaceWithProtocol.Views;
 
-namespace WpfSerialInterface
+namespace WpfSerialInterfaceWithProtocol
 {
     public partial class App : Application
     {

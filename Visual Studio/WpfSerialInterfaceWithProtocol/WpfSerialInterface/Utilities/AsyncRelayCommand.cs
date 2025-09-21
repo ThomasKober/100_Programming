@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WpfSerialInterface.Utilities
+namespace WpfSerialInterfaceWithProtocol.Utilities
 {
     public class AsyncRelayCommand : ICommand
     {

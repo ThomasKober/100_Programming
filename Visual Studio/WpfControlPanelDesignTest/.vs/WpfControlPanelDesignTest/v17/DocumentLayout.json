@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfControlPanelDesignTest\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5563017C-95C1-4197-A2B6-27F2F90DD1A6}|WpfControlPanelDesignTest\\WpfControlPanelDesignTest.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\wpfcontrolpaneldesigntest\\wpfcontrolpaneldesigntest\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5563017C-95C1-4197-A2B6-27F2F90DD1A6}|WpfControlPanelDesignTest\\WpfControlPanelDesignTest.csproj|solutionrelative:wpfcontrolpaneldesigntest\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5563017C-95C1-4197-A2B6-27F2F90DD1A6}|WpfControlPanelDesignTest\\WpfControlPanelDesignTest.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\wpfcontrolpaneldesigntest\\wpfcontrolpaneldesigntest\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5563017C-95C1-4197-A2B6-27F2F90DD1A6}|WpfControlPanelDesignTest\\WpfControlPanelDesignTest.csproj|solutionrelative:wpfcontrolpaneldesigntest\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfControlPanelDesignTest\\WpfControlPanelDesignTest\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "WpfControlPanelDesignTest\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfControlPanelDesignTest\\WpfControlPanelDesignTest\\MainWindow.xaml",
+              "RelativeToolTip": "WpfControlPanelDesignTest\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-09-20T22:19:33.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfControlPanelDesignTest\\WpfControlPanelDesignTest\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WpfControlPanelDesignTest\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfControlPanelDesignTest\\WpfControlPanelDesignTest\\MainWindow.xaml.cs",
+              "RelativeToolTip": "WpfControlPanelDesignTest\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-20T22:19:32.193Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
