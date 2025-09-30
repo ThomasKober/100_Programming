@@ -1,0 +1,6 @@
+2025-10-01 01:09:29.411 +02:00 [INF] Application started successfully
+2025-10-01 01:09:47.502 +02:00 [INF] SerialPortService disposed.
+2025-10-01 01:09:47.502 +02:00 [INF] Application shutting down
+2025-10-01 01:13:31.379 +02:00 [INF] Application started successfully
+2025-10-01 01:16:07.079 +02:00 [INF] Gefundene Ports: 1
+2025-10-01 01:16:07.132 +02:00 [INF] 1 COM-Port(s) geladen

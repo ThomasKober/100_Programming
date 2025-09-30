@@ -1,205 +1,260 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO.Ports;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
+using Serilog.Events;
 using WpfSerialInterfaceWithProtocol.Core.Interfaces;
-using WpfSerialInterfaceWithProtocol.Properties;
 using WpfSerialInterfaceWithProtocol.Utilities;
 using WpfSerialInterfaceWithProtocol.ViewModels.Base;
 
-
 namespace WpfSerialInterfaceWithProtocol.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IDisposable
     {
+        private readonly ILogService _logService;
         private readonly ISerialPortService _serialPortService;
-        private DispatcherTimer _portsRefreshTimer;
-        private string _selectedPort;
-        private string _status = "Getrennt";
-        private string _receivedData = "";
-        private string _sendData = "";
-        private bool _isConnected;
+        private bool _isDisposed;
 
         public ObservableCollection<string> AvailablePorts { get; } = new ObservableCollection<string>();
-
-        private bool _isDarkMode;
-        public bool IsDarkMode
+        public ObservableCollection<LogLevelOption> LogLevelOptions { get; } = new ObservableCollection<LogLevelOption>
         {
-            get => _isDarkMode;
+            new LogLevelOption { Name = "Trace", Level = LogEventLevel.Verbose },
+            new LogLevelOption { Name = "Debug", Level = LogEventLevel.Debug },
+            new LogLevelOption { Name = "Info", Level = LogEventLevel.Information },
+            new LogLevelOption { Name = "Warning", Level = LogEventLevel.Warning },
+            new LogLevelOption { Name = "Error", Level = LogEventLevel.Error },
+            new LogLevelOption { Name = "Fatal", Level = LogEventLevel.Fatal }
+        };
+
+        private LogLevelOption _selectedLogLevel = new LogLevelOption();
+        public LogLevelOption SelectedLogLevel
+        {
+            get => _selectedLogLevel;
             set
             {
-                _isDarkMode = value;
+                _selectedLogLevel = value;
+                _logService.SetLogLevel(value.Level);
                 OnPropertyChanged();
-                UpdateTheme();
             }
         }
 
-        public bool IsConnected
-        {
-            get => _isConnected;
-            set
-            {
-                _isConnected = value;
-                OnPropertyChanged();
-                // Aktualisiere die CanExecute-Bedingung der Commands
-                CommandManager.InvalidateRequerySuggested();
-            }
-        }
-
-        public string SelectedPort
-        {
-            get => _selectedPort;
-            set
-            {
-                _selectedPort = value;
-                OnPropertyChanged();
-                Debug.WriteLine($"SelectedPort geändert: {_selectedPort}");
-            }
-        }
-
-        public string Status
-        {
-            get => _status;
-            set { _status = value; OnPropertyChanged(); }
-        }
-
+        private string _receivedData = "";
         public string ReceivedData
         {
             get => _receivedData;
             set { _receivedData = value; OnPropertyChanged(); }
         }
 
+        private string _selectedPort;
+        public string SelectedPort
+        {
+            get => _selectedPort;
+            set { _selectedPort = value; OnPropertyChanged(); }
+        }
+
+        private string _status = "Getrennt";
+        public string Status
+        {
+            get => _status;
+            set { _status = value; OnPropertyChanged(); }
+        }
+
+        private string _sendData = "";
         public string SendData
         {
             get => _sendData;
             set { _sendData = value; OnPropertyChanged(); }
         }
 
+        public ICommand TestLogCommand { get; }
         public ICommand ConnectCommand { get; }
         public ICommand DisconnectCommand { get; }
         public ICommand SendCommand { get; }
         public ICommand ToggleThemeCommand { get; }
 
-        public MainViewModel(ISerialPortService serialPortService)
+        private bool _isDarkMode;
+        private void ToggleTheme() => IsDarkMode = !IsDarkMode;
+
+        public bool IsDarkMode
+        {
+            get => _isDarkMode;
+            set
+            {
+                if (_isDarkMode != value)
+                {
+                    _isDarkMode = value;
+                    OnPropertyChanged();
+                    ApplyTheme();
+                    Properties.Settings.Default.IsDarkMode = value;
+                    Properties.Settings.Default.Save();
+                }
+            }
+        }
+
+        private void ApplyTheme()
+        {
+            var app = Application.Current;
+            var resources = app.Resources.MergedDictionaries;
+            resources.Clear();
+            resources.Add(new ResourceDictionary { Source = new Uri($"Themes/{(_isDarkMode ? "Dark" : "Light")}Theme.xaml", UriKind.Relative) });
+        }
+
+        public MainViewModel(ISerialPortService serialPortService, ILogService logService)
         {
             _serialPortService = serialPortService;
+            _logService = logService;
 
-            // Commands initialisieren
-            ConnectCommand = new AsyncRelayCommand(ConnectAsync, () => !string.IsNullOrEmpty(SelectedPort) && !IsConnected);
-            DisconnectCommand = new AsyncRelayCommand(DisconnectAsync, () => IsConnected);
-            SendCommand = new AsyncRelayCommand(SendDataAsync, () => IsConnected && !string.IsNullOrEmpty(SendData));
+            _selectedLogLevel = LogLevelOptions[2]; // Default: Info
+            SelectedLogLevel = _selectedLogLevel;
+
+            TestLogCommand = new RelayCommand(_ => TestLogs());
+            ConnectCommand = new AsyncRelayCommand(ConnectAsync,
+                () => !string.IsNullOrEmpty(SelectedPort) && !_serialPortService.IsPortOpen());
+            DisconnectCommand = new AsyncRelayCommand(DisconnectAsync,
+                () => _serialPortService.IsPortOpen());
+            SendCommand = new AsyncRelayCommand(SendDataAsync,
+                () => !string.IsNullOrEmpty(SendData) && _serialPortService.IsPortOpen());
+
+            LoadPorts();
+
+            // Subscribe to serial port events
+            _serialPortService.DataReceived += OnDataReceived;
+            _serialPortService.ConnectionChanged += OnConnectionChanged;
 
             ToggleThemeCommand = new RelayCommand(_ => ToggleTheme());
-            IsDarkMode = Settings.Default.IsDarkMode;
-
-            // Timer für regelmäßige Aktualisierung der COM-Ports
-            _portsRefreshTimer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(2) // Alle 2 Sekunden aktualisieren
-            };
-            _portsRefreshTimer.Tick += (sender, e) => LoadPorts();
-            _portsRefreshTimer.Start();
-
-            // Events abonnieren
-            _serialPortService.DataReceived += data => Application.Current.Dispatcher.Invoke(() => ReceivedData += data + "\n");
-            _serialPortService.ConnectionChanged += isConnected => Application.Current.Dispatcher.Invoke(() => IsConnected = isConnected);
-
-            _serialPortService.ConnectionChanged += isConnected =>
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    IsConnected = isConnected;
-                    Status = isConnected ? $"Verbunden mit {SelectedPort}" : "Getrennt (Verbindung verloren)";
-                });
-            };
-
-            // Timer für regelmäßige Aktualisierung der COM-Ports
-            _portsRefreshTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
-            _portsRefreshTimer.Tick += (sender, e) => LoadPorts();
-            _portsRefreshTimer.Start();
-
-            // Ports beim Start laden
-            LoadPorts();
+            IsDarkMode = Properties.Settings.Default.IsDarkMode;
         }
 
-        private void ToggleTheme()
+        private void OnDataReceived(string data)
         {
-            IsDarkMode = !IsDarkMode;
-            Settings.Default.IsDarkMode = IsDarkMode;
-            Settings.Default.Save();
+            Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                ReceivedData += $"[{DateTime.Now:HH:mm:ss}] {data}\n";
+                _logService.InfoTemplate("Empfangen: {Data}", "Fertigung", data);
+            });
         }
 
-        public void UpdateTheme()  // <-- PUBLIC (zugänglich)
+        private void OnConnectionChanged(bool isConnected)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            Application.Current.Dispatcher.BeginInvoke(() =>
             {
-                var resources = Application.Current.Resources.MergedDictionaries;
-                if (resources.Count > 0)
-                    resources.Clear();
-
-                resources.Add(new ResourceDictionary
-                {
-                    Source = new Uri(
-                        IsDarkMode ? "/Themes/DarkTheme.xaml" : "/Themes/LightTheme.xaml",
-                        UriKind.Relative)
-                });
+                Status = isConnected ? $"Verbunden mit {SelectedPort}" : "Getrennt";
+                CommandManager.InvalidateRequerySuggested();
             });
         }
 
         private void LoadPorts()
         {
-            var ports = SerialPort.GetPortNames();
-            Debug.WriteLine($"Verfügbare Ports aktualisiert: {string.Join(", ", ports)}");
+            try
+            {
+                _logService.Debug("LoadPorts() wird aufgerufen", "System");
 
-            // Aktualisiere die ObservableCollection
-            var currentSelectedPort = SelectedPort;
-            AvailablePorts.Clear();
-            foreach (var port in ports)
-                AvailablePorts.Add(port);
+                var ports = _serialPortService.GetAvailablePorts();
 
-            // Versuche, den vorher ausgewählten Port wieder auszuwählen
-            if (!string.IsNullOrEmpty(currentSelectedPort) && AvailablePorts.Contains(currentSelectedPort))
-                SelectedPort = currentSelectedPort;
+                _logService.InfoTemplate("Gefundene Ports: {PortCount}", "System", ports.Length);
+
+                AvailablePorts.Clear();
+                foreach (var port in ports)
+                {
+                    AvailablePorts.Add(port);
+                    _logService.DebugTemplate("Port hinzugefügt: {PortName}", "System", port);
+                }
+
+                if (ports.Length == 0)
+                {
+                    _logService.Warning("Keine COM-Ports gefunden", "System");
+                }
+                else
+                {
+                    _logService.InfoTemplate("{PortCount} COM-Port(s) geladen", "System", ports.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logService.ErrorTemplate(ex, "Fehler beim Laden der verfügbaren Ports", "System");
+            }
+        }
+
+        private void TestLogs()
+        {
+            _logService.Trace("Trace-Log (Entwicklung)", "Entwicklung");
+            _logService.Debug("Debug-Log (Detailliert)", "Entwicklung");
+            _logService.Info("Info-Log (Standard)", "Fertigung");
+            _logService.Warning("Warning-Log (Warnung)", "Fertigung");
+            _logService.Error("Error-Log (Fehler)", "System");
+            _logService.Fatal("Fatal-Log (Kritisch)", "System");
+
+            // Test template methods
+            _logService.InfoTemplate("Test mit Parameter: {TestValue}", "Fertigung", 42);
         }
 
         private async Task ConnectAsync()
         {
             if (string.IsNullOrEmpty(SelectedPort))
             {
-                Status = "Bitte wählen Sie einen Port aus!";
+                _logService.Warning("Kein Port ausgewählt!", "System");
                 return;
             }
 
             bool success = await _serialPortService.ConnectAsync(SelectedPort);
-            if (success)
+            if (!success)
             {
-                Status = $"Verbunden mit {SelectedPort}";
-                IsConnected = true; // Verbindung hergestellt
-            }
-            else
-            {
-                Status = "Verbindung fehlgeschlagen!";
+                _logService.ErrorTemplate("Verbindung zu {PortName} fehlgeschlagen", "System", SelectedPort);
             }
         }
 
         private async Task DisconnectAsync()
         {
             await _serialPortService.DisconnectAsync();
-            Status = "Getrennt";
-            IsConnected = false; // Verbindung getrennt
         }
 
         private async Task SendDataAsync()
         {
-            await _serialPortService.SendDataAsync(SendData);
-            SendData = "";
+            if (string.IsNullOrEmpty(SendData))
+            {
+                _logService.Warning("Keine Daten zum Senden eingegeben!", "System");
+                return;
+            }
+
+            if (!_serialPortService.IsPortOpen())
+            {
+                _logService.Error("Keine aktive Verbindung!", "System");
+                return;
+            }
+
+            try
+            {
+                _logService.InfoTemplate("Sende Daten: {Data}", "Fertigung", SendData);
+                await _serialPortService.SendDataAsync(SendData);
+                SendData = ""; // Clear input field
+            }
+            catch (Exception ex)
+            {
+                _logService.ErrorTemplate(ex, "Fehler beim Senden der Daten", "System");
+            }
         }
+
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _isDisposed = true;
+
+                // Unsubscribe from events
+                _serialPortService.DataReceived -= OnDataReceived;
+                _serialPortService.ConnectionChanged -= OnConnectionChanged;
+
+                // Dispose serial port service
+                _serialPortService?.Dispose();
+
+                _logService.Info("MainViewModel disposed", "System");
+            }
+        }
+    }
+
+    public class LogLevelOption
+    {
+        public string Name { get; set; }
+        public LogEventLevel Level { get; set; }
     }
 }

@@ -1,127 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using Serilog;
+using System;
 using System.IO.Ports;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WpfSerialInterfaceWithProtocol.Core.Interfaces;
 
 namespace WpfSerialInterfaceWithProtocol.Core.Services
 {
-    public class SerialPortService : ISerialPortService
+    public class SerialPortService : ISerialPortService, IDisposable
     {
+        private readonly ILogger _logger;
         private SerialPort? _serialPort;
         private CancellationTokenSource? _cancellationTokenSource;
-        private CancellationTokenSource? _portStatusCheckTokenSource; // Hier nullable gemacht
+        private readonly object _lockObject = new object();
         private bool _isDisposed;
 
         public event Action<string>? DataReceived;
         public event Action<bool>? ConnectionChanged;
 
+        public SerialPortService(ILogService logService)
+        {
+            _logger = Log.ForContext<SerialPortService>();
+        }
+
         public string[] GetAvailablePorts() => SerialPort.GetPortNames();
 
         public bool IsPortOpen()
         {
-            return _serialPort?.IsOpen == true;
+            lock (_lockObject)
+            {
+                return _serialPort?.IsOpen == true;
+            }
         }
 
         public async Task<bool> ConnectAsync(string portName, int baudRate = 9600)
         {
+            if (_isDisposed)
+                throw new ObjectDisposedException(nameof(SerialPortService));
+
             try
             {
-                // Schließe den aktuellen Port, falls offen
-                if (_serialPort?.IsOpen == true)
+                _logger.Debug("Connecting to {PortName} with {BaudRate} baud", portName, baudRate);
+
+                if (IsPortOpen())
                 {
+                    _logger.Warning("Port {PortName} is already open. Closing first...", portName);
                     await DisconnectAsync();
                 }
 
-                _serialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
-                _cancellationTokenSource = new CancellationTokenSource();
-                _portStatusCheckTokenSource = new CancellationTokenSource(); // Hier initialisiert
+                lock (_lockObject)
+                {
+                    _serialPort = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One)
+                    {
+                        ReadTimeout = 500,
+                        WriteTimeout = 500
+                    };
+                    _cancellationTokenSource = new CancellationTokenSource();
+                }
 
                 _serialPort.Open();
+
+                _logger.Information("Successfully connected to {PortName}", portName);
                 ConnectionChanged?.Invoke(true);
 
-                // Starte das Lesen der Daten
                 _ = Task.Run(() => ReadDataAsync(_cancellationTokenSource.Token));
-
-                // Starte die Überprüfung des Port-Status
-                _ = Task.Run(() => CheckPortStatusAsync(_portStatusCheckTokenSource.Token));
-
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error reconnecting: {ex.Message}");
+                _logger.Error(ex, "Failed to connect to {PortName}", portName);
+                ConnectionChanged?.Invoke(false);
+                await CleanupSerialPort();
                 return false;
             }
-        }
-
-        private async Task CheckPortStatusAsync(CancellationToken cancellationToken)
-        {
-            try
-            {
-                while (!cancellationToken.IsCancellationRequested && !_isDisposed)
-                {
-                    await Task.Delay(1000, cancellationToken); // Überprüfe jede Sekunde
-
-                    if (!IsPortOpen())
-                    {
-                        Debug.WriteLine("Port is no longer open. Attempting to reconnect...");
-                        ConnectionChanged?.Invoke(false);
-
-                        // Versuche, die Verbindung wiederherzustellen
-                        await AttemptReconnectAsync(cancellationToken);
-                        break;
-                    }
-                }
-            }
-            catch (OperationCanceledException)
-            {
-                Debug.WriteLine("Port status check canceled.");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Port status check error: {ex.Message}");
-                ConnectionChanged?.Invoke(false);
-            }
-        }
-
-        private async Task AttemptReconnectAsync(CancellationToken cancellationToken)
-        {
-            int reconnectAttempts = 0;
-            int maxAttempts = 5; // Maximal 5 Wiederverbindungsversuche
-            TimeSpan delayBetweenAttempts = TimeSpan.FromSeconds(3); // Warte 3 Sekunden zwischen den Versuchen
-
-            while (!cancellationToken.IsCancellationRequested && reconnectAttempts < maxAttempts && !_isDisposed)
-            {
-                reconnectAttempts++;
-                Debug.WriteLine($"Reconnect attempt {reconnectAttempts} of {maxAttempts}...");
-
-                try
-                {
-                    if (_serialPort != null && !string.IsNullOrEmpty(_serialPort.PortName))
-                    {
-                        bool success = await ConnectAsync(_serialPort.PortName);
-                        if (success)
-                        {
-                            Debug.WriteLine("Reconnected successfully!");
-                            ConnectionChanged?.Invoke(true);
-                            return; // Erfolgreich verbunden, beende die Methode
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"Reconnect attempt {reconnectAttempts} failed: {ex.Message}");
-                }
-
-                await Task.Delay(delayBetweenAttempts, cancellationToken);
-            }
-
-            Debug.WriteLine("Failed to reconnect after multiple attempts.");
         }
 
         private async Task ReadDataAsync(CancellationToken cancellationToken)
@@ -130,64 +81,128 @@ namespace WpfSerialInterfaceWithProtocol.Core.Services
             {
                 while (!cancellationToken.IsCancellationRequested && !_isDisposed)
                 {
-                    if (_serialPort?.IsOpen == true)
+                    SerialPort? port;
+                    lock (_lockObject)
+                    {
+                        port = _serialPort;
+                    }
+
+                    if (port?.IsOpen == true)
                     {
                         try
                         {
-                            string data = _serialPort.ReadLine();
+                            string data = await Task.Run(() => port.ReadLine(), cancellationToken);
                             DataReceived?.Invoke(data);
+                            _logger.Debug("Received data: {Data}", data);
                         }
                         catch (TimeoutException)
                         {
-                            Debug.WriteLine("Timeout: No data received.");
+                            // Expected timeout, continue loop
                         }
-                        catch (Exception ex)
+                        catch (OperationCanceledException)
                         {
-                            Debug.WriteLine($"Connection error: {ex.Message}");
+                            break;
+                        }
+                        catch (Exception ex) when (ex is InvalidOperationException || ex is System.IO.IOException)
+                        {
+                            _logger.Error(ex, "Error reading from port");
                             ConnectionChanged?.Invoke(false);
-                            Debug.WriteLine("Connection lost. Port is no longer available.");
                             break;
                         }
                     }
                     else
                     {
-                        Debug.WriteLine("Port is closed.");
-                        ConnectionChanged?.Invoke(false);
-                        Debug.WriteLine("Connection lost. Port is no longer available.");
-                        break;
+                        await Task.Delay(100, cancellationToken);
                     }
-                    await Task.Delay(100, cancellationToken);
                 }
             }
             catch (OperationCanceledException)
             {
-                Debug.WriteLine("Read operation canceled.");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Read error: {ex.Message}");
-                ConnectionChanged?.Invoke(false);
-                Debug.WriteLine("Connection lost. Port is no longer available.");
+                _logger.Debug("Read operation canceled.");
             }
         }
 
         public async Task DisconnectAsync()
         {
-            if (_serialPort?.IsOpen == true)
+            try
             {
                 _cancellationTokenSource?.Cancel();
-                _portStatusCheckTokenSource?.Cancel();
-                await Task.Run(() => _serialPort?.Close());
+                await Task.Delay(100); // Give time for read operation to stop
+
+                await CleanupSerialPort();
+
                 ConnectionChanged?.Invoke(false);
-                Debug.WriteLine("Disconnected from port.");
+                _logger.Information("Disconnected from serial port");
             }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error during disconnect");
+            }
+        }
+
+        private async Task CleanupSerialPort()
+        {
+            SerialPort? portToDispose = null;
+            CancellationTokenSource? ctsToDispose = null;
+
+            lock (_lockObject)
+            {
+                if (_serialPort != null)
+                {
+                    if (_serialPort.IsOpen)
+                    {
+                        try
+                        {
+                            _serialPort.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.Warning(ex, "Error closing serial port");
+                        }
+                    }
+                    portToDispose = _serialPort;
+                    _serialPort = null;
+                }
+
+                ctsToDispose = _cancellationTokenSource;
+                _cancellationTokenSource = null;
+            }
+
+            // Dispose outside lock to avoid potential deadlocks
+            await Task.Run(() =>
+            {
+                portToDispose?.Dispose();
+                ctsToDispose?.Dispose();
+            });
         }
 
         public async Task SendDataAsync(string data)
         {
-            if (_serialPort?.IsOpen == true)
+            if (_isDisposed)
+                throw new ObjectDisposedException(nameof(SerialPortService));
+
+            SerialPort? port;
+            lock (_lockObject)
             {
-                await Task.Run(() => _serialPort?.WriteLine(data));
+                port = _serialPort;
+            }
+
+            if (port?.IsOpen == true)
+            {
+                try
+                {
+                    _logger.Debug("Sending data: {Data}", data);
+                    await Task.Run(() => port.WriteLine(data));
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, "Error sending data");
+                    throw;
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Serial port is not open");
             }
         }
 
@@ -195,10 +210,29 @@ namespace WpfSerialInterfaceWithProtocol.Core.Services
         {
             if (!_isDisposed)
             {
-                _cancellationTokenSource?.Cancel();
-                _portStatusCheckTokenSource?.Cancel();
-                _serialPort?.Dispose();
                 _isDisposed = true;
+                _cancellationTokenSource?.Cancel();
+
+                // Synchronous cleanup for dispose
+                lock (_lockObject)
+                {
+                    if (_serialPort?.IsOpen == true)
+                    {
+                        try
+                        {
+                            _serialPort.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            _logger.Warning(ex, "Error closing port during dispose");
+                        }
+                    }
+                    _serialPort?.Dispose();
+                    _serialPort = null;
+                }
+
+                _cancellationTokenSource?.Dispose();
+                _logger.Information("SerialPortService disposed.");
             }
         }
     }

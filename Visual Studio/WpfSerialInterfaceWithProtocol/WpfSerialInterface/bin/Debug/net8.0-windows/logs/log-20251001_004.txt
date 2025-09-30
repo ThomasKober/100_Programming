@@ -1,0 +1,3 @@
+2025-10-01 01:16:07.517 +02:00 [INF] Application started successfully
+2025-10-01 01:16:22.375 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:16:22.391 +02:00 [INF] Successfully connected to COM10

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VW6k3RUfNI8=",
+  "dgSpecHash": "y1TizwjeURw=",
   "success": true,
   "projectFilePath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj",
   "expectedPackageFiles": [
@@ -23,6 +23,10 @@
     "C:\\Users\\1zwer\\.nuget\\packages\\runtime.native.system.io.ports\\10.0.0-rc.1.25451.107\\runtime.native.system.io.ports.10.0.0-rc.1.25451.107.nupkg.sha512",
     "C:\\Users\\1zwer\\.nuget\\packages\\runtime.osx-arm64.runtime.native.system.io.ports\\10.0.0-rc.1.25451.107\\runtime.osx-arm64.runtime.native.system.io.ports.10.0.0-rc.1.25451.107.nupkg.sha512",
     "C:\\Users\\1zwer\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\10.0.0-rc.1.25451.107\\runtime.osx-x64.runtime.native.system.io.ports.10.0.0-rc.1.25451.107.nupkg.sha512",
+    "C:\\Users\\1zwer\\.nuget\\packages\\serilog\\4.3.1-dev-02385\\serilog.4.3.1-dev-02385.nupkg.sha512",
+    "C:\\Users\\1zwer\\.nuget\\packages\\serilog.sinks.console\\6.0.1-dev-00953\\serilog.sinks.console.6.0.1-dev-00953.nupkg.sha512",
+    "C:\\Users\\1zwer\\.nuget\\packages\\serilog.sinks.file\\7.0.0\\serilog.sinks.file.7.0.0.nupkg.sha512",
+    "C:\\Users\\1zwer\\.nuget\\packages\\serilog.sinks.seq\\9.0.0\\serilog.sinks.seq.9.0.0.nupkg.sha512",
     "C:\\Users\\1zwer\\.nuget\\packages\\system.io.ports\\10.0.0-rc.1.25451.107\\system.io.ports.10.0.0-rc.1.25451.107.nupkg.sha512"
   ],
   "logs": []

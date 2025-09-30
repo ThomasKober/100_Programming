@@ -1,10 +1,11 @@
-﻿
-using Microsoft.Extensions.DependencyInjection;
-using System.Windows;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using WpfSerialInterfaceWithProtocol.Core.Interfaces;
 using WpfSerialInterfaceWithProtocol.Core.Services;
 using WpfSerialInterfaceWithProtocol.ViewModels;
 using WpfSerialInterfaceWithProtocol.Views;
+using System.Windows;
+using System;
 
 namespace WpfSerialInterfaceWithProtocol
 {
@@ -14,6 +15,12 @@ namespace WpfSerialInterfaceWithProtocol
 
         public App()
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Seq("http://localhost:5341")
+                .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+
             var services = new ServiceCollection();
             ConfigureServices(services);
             _serviceProvider = services.BuildServiceProvider();
@@ -21,6 +28,7 @@ namespace WpfSerialInterfaceWithProtocol
 
         private void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ILogService, LogService>();
             services.AddSingleton<ISerialPortService, SerialPortService>();
             services.AddSingleton<MainViewModel>();
             services.AddSingleton<MainWindow>();
@@ -30,15 +38,43 @@ namespace WpfSerialInterfaceWithProtocol
         {
             base.OnStartup(e);
 
-            // Fenster und ViewModel über DI erstellen
-            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-            var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
+            try
+            {
+                var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+                var mainViewModel = _serviceProvider.GetRequiredService<MainViewModel>();
+                mainWindow.DataContext = mainViewModel;
+                mainWindow.Show();
 
-            // DataContext setzen und Theme anwenden
-            mainWindow.DataContext = mainViewModel;
-            mainViewModel.UpdateTheme();  // Jetzt zugänglich!
+                Log.Information("Application started successfully");
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Application failed to start");
+                MessageBox.Show($"Application failed to start: {ex.Message}", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown(1);
+            }
+        }
 
-            mainWindow.Show();
+        protected override void OnExit(ExitEventArgs e)
+        {
+            try
+            {
+                // Dispose ViewModel (which will unsubscribe from events and dispose services)
+                var mainViewModel = _serviceProvider.GetService<MainViewModel>();
+                mainViewModel?.Dispose();
+
+                Log.Information("Application shutting down");
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, "Error during application shutdown");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+                base.OnExit(e);
+            }
         }
     }
 }

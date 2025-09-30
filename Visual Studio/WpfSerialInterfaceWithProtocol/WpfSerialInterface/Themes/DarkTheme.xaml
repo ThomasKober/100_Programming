@@ -8,7 +8,7 @@
     <SolidColorBrush x:Key="BorderBrush" Color="#FF444444"/>
     <SolidColorBrush x:Key="LabelBrush" Color="#FFE0E0E0"/>
 
-    <!-- Styles für Dark Mode -->
+    <!-- ModernTextBox Style -->
     <Style x:Key="ModernTextBox" TargetType="TextBox">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
         <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
@@ -16,15 +16,56 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="8,4"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="AcceptsReturn" Value="True"/>
-        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="CaretBrush" Value="{DynamicResource TextBrush}"/>
     </Style>
 
+    <!-- ModernButton Style -->
+    <Style x:Key="ModernButton" TargetType="Button">
+        <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{DynamicResource BorderBrush}"
+                            BorderThickness="1"
+                            CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#FF4A5AAF"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#FF3A4A9F"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="#FF505050"/>
+                            <Setter Property="Foreground" Value="#FF808080"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- ModernComboBox Style -->
+    <Style x:Key="ModernComboBox" TargetType="ComboBox">
+        <Setter Property="Background" Value="{DynamicResource ContentBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+
+    <!-- SectionLabel Style -->
     <Style x:Key="SectionLabel" TargetType="Label">
         <Setter Property="Foreground" Value="{DynamicResource LabelBrush}"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        
         <Setter Property="FontSize" Value="13"/>
     </Style>
 </ResourceDictionary>

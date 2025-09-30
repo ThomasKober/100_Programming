@@ -1,0 +1,118 @@
+2025-10-01 00:53:16.883 +02:00 [INF] Application started successfully
+2025-10-01 01:06:12.787 +02:00 [INF] Application started successfully
+2025-10-01 01:06:31.239 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:06:31.254 +02:00 [INF] Successfully connected to COM10
+2025-10-01 01:06:39.229 +02:00 [DBG] Sending data: cbsdfg
+2025-10-01 01:06:39.252 +02:00 [DBG] Received data: cbsdfg
+2025-10-01 01:06:50.787 +02:00 [DBG] Sending data: sdfgsdfg
+2025-10-01 01:06:50.804 +02:00 [DBG] Received data: sdfgsdfg
+2025-10-01 01:07:02.369 +02:00 [DBG] Sending data: sdfgsdfg
+2025-10-01 01:07:02.388 +02:00 [DBG] Received data: sdfgsdfg
+2025-10-01 01:07:15.018 +02:00 [DBG] Sending data: sdfgsdfg
+2025-10-01 01:07:15.044 +02:00 [DBG] Received data: sdfgsdfg
+2025-10-01 01:07:39.193 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:07:39.223 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:07:41.494 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:07:41.519 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:07:42.279 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:07:42.303 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:07:42.950 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:07:42.976 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:08:07.620 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:07.624 +02:00 [INF] Successfully connected to COM10
+2025-10-01 01:08:12.700 +02:00 [DBG] Sending data: dfgsdfg
+2025-10-01 01:08:12.735 +02:00 [DBG] Received data: dfgsdfg
+2025-10-01 01:08:27.537 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:27.563 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:08:28.656 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:28.681 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:08:29.232 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:29.258 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:08:29.417 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:29.443 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:08:29.608 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:29.633 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:08:34.205 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:34.216 +02:00 [INF] Successfully connected to COM10
+2025-10-01 01:08:37.702 +02:00 [INF] Disconnected from serial port
+2025-10-01 01:08:38.780 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:38.786 +02:00 [INF] Successfully connected to COM10
+2025-10-01 01:08:45.506 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:45.533 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:08:47.226 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:47.252 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:08:51.224 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:08:51.240 +02:00 [INF] Successfully connected to COM10
+2025-10-01 01:08:54.294 +02:00 [DBG] Sending data: sdfgsdfg
+2025-10-01 01:08:54.305 +02:00 [DBG] Received data: sdfgsdfg
+2025-10-01 01:09:08.030 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:09:08.056 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:09:09.132 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:09:09.157 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 61
+2025-10-01 01:09:12.694 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 01:09:12.712 +02:00 [INF] Successfully connected to COM10

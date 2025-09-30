@@ -46,3 +46,7 @@ C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfa
 C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\obj\Debug\net8.0-windows\WpfSerialInterfaceWithProtocol.pdb
 C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\obj\Debug\net8.0-windows\WpfSerialInterfaceWithProtocol.genruntimeconfig.cache
 C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\obj\Debug\net8.0-windows\ref\WpfSerialInterfaceWithProtocol.dll
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\bin\Debug\net8.0-windows\Serilog.dll
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\bin\Debug\net8.0-windows\Serilog.Sinks.Console.dll
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\bin\Debug\net8.0-windows\Serilog.Sinks.File.dll
+C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\bin\Debug\net8.0-windows\Serilog.Sinks.Seq.dll
