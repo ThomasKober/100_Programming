@@ -1,0 +1,7 @@
+2025-10-01 18:10:44.164 +02:00 [INF] Application started successfully
+2025-10-01 18:10:47.519 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-01 18:10:47.532 +02:00 [INF] Successfully connected to COM10
+2025-10-01 18:10:49.623 +02:00 [INF] Disconnected from serial port
+2025-10-01 18:11:29.473 +02:00 [INF] SerialPortService disposed.
+2025-10-01 18:11:29.474 +02:00 [INF] Application shutting down
+2025-10-01 18:26:13.112 +02:00 [INF] Automatische Port-Aktualisierung aktiviert (alle 2 Sekunden)

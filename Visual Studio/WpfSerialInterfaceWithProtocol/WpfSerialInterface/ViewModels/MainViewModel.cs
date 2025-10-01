@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Serilog.Events;
 using WpfSerialInterfaceWithProtocol.Core.Interfaces;
 using WpfSerialInterfaceWithProtocol.Utilities;
@@ -13,6 +14,7 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
     {
         private readonly ILogService _logService;
         private readonly ISerialPortService _serialPortService;
+        private readonly DispatcherTimer _portScanTimer;
         private bool _isDisposed;
 
         public ObservableCollection<string> AvailablePorts { get; } = new ObservableCollection<string>();
@@ -123,6 +125,16 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
 
             ToggleThemeCommand = new RelayCommand(_ => ToggleTheme());
             IsDarkMode = Properties.Settings.Default.IsDarkMode;
+
+            // Setup timer for automatic port scanning (every 2 seconds)
+            _portScanTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(2)
+            };
+            _portScanTimer.Tick += (s, e) => LoadPorts();
+            _portScanTimer.Start();
+
+            _logService.Info("Automatische Port-Aktualisierung aktiviert (alle 2 Sekunden)", "System");
         }
 
         private void OnDataReceived(string data)
@@ -147,32 +159,56 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
         {
             try
             {
-                _logService.Debug("LoadPorts() wird aufgerufen", "System");
-
                 var ports = _serialPortService.GetAvailablePorts();
 
-                _logService.InfoTemplate("Gefundene Ports: {PortCount}", "System", ports.Length);
+                // Only update if ports have changed
+                if (PortsHaveChanged(ports))
+                {
+                    _logService.DebugTemplate("Port-Liste hat sich geändert. Neue Anzahl: {PortCount}", "System", ports.Length);
 
-                AvailablePorts.Clear();
-                foreach (var port in ports)
-                {
-                    AvailablePorts.Add(port);
-                    _logService.DebugTemplate("Port hinzugefügt: {PortName}", "System", port);
-                }
+                    // Remember current selection
+                    string currentSelection = SelectedPort;
 
-                if (ports.Length == 0)
-                {
-                    _logService.Warning("Keine COM-Ports gefunden", "System");
-                }
-                else
-                {
-                    _logService.InfoTemplate("{PortCount} COM-Port(s) geladen", "System", ports.Length);
+                    AvailablePorts.Clear();
+                    foreach (var port in ports)
+                    {
+                        AvailablePorts.Add(port);
+                    }
+
+                    // Restore selection if port still exists
+                    if (!string.IsNullOrEmpty(currentSelection) && AvailablePorts.Contains(currentSelection))
+                    {
+                        SelectedPort = currentSelection;
+                    }
+                    else if (AvailablePorts.Count > 0)
+                    {
+                        SelectedPort = AvailablePorts[0];
+                    }
+
+                    if (ports.Length == 0)
+                    {
+                        _logService.Debug("Keine COM-Ports gefunden", "System");
+                    }
                 }
             }
             catch (Exception ex)
             {
                 _logService.ErrorTemplate(ex, "Fehler beim Laden der verfügbaren Ports", "System");
             }
+        }
+
+        private bool PortsHaveChanged(string[] newPorts)
+        {
+            if (AvailablePorts.Count != newPorts.Length)
+                return true;
+
+            foreach (var port in newPorts)
+            {
+                if (!AvailablePorts.Contains(port))
+                    return true;
+            }
+
+            return false;
         }
 
         private void TestLogs()
@@ -239,6 +275,9 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
             if (!_isDisposed)
             {
                 _isDisposed = true;
+
+                // Stop the timer
+                _portScanTimer?.Stop();
 
                 // Unsubscribe from events
                 _serialPortService.DataReceived -= OnDataReceived;

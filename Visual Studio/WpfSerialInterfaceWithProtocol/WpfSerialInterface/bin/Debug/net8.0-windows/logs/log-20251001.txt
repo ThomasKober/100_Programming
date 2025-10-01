@@ -1,8 +1,0 @@
-2025-10-01 00:53:16.475 +02:00 [WRN] Keine COM-Ports gefunden
-2025-10-01 00:59:07.500 +02:00 [VRB] Trace-Log (Entwicklung)
-2025-10-01 00:59:07.501 +02:00 [DBG] Debug-Log (Detailliert)
-2025-10-01 00:59:07.501 +02:00 [INF] Info-Log (Standard)
-2025-10-01 00:59:07.501 +02:00 [WRN] Warning-Log (Warnung)
-2025-10-01 00:59:07.501 +02:00 [ERR] Error-Log (Fehler)
-2025-10-01 00:59:07.501 +02:00 [FTL] Fatal-Log (Kritisch)
-2025-10-01 00:59:07.501 +02:00 [INF] Test mit Parameter: 42
