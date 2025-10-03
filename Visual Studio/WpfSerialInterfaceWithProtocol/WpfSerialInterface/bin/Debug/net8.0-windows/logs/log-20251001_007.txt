@@ -1,9 +1,0 @@
-2025-10-01 17:21:07.233 +02:00 [INF] Application started successfully
-2025-10-01 17:21:25.287 +02:00 [DBG] Connecting to COM10 with 9600 baud
-2025-10-01 17:21:25.305 +02:00 [INF] Successfully connected to COM10
-2025-10-01 17:21:44.624 +02:00 [DBG] Connecting to COM10 with 9600 baud
-2025-10-01 17:21:44.638 +02:00 [INF] Successfully connected to COM10
-2025-10-01 17:21:48.702 +02:00 [DBG] Sending data: dgdafgdfgdf
-2025-10-01 17:21:48.726 +02:00 [DBG] Received data: dgdafgdfgdf
-2025-10-01 18:10:43.816 +02:00 [INF] Automatische Port-Aktualisierung aktiviert (alle 2 Sekunden)
-2025-10-01 18:11:29.474 +02:00 [INF] MainViewModel disposed

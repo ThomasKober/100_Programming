@@ -62,13 +62,21 @@ namespace WpfSerialInterfaceWithProtocol.Core.Services
         public void FatalTemplate(string messageTemplate, string category = "Default", params object[] propertyValues) =>
             _logger.ForContext("Category", category).Fatal(messageTemplate, propertyValues);
 
-        // Exception methods
+        // Exception methods - Warning
+        public void Warning(Exception exception, string message, string category = "Default") =>
+            _logger.ForContext("Category", category).Warning(exception, message);
+
+        public void WarningTemplate(Exception exception, string messageTemplate, string category = "Default", params object[] propertyValues) =>
+            _logger.ForContext("Category", category).Warning(exception, messageTemplate, propertyValues);
+
+        // Exception methods - Error
         public void Error(Exception exception, string message, string category = "Default") =>
             _logger.ForContext("Category", category).Error(exception, message);
 
         public void ErrorTemplate(Exception exception, string messageTemplate, string category = "Default", params object[] propertyValues) =>
             _logger.ForContext("Category", category).Error(exception, messageTemplate, propertyValues);
 
+        // Exception methods - Fatal
         public void Fatal(Exception exception, string message, string category = "Default") =>
             _logger.ForContext("Category", category).Fatal(exception, message);
 

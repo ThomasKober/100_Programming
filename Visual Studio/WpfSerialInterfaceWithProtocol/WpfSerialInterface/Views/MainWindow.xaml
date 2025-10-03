@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfSerialInterfaceWithProtocol.ViewModels"
         mc:Ignorable="d"
-        Title="Serial Interface"
+        Title="Serial Interface - ViConTool"
         SizeToContent="WidthAndHeight"
         MinWidth="600"
         MinHeight="450"
@@ -14,210 +14,227 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanResizeWithGrip"
         Background="{DynamicResource BackgroundBrush}">
-    <Grid>
-        <!-- Spaltendefinitionen -->
+    <Grid Margin="10">
+        <!-- Column definitions -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
-            <!-- Feste Breite für linke Spalte -->
             <ColumnDefinition Width="*"/>
-            <!-- Flexible Breite für rechte Spalte -->
         </Grid.ColumnDefinitions>
-        <!-- Zeilendefinitionen -->
+
+        <!-- Row definitions -->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Row 0: Theme-Toggle-Button -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 1: Titel -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 2: Controls (ComboBox, Buttons) + Status -->
-            <RowDefinition Height="Auto"/>
-            <!-- Row 3: Received Data Label -->
             <RowDefinition Height="*"/>
-            <!-- Row 4: Received Data (ScrollViewer) -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 5: Send Data Label -->
             <RowDefinition Height="Auto"/>
-            <!-- Row 6: Send Data (TextBox + Button) -->
         </Grid.RowDefinitions>
 
-        <!-- Log-Level-Auswahl (z. B. in der Statusleiste) -->
-        <ComboBox
-            Grid.Row="0"
-            Grid.Column="0"
-            ItemsSource="{Binding LogLevelOptions}"
-            SelectedItem="{Binding SelectedLogLevel, Mode=TwoWay}"
-            DisplayMemberPath="Name"
-            Margin="10,5,0,5"
-            Width="120"
-            ToolTip="Log-Level auswählen"/>
-
-        <Button
-            Grid.Row="0"
-            Grid.Column="1"
-            Content="Test-Logs"
-            Command="{Binding TestLogCommand}"
-            Margin="5,5,10,5"
-            ToolTip="Test-Logs generieren"/>
-
-        <!-- Theme-Toggle-Button (Row 0) -->
-        <Button
-            Grid.Row="0"
-            Grid.Column="1"
-            Content="🌓"
-            Command="{Binding ToggleThemeCommand}"
-            ToolTip="Toggle Dark/Light Mode"
-            Style="{DynamicResource ModernButton}"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Top"
-            Margin="0,5,10,5"
-            Width="40"
-            Height="30"/>
-
-        <!-- Titel (Row 1) -->
+        <!-- Header Section (Row 0) -->
         <Border
-            Grid.Row="1"
+            Grid.Row="0"
             Grid.ColumnSpan="2"
             Background="Transparent"
             BorderBrush="{DynamicResource BorderBrush}"
-            BorderThickness="0,0,0,1"
-            Margin="0,0,0,15"
-            Padding="0,0,0,10">
-            <Label
-                Content="ViConTool"
-                FontWeight="Bold"
-                FontSize="16"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Padding="5"
-                Foreground="{DynamicResource LabelBrush}" Margin="281,-35,0,0"/>
+            BorderThickness="0,0,0,2"
+            Padding="5,10"
+            Margin="0,0,0,10">
+            <Grid>
+                <Label
+                    Content="ViConTool"
+                    FontWeight="Bold"
+                    FontSize="18"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Foreground="{DynamicResource LabelBrush}"/>
+                <Button
+                    Content="🌓"
+                    Command="{Binding ToggleThemeCommand}"
+                    ToolTip="Toggle Dark/Light Mode"
+                    Style="{DynamicResource ModernButton}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Width="40"
+                    Height="30"/>
+            </Grid>
         </Border>
 
-        <!-- Linke Spalte mit Controls (Row 2) -->
+        <!-- Log Level and Test Button (Row 1) -->
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Orientation="Horizontal"
+            Margin="0,0,0,10">
+            <Label
+                Content="Log Level:"
+                VerticalAlignment="Center"
+                Foreground="{DynamicResource LabelBrush}"
+                Margin="0,0,5,0"/>
+            <ComboBox
+                ItemsSource="{Binding LogLevelOptions}"
+                SelectedItem="{Binding SelectedLogLevel, Mode=TwoWay}"
+                DisplayMemberPath="Name"
+                Width="100"
+                ToolTip="Select log level"
+                Style="{DynamicResource ModernComboBox}"/>
+        </StackPanel>
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="Test Logs"
+            Command="{Binding TestLogCommand}"
+            HorizontalAlignment="Left"
+            Width="120"
+            ToolTip="Generate test logs"
+            Style="{DynamicResource ModernButton}"
+            Margin="0,0,0,10"/>
+
+        <!-- Left Column - Connection Controls (Row 2) -->
         <Border
             Grid.Row="2"
             Grid.Column="0"
+            Grid.ColumnSpan="2"
             BorderBrush="{DynamicResource BorderBrush}"
             BorderThickness="1"
             CornerRadius="4"
-            Margin="10,0,5,0"
-            Padding="8">
+            Margin="0,0,0,10"
+            Padding="10"
+            HorizontalAlignment="Left"
+            Width="200">
             <StackPanel Orientation="Vertical">
                 <Label Content="Available Ports:" Style="{DynamicResource SectionLabel}"/>
                 <ComboBox
                     ItemsSource="{Binding AvailablePorts}"
                     SelectedItem="{Binding SelectedPort, Mode=TwoWay}"
-                    Style="{DynamicResource ModernComboBox}"/>
+                    Style="{DynamicResource ModernComboBox}"
+                    Margin="0,5,0,10"/>
                 <Button
                     Content="Connect"
                     Command="{Binding ConnectCommand}"
                     Style="{DynamicResource ModernButton}"
                     Height="35"
-                    Margin="0,5,0,5"/>
+                    Margin="0,0,0,5"/>
                 <Button
                     Content="Disconnect"
                     Command="{Binding DisconnectCommand}"
                     Style="{DynamicResource ModernButton}"
                     Height="35"
-                    Margin="0,5,0,5"/>
+                    Margin="0,0,0,10"/>
+                <CheckBox
+                    Content="Auto-Reconnect"
+                    IsChecked="{Binding AutoReconnect, Mode=TwoWay}"
+                    Foreground="{DynamicResource LabelBrush}"
+                    ToolTip="Automatically reconnect when connection is lost"
+                    VerticalAlignment="Center"
+                    Margin="0,5,0,0"/>
             </StackPanel>
         </Border>
 
-        <!-- Status (Row 2, rechts) - Optimierte Breite -->
-        <Border
-            Grid.Row="2"
-            Grid.Column="1"
-            BorderBrush="{DynamicResource BorderBrush}"
-            BorderThickness="1"
-            CornerRadius="4"
-            Margin="5,0,10,10"
-            Padding="15,8"
-            HorizontalAlignment="Stretch">
-            <Label
-                Content="{Binding Status}"
-                FontWeight="Bold"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Foreground="{DynamicResource LabelBrush}"
-                FontSize="14"/>
-        </Border>
+        <!-- System Logs Display (Row 3) - Full Width -->
+        <Grid Grid.Row="3" Grid.Column="1" Margin="0,0,0,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!-- Received Data Label (Row 3) -->
-        <Label
-            Grid.Row="3"
-            Grid.Column="1"
-            Content="Received Data:"
-            Style="{DynamicResource SectionLabel}"
-            Foreground="{DynamicResource LabelBrush}"
-            Margin="10,5,10,0"/>
+            <!-- Header with Label and Clear Button -->
+            <Border
+                Grid.Row="0"
+                Background="Transparent"
+                Padding="5,0,5,5">
+                <Grid>
+                    <Label
+                        Content="System Logs:"
+                        Style="{DynamicResource SectionLabel}"
+                        Foreground="{DynamicResource LabelBrush}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Padding="0"/>
+                    <Button
+                        Content="Clear"
+                        Command="{Binding ClearLogDataCommand}"
+                        Style="{DynamicResource ModernButton}"
+                        Width="60"
+                        Height="22"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="11"
+                        ToolTip="Clear log data"/>
+                </Grid>
+            </Border>
 
-        <!-- Received Data (Row 4) -->
-        <Border
-            Grid.Row="4"
-            Grid.Column="1"
-            BorderBrush="{DynamicResource BorderBrush}"
-            BorderThickness="1"
-            CornerRadius="4"
-            Margin="10,0,10,10"
-            Padding="0">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <TextBlock
-                    Text="{Binding ReceivedData}"
+            <Border
+                Grid.Row="1"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Padding="0">
+                <TextBox
+                    Text="{Binding LogData, Mode=TwoWay}"
                     TextWrapping="Wrap"
-                    Padding="8"
-                    Foreground="{DynamicResource TextBrush}"/>
-            </ScrollViewer>
-        </Border>
+                    IsReadOnly="True"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Disabled"
+                    Padding="10"
+                    FontFamily="Consolas"
+                    FontSize="11"
+                    Foreground="{DynamicResource TextBrush}"
+                    Background="{DynamicResource ContentBrush}"
+                    BorderThickness="0"/>
+            </Border>
+        </Grid>
 
-        <!-- Send Data Label (Row 5) -->
+        <!-- Send Data Label (Row 4) -->
         <Label
-            Grid.Row="5"
+            Grid.Row="4"
             Grid.Column="1"
             Content="Send Data:"
             Style="{DynamicResource SectionLabel}"
             Foreground="{DynamicResource LabelBrush}"
-            Margin="10,10,10,5"/>
+            Margin="0,10,0,5"/>
 
-        <!-- Send Data (Row 6) - Ausrichtung wie oben -->
-        <Grid Grid.Row="6" Grid.ColumnSpan="2" Margin="10,0,10,10">
+        <!-- Send Data Controls (Row 5) -->
+        <Grid Grid.Row="5" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
-                <!-- Gleiche Breite wie linke Spalte -->
                 <ColumnDefinition Width="*"/>
-                <!-- Gleiche Breite wie Status -->
             </Grid.ColumnDefinitions>
 
-            <!-- Send-Button - gleiche Breite wie Disconnect Button -->
+            <!-- Send Button -->
             <Border
                 Grid.Column="0"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="1"
                 CornerRadius="4"
-                Margin="10,0,5,0"
-                Padding="8">
+                Margin="0,0,10,0"
+                Padding="10">
                 <Button
                     Content="Send"
                     Command="{Binding SendCommand}"
                     Style="{DynamicResource ModernButton}"
-                    Height="35"
-                    Margin="0,5,0,5"/>
+                    Height="35"/>
             </Border>
 
-            <!-- TextBox - gleiche Breite wie Status -->
+            <!-- Send TextBox -->
             <Border
                 Grid.Column="1"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="1"
                 CornerRadius="4"
-                Margin="5,0,10,0"
-                Padding="8">
+                Padding="5">
                 <TextBox
                     Text="{Binding SendData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    Style="{DynamicResource ModernTextBox}"
                     Height="35"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalContentAlignment="Center"
-                    Padding="8">
+                    Padding="8"
+                    Foreground="{DynamicResource TextBrush}"
+                    Background="{DynamicResource ContentBrush}"
+                    BorderThickness="0"
+                    CaretBrush="{DynamicResource TextBrush}">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Enter" Command="{Binding SendCommand}"/>
                     </TextBox.InputBindings>

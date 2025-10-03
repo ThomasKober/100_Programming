@@ -1,0 +1,2 @@
+2025-10-03 22:38:11.974 +02:00 [INF] Application started successfully
+2025-10-03 22:41:09.281 +02:00 [INF] Application shutting down

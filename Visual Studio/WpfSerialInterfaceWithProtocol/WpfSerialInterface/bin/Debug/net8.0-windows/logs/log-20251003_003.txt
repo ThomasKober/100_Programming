@@ -1,0 +1,18 @@
+2025-10-03 22:16:11.002 +02:00 [INF] Application started successfully
+2025-10-03 22:25:30.831 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 22:25:30.930 +02:00 [INF] MainViewModel initialized
+2025-10-03 22:25:45.881 +02:00 [INF] Successfully connected to COM10
+2025-10-03 22:25:49.677 +02:00 [INF] Sende Daten: sdfsdf
+2025-10-03 22:25:49.693 +02:00 [INF] Empfangen: sdfsdf
+2025-10-03 22:25:54.214 +02:00 [INF] Sende Daten: asdfasdfasdf
+2025-10-03 22:25:54.231 +02:00 [INF] Empfangen: asdfasdfasdf
+2025-10-03 22:26:15.828 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-03 22:26:15.843 +02:00 [INF] Successfully connected to COM10
+2025-10-03 22:26:15.848 +02:00 [DBG] Port scanning stopped (connected)
+2025-10-03 22:26:19.740 +02:00 [INF] Sende Daten: asdfasdfasdf
+2025-10-03 22:26:19.740 +02:00 [DBG] Sending data: asdfasdfasdf
+2025-10-03 22:26:19.756 +02:00 [INF] Empfangen: asdfasdfasdf
+2025-10-03 22:26:19.756 +02:00 [DBG] Received data: asdfasdfasdf
+2025-10-03 22:26:28.856 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-03 22:26:28.865 +02:00 [INF] Successfully connected to COM10
+2025-10-03 22:26:28.868 +02:00 [DBG] Port scanning stopped (connected)

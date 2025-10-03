@@ -1,6 +1,0 @@
-2025-10-01 01:16:07.517 +02:00 [INF] Application started successfully
-2025-10-01 01:16:22.375 +02:00 [DBG] Connecting to COM10 with 9600 baud
-2025-10-01 01:16:22.391 +02:00 [INF] Successfully connected to COM10
-2025-10-01 01:24:05.654 +02:00 [INF] Gefundene Ports: 0
-2025-10-01 01:24:05.692 +02:00 [WRN] Keine COM-Ports gefunden
-2025-10-01 01:24:29.616 +02:00 [INF] MainViewModel disposed

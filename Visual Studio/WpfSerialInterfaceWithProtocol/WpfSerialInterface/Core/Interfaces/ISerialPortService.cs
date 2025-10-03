@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
 using System.Threading.Tasks;
 
 namespace WpfSerialInterfaceWithProtocol.Core.Interfaces
@@ -16,7 +11,10 @@ namespace WpfSerialInterfaceWithProtocol.Core.Interfaces
         Task SendDataAsync(string data);
         bool IsPortOpen();
 
+        bool AutoReconnectEnabled { get; set; }
+
         event Action<string> DataReceived;
         event Action<bool> ConnectionChanged;
+        event Action<string> ReconnectStatusChanged;
     }
 }

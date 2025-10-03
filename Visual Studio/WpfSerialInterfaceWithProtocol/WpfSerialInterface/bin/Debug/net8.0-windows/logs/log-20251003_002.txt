@@ -1,0 +1,6 @@
+2025-10-03 22:04:07.074 +02:00 [INF] Application started successfully
+2025-10-03 22:16:10.588 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 22:16:10.688 +02:00 [INF] MainViewModel initialized
+2025-10-03 22:17:31.460 +02:00 [INF] Successfully connected to COM10
+2025-10-03 22:17:41.499 +02:00 [INF] Sende Daten: dhdfghdfgh
+2025-10-03 22:17:41.520 +02:00 [INF] Empfangen: dhdfghdfgh

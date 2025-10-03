@@ -11,14 +11,14 @@ namespace WpfSerialInterfaceWithProtocol
 {
     public partial class App : Application
     {
-        private readonly IServiceProvider _serviceProvider;
+        private IServiceProvider _serviceProvider;
 
         public App()
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Seq("http://localhost:5341")
-                .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7)
                 .CreateLogger();
 
             var services = new ServiceCollection();
@@ -63,6 +63,12 @@ namespace WpfSerialInterfaceWithProtocol
                 // Dispose ViewModel (which will unsubscribe from events and dispose services)
                 var mainViewModel = _serviceProvider.GetService<MainViewModel>();
                 mainViewModel?.Dispose();
+
+                // Dispose the service provider itself
+                if (_serviceProvider is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
 
                 Log.Information("Application shutting down");
             }

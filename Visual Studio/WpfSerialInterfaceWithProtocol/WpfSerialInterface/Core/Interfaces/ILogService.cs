@@ -24,6 +24,8 @@ namespace WpfSerialInterfaceWithProtocol.Core.Interfaces
         void FatalTemplate(string messageTemplate, string category = "Default", params object[] propertyValues);
 
         // Exception methods
+        void Warning(Exception exception, string message, string category = "Default");
+        void WarningTemplate(Exception exception, string messageTemplate, string category = "Default", params object[] propertyValues);
         void Error(Exception exception, string message, string category = "Default");
         void ErrorTemplate(Exception exception, string messageTemplate, string category = "Default", params object[] propertyValues);
         void Fatal(Exception exception, string message, string category = "Default");

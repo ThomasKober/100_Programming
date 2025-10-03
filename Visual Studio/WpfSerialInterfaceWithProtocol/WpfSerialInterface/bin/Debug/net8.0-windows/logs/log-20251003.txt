@@ -1,0 +1,80 @@
+2025-10-03 21:41:12.098 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 21:41:12.216 +02:00 [INF] Theme switched to DarkTheme.xaml
+2025-10-03 21:41:12.217 +02:00 [INF] MainViewModel initialized
+2025-10-03 21:42:23.787 +02:00 [INF] Successfully connected to COM10
+2025-10-03 21:43:16.298 +02:00 [INF] Info-Log (Standard)
+2025-10-03 21:43:16.298 +02:00 [WRN] Warning-Log (Warnung)
+2025-10-03 21:43:16.299 +02:00 [ERR] Error-Log (Fehler)
+2025-10-03 21:43:16.299 +02:00 [FTL] Fatal-Log (Kritisch)
+2025-10-03 21:43:16.299 +02:00 [INF] Test mit Parameter: 42
+2025-10-03 21:43:17.081 +02:00 [INF] Info-Log (Standard)
+2025-10-03 21:43:17.081 +02:00 [WRN] Warning-Log (Warnung)
+2025-10-03 21:43:17.081 +02:00 [ERR] Error-Log (Fehler)
+2025-10-03 21:43:17.082 +02:00 [FTL] Fatal-Log (Kritisch)
+2025-10-03 21:43:17.082 +02:00 [INF] Test mit Parameter: 42
+2025-10-03 21:43:21.668 +02:00 [INF] Theme switched to LightTheme.xaml
+2025-10-03 21:43:22.309 +02:00 [INF] Theme switched to DarkTheme.xaml
+2025-10-03 21:43:22.853 +02:00 [INF] Theme switched to LightTheme.xaml
+2025-10-03 21:48:42.366 +02:00 [INF] Auto-Reconnect deaktiviert
+2025-10-03 21:48:43.734 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 21:48:47.711 +02:00 [INF] Sende Daten: dsfsdfgdsfg
+2025-10-03 21:48:47.733 +02:00 [INF] Empfangen: dsfsdfgdsfg
+2025-10-03 21:51:01.601 +02:00 [INF] Info-Log (Standard)
+2025-10-03 21:51:01.601 +02:00 [WRN] Warning-Log (Warnung)
+2025-10-03 21:51:01.601 +02:00 [ERR] Error-Log (Fehler)
+2025-10-03 21:51:01.601 +02:00 [FTL] Fatal-Log (Kritisch)
+2025-10-03 21:51:01.601 +02:00 [INF] Test mit Parameter: 42
+2025-10-03 21:51:06.178 +02:00 [DBG] Debug-Log (Detailliert)
+2025-10-03 21:51:06.178 +02:00 [INF] Info-Log (Standard)
+2025-10-03 21:51:06.178 +02:00 [WRN] Warning-Log (Warnung)
+2025-10-03 21:51:06.178 +02:00 [ERR] Error-Log (Fehler)
+2025-10-03 21:51:06.178 +02:00 [FTL] Fatal-Log (Kritisch)
+2025-10-03 21:51:06.178 +02:00 [INF] Test mit Parameter: 42
+2025-10-03 21:51:07.020 +02:00 [DBG] Debug-Log (Detailliert)
+2025-10-03 21:51:07.020 +02:00 [INF] Info-Log (Standard)
+2025-10-03 21:51:07.020 +02:00 [WRN] Warning-Log (Warnung)
+2025-10-03 21:51:07.020 +02:00 [ERR] Error-Log (Fehler)
+2025-10-03 21:51:07.020 +02:00 [FTL] Fatal-Log (Kritisch)
+2025-10-03 21:51:07.020 +02:00 [INF] Test mit Parameter: 42
+2025-10-03 21:51:26.162 +02:00 [VRB] Trace-Log (Entwicklung)
+2025-10-03 21:51:26.162 +02:00 [DBG] Debug-Log (Detailliert)
+2025-10-03 21:51:26.162 +02:00 [INF] Info-Log (Standard)
+2025-10-03 21:51:26.162 +02:00 [WRN] Warning-Log (Warnung)
+2025-10-03 21:51:26.162 +02:00 [ERR] Error-Log (Fehler)
+2025-10-03 21:51:26.162 +02:00 [FTL] Fatal-Log (Kritisch)
+2025-10-03 21:51:26.162 +02:00 [INF] Test mit Parameter: 42
+2025-10-03 21:51:33.467 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-03 21:51:33.475 +02:00 [INF] Successfully connected to COM10
+2025-10-03 21:51:33.483 +02:00 [DBG] Port scanning stopped (connected)
+2025-10-03 21:51:50.731 +02:00 [INF] Auto-Reconnect deaktiviert
+2025-10-03 21:51:54.265 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-03 21:51:54.277 +02:00 [INF] Successfully connected to COM10
+2025-10-03 21:51:54.281 +02:00 [DBG] Port scanning stopped (connected)
+2025-10-03 21:52:00.087 +02:00 [DBG] Debug-Log (Detailliert)
+2025-10-03 21:52:00.087 +02:00 [INF] Info-Log (Standard)
+2025-10-03 21:52:00.087 +02:00 [WRN] Warning-Log (Warnung)
+2025-10-03 21:52:00.087 +02:00 [ERR] Error-Log (Fehler)
+2025-10-03 21:52:00.087 +02:00 [FTL] Fatal-Log (Kritisch)
+2025-10-03 21:52:00.087 +02:00 [INF] Test mit Parameter: 42
+2025-10-03 21:52:00.623 +02:00 [DBG] Debug-Log (Detailliert)
+2025-10-03 21:52:00.623 +02:00 [INF] Info-Log (Standard)
+2025-10-03 21:52:00.623 +02:00 [WRN] Warning-Log (Warnung)
+2025-10-03 21:52:00.623 +02:00 [ERR] Error-Log (Fehler)
+2025-10-03 21:52:00.623 +02:00 [FTL] Fatal-Log (Kritisch)
+2025-10-03 21:52:00.623 +02:00 [INF] Test mit Parameter: 42
+2025-10-03 21:52:06.037 +02:00 [INF] Sende Daten: fgsdfgsdfg
+2025-10-03 21:52:06.037 +02:00 [DBG] Sending data: fgsdfgsdfg
+2025-10-03 21:52:06.053 +02:00 [DBG] Received data: fgsdfgsdfg
+2025-10-03 21:52:06.053 +02:00 [INF] Empfangen: fgsdfgsdfg
+2025-10-03 21:52:09.478 +02:00 [INF] Sende Daten: sdfgsdfgsdfgsdfg
+2025-10-03 21:52:09.478 +02:00 [DBG] Sending data: sdfgsdfgsdfgsdfg
+2025-10-03 21:52:09.504 +02:00 [DBG] Received data: sdfgsdfgsdfgsdfg
+2025-10-03 21:52:09.504 +02:00 [INF] Empfangen: sdfgsdfgsdfgsdfg
+2025-10-03 21:52:32.791 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 21:52:34.087 +02:00 [DBG] Connecting to COM10 with 9600 baud
+2025-10-03 21:52:34.101 +02:00 [INF] Successfully connected to COM10
+2025-10-03 21:52:34.104 +02:00 [DBG] Port scanning stopped (connected)
+2025-10-03 21:52:41.899 +02:00 [INF] Sende Daten: sdfgsdfgsdfg
+2025-10-03 21:52:41.899 +02:00 [DBG] Sending data: sdfgsdfgsdfg
+2025-10-03 21:52:41.928 +02:00 [DBG] Received data: sdfgsdfgsdfg
+2025-10-03 21:52:41.928 +02:00 [INF] Empfangen: sdfgsdfgsdfg

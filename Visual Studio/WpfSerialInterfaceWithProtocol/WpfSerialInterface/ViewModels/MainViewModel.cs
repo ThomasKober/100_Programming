@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -40,11 +41,11 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
             }
         }
 
-        private string _receivedData = "";
-        public string ReceivedData
+        private string _logData = "";
+        public string LogData
         {
-            get => _receivedData;
-            set { _receivedData = value; OnPropertyChanged(); }
+            get => _logData;
+            set { _logData = value; OnPropertyChanged(); }
         }
 
         private string _selectedPort;
@@ -68,11 +69,28 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
             set { _sendData = value; OnPropertyChanged(); }
         }
 
+        private bool _autoReconnect = true;
+        public bool AutoReconnect
+        {
+            get => _autoReconnect;
+            set
+            {
+                _autoReconnect = value;
+                _serialPortService.AutoReconnectEnabled = value;
+                OnPropertyChanged();
+
+                var statusMsg = $"Auto-Reconnect wurde {(value ? "AKTIVIERT" : "DEAKTIVIERT")}";
+                _logService.InfoTemplate("Auto-Reconnect {Status}", "System", value ? "aktiviert" : "deaktiviert");
+                AddLogMessage(statusMsg, "INFO");
+            }
+        }
+
         public ICommand TestLogCommand { get; }
         public ICommand ConnectCommand { get; }
         public ICommand DisconnectCommand { get; }
         public ICommand SendCommand { get; }
         public ICommand ToggleThemeCommand { get; }
+        public ICommand ClearLogDataCommand { get; }
 
         private bool _isDarkMode;
         private void ToggleTheme() => IsDarkMode = !IsDarkMode;
@@ -86,19 +104,59 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
                 {
                     _isDarkMode = value;
                     OnPropertyChanged();
-                    ApplyTheme();
+
                     Properties.Settings.Default.IsDarkMode = value;
                     Properties.Settings.Default.Save();
+
+                    ApplyTheme();
                 }
             }
         }
 
         private void ApplyTheme()
         {
-            var app = Application.Current;
-            var resources = app.Resources.MergedDictionaries;
-            resources.Clear();
-            resources.Add(new ResourceDictionary { Source = new Uri($"Themes/{(_isDarkMode ? "Dark" : "Light")}Theme.xaml", UriKind.Relative) });
+            try
+            {
+                var app = Application.Current;
+                if (app?.Resources == null)
+                {
+                    _logService.Warning("Application resources not available", "System");
+                    return;
+                }
+
+                // Create the theme URI - try both relative and pack URI
+                var themeName = _isDarkMode ? "DarkTheme.xaml" : "LightTheme.xaml";
+                ResourceDictionary newTheme = null;
+
+                try
+                {
+                    // Try relative URI first
+                    newTheme = new ResourceDictionary
+                    {
+                        Source = new Uri($"Themes/{themeName}", UriKind.Relative)
+                    };
+                }
+                catch
+                {
+                    // Try pack URI if relative fails
+                    newTheme = new ResourceDictionary
+                    {
+                        Source = new Uri($"/Themes/{themeName}", UriKind.Relative)
+                    };
+                }
+
+                var resources = app.Resources.MergedDictionaries;
+
+                // Clear all and re-add the new theme
+                resources.Clear();
+                resources.Add(newTheme);
+
+                _logService.InfoTemplate("Theme switched to {ThemeName}", "System", themeName);
+            }
+            catch (Exception ex)
+            {
+                _logService.ErrorTemplate(ex, "Failed to apply theme: {Message}", "System", ex.Message);
+            }
         }
 
         public MainViewModel(ISerialPortService serialPortService, ILogService logService)
@@ -109,6 +167,9 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
             _selectedLogLevel = LogLevelOptions[2]; // Default: Info
             SelectedLogLevel = _selectedLogLevel;
 
+            // Enable auto-reconnect by default
+            AutoReconnect = true;
+
             TestLogCommand = new RelayCommand(_ => TestLogs());
             ConnectCommand = new AsyncRelayCommand(ConnectAsync,
                 () => !string.IsNullOrEmpty(SelectedPort) && !_serialPortService.IsPortOpen());
@@ -116,42 +177,96 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
                 () => _serialPortService.IsPortOpen());
             SendCommand = new AsyncRelayCommand(SendDataAsync,
                 () => !string.IsNullOrEmpty(SendData) && _serialPortService.IsPortOpen());
+            ClearLogDataCommand = new RelayCommand(_ => LogData = "");
 
             LoadPorts();
 
             // Subscribe to serial port events
             _serialPortService.DataReceived += OnDataReceived;
             _serialPortService.ConnectionChanged += OnConnectionChanged;
+            _serialPortService.ReconnectStatusChanged += OnReconnectStatusChanged;
 
             ToggleThemeCommand = new RelayCommand(_ => ToggleTheme());
+
+            // Load and apply saved theme preference
             IsDarkMode = Properties.Settings.Default.IsDarkMode;
 
-            // Setup timer for automatic port scanning (every 2 seconds)
+            // Setup timer for automatic port scanning (every 3 seconds)
+            // Timer starts when disconnected
             _portScanTimer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromSeconds(2)
+                Interval = TimeSpan.FromSeconds(3)
             };
             _portScanTimer.Tick += (s, e) => LoadPorts();
-            _portScanTimer.Start();
 
-            _logService.Info("Automatische Port-Aktualisierung aktiviert (alle 2 Sekunden)", "System");
+            // Only start timer if not connected
+            if (!_serialPortService.IsPortOpen())
+            {
+                _portScanTimer.Start();
+            }
+
+            _logService.Info("MainViewModel initialized", "System");
         }
 
         private void OnDataReceived(string data)
         {
             Application.Current.Dispatcher.BeginInvoke(() =>
             {
-                ReceivedData += $"[{DateTime.Now:HH:mm:ss}] {data}\n";
+                AddLogMessage($"Empfangen: {data}", "DATA");
                 _logService.InfoTemplate("Empfangen: {Data}", "Fertigung", data);
             });
         }
 
         private void OnConnectionChanged(bool isConnected)
         {
-            Application.Current.Dispatcher.BeginInvoke(() =>
+            Application.Current.Dispatcher.Invoke(() =>
             {
                 Status = isConnected ? $"Verbunden mit {SelectedPort}" : "Getrennt";
+
+                // Log to UI
+                AddLogMessage(isConnected ? $"Verbunden mit {SelectedPort}" : "Verbindung getrennt", "INFO");
+                AddLogMessage($"AutoReconnect ist: {(AutoReconnect ? "AKTIVIERT" : "DEAKTIVIERT")}", "DEBUG");
+
+                // Only scan for ports when disconnected
+                if (isConnected)
+                {
+                    _portScanTimer.Stop();
+                    _logService.Debug("Port scanning stopped (connected)", "System");
+                }
+                else
+                {
+                    _portScanTimer.Start();
+                    _logService.Debug("Port scanning started (disconnected)", "System");
+                }
+
+                // Force command re-evaluation
                 CommandManager.InvalidateRequerySuggested();
+
+                // Also manually notify property changes
+                OnPropertyChanged(nameof(Status));
+            });
+        }
+
+        private void OnReconnectStatusChanged(string status)
+        {
+            Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                AddLogMessage(status, "RECONNECT");
+            });
+        }
+
+        private void AddLogMessage(string message, string level)
+        {
+            Application.Current.Dispatcher.BeginInvoke(() =>
+            {
+                LogData += $"[{DateTime.Now:HH:mm:ss}] [{level}] {message}\n";
+
+                // Limit log data to last 1000 lines
+                var lines = LogData.Split('\n');
+                if (lines.Length > 1000)
+                {
+                    LogData = string.Join("\n", lines.Skip(lines.Length - 1000));
+                }
             });
         }
 
@@ -222,6 +337,14 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
 
             // Test template methods
             _logService.InfoTemplate("Test mit Parameter: {TestValue}", "Fertigung", 42);
+
+            // Add test logs to UI
+            AddLogMessage("Test-Log: Trace (Entwicklung)", "TRACE");
+            AddLogMessage("Test-Log: Debug (Detailliert)", "DEBUG");
+            AddLogMessage("Test-Log: Info (Standard)", "INFO");
+            AddLogMessage("Test-Log: Warning (Warnung)", "WARNING");
+            AddLogMessage("Test-Log: Error (Fehler)", "ERROR");
+            AddLogMessage("Test-Log: Fatal (Kritisch)", "FATAL");
         }
 
         private async Task ConnectAsync()
@@ -229,44 +352,52 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
             if (string.IsNullOrEmpty(SelectedPort))
             {
                 _logService.Warning("Kein Port ausgewählt!", "System");
+                AddLogMessage("Kein Port ausgewählt!", "WARNING");
                 return;
             }
 
+            AddLogMessage($"Verbinde mit {SelectedPort}...", "INFO");
             bool success = await _serialPortService.ConnectAsync(SelectedPort);
             if (!success)
             {
                 _logService.ErrorTemplate("Verbindung zu {PortName} fehlgeschlagen", "System", SelectedPort);
+                AddLogMessage($"Verbindung zu {SelectedPort} fehlgeschlagen", "ERROR");
             }
         }
 
         private async Task DisconnectAsync()
         {
+            AddLogMessage("Trenne Verbindung...", "INFO");
             await _serialPortService.DisconnectAsync();
         }
 
         private async Task SendDataAsync()
         {
-            if (string.IsNullOrEmpty(SendData))
+            if (string.IsNullOrWhiteSpace(SendData))
             {
                 _logService.Warning("Keine Daten zum Senden eingegeben!", "System");
+                AddLogMessage("Keine Daten zum Senden eingegeben!", "WARNING");
                 return;
             }
 
             if (!_serialPortService.IsPortOpen())
             {
                 _logService.Error("Keine aktive Verbindung!", "System");
+                AddLogMessage("Keine aktive Verbindung!", "ERROR");
                 return;
             }
 
             try
             {
                 _logService.InfoTemplate("Sende Daten: {Data}", "Fertigung", SendData);
+                AddLogMessage($"Sende: {SendData}", "INFO");
                 await _serialPortService.SendDataAsync(SendData);
                 SendData = ""; // Clear input field
             }
             catch (Exception ex)
             {
                 _logService.ErrorTemplate(ex, "Fehler beim Senden der Daten", "System");
+                AddLogMessage($"Fehler beim Senden: {ex.Message}", "ERROR");
             }
         }
 
@@ -280,11 +411,18 @@ namespace WpfSerialInterfaceWithProtocol.ViewModels
                 _portScanTimer?.Stop();
 
                 // Unsubscribe from events
-                _serialPortService.DataReceived -= OnDataReceived;
-                _serialPortService.ConnectionChanged -= OnConnectionChanged;
+                if (_serialPortService != null)
+                {
+                    _serialPortService.DataReceived -= OnDataReceived;
+                    _serialPortService.ConnectionChanged -= OnConnectionChanged;
+                    _serialPortService.ReconnectStatusChanged -= OnReconnectStatusChanged;
+                }
 
-                // Dispose serial port service
-                _serialPortService?.Dispose();
+                // Dispose serial port service (if it implements IDisposable)
+                if (_serialPortService is IDisposable disposableService)
+                {
+                    disposableService.Dispose();
+                }
 
                 _logService.Info("MainViewModel disposed", "System");
             }

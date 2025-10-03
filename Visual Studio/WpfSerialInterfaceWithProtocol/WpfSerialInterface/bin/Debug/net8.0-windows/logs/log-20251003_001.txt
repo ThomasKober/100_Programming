@@ -1,0 +1,3 @@
+2025-10-03 21:41:12.504 +02:00 [INF] Application started successfully
+2025-10-03 22:04:06.698 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 22:04:06.797 +02:00 [INF] MainViewModel initialized

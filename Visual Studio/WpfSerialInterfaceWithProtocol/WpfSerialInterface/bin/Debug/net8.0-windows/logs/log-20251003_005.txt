@@ -1,0 +1,33 @@
+2025-10-03 22:31:14.279 +02:00 [INF] Application started successfully
+2025-10-03 22:38:11.564 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 22:38:11.682 +02:00 [INF] MainViewModel initialized
+2025-10-03 22:39:44.152 +02:00 [INF] Successfully connected to COM10
+2025-10-03 22:39:51.154 +02:00 [WRN] Port COM10 is no longer available in system
+2025-10-03 22:39:51.155 +02:00 [WRN] Connection lost detected!
+2025-10-03 22:39:51.157 +02:00 [INF] Starting auto-reconnect after connection loss
+2025-10-03 22:39:51.157 +02:00 [INF] Starting auto-reconnect for COM10...
+2025-10-03 22:39:54.179 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 85
+2025-10-03 22:39:54.199 +02:00 [INF] Starting auto-reconnect for COM10...
+2025-10-03 22:39:57.212 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 85
+2025-10-03 22:39:57.214 +02:00 [INF] Starting auto-reconnect for COM10...
+2025-10-03 22:40:00.228 +02:00 [ERR] Failed to connect to COM10
+System.IO.FileNotFoundException: Could not find file 'COM10'.
+File name: 'COM10'
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at WpfSerialInterfaceWithProtocol.Core.Services.SerialPortService.ConnectAsync(String portName, Int32 baudRate) in C:\Users\1zwer\Documents\Projects\100_Programming\Visual Studio\WpfSerialInterfaceWithProtocol\WpfSerialInterface\Core\Services\SerialPortService.cs:line 85
+2025-10-03 22:40:00.229 +02:00 [INF] Starting auto-reconnect for COM10...
+2025-10-03 22:40:03.235 +02:00 [INF] Successfully connected to COM10
+2025-10-03 22:40:03.238 +02:00 [INF] Auto-reconnect successful to COM10
+2025-10-03 22:41:09.280 +02:00 [INF] SerialPortService disposed.
+2025-10-03 22:41:09.280 +02:00 [INF] MainViewModel disposed

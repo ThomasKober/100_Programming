@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\wpfserialinterfacewithprotocol\\wpfserialinterface\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj|solutionrelative:wpfserialinterface\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\wpfserialinterfacewithprotocol\\wpfserialinterface\\core\\services\\serialportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj|solutionrelative:wpfserialinterface\\core\\services\\serialportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\wpfserialinterfacewithprotocol\\wpfserialinterface\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj|solutionrelative:wpfserialinterface\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj|c:\\users\\1zwer\\documents\\projects\\100_programming\\visual studio\\wpfserialinterfacewithprotocol\\wpfserialinterface\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{142B9AAD-57B2-4D12-8D75-0A46DB08C558}|WpfSerialInterface\\WpfSerialInterfaceWithProtocol.csproj|solutionrelative:wpfserialinterface\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +18,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "WpfSerialInterface\\ViewModels\\MainViewModel.cs",
               "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\ViewModels\\MainViewModel.cs",
               "RelativeToolTip": "WpfSerialInterface\\ViewModels\\MainViewModel.cs",
-              "ViewState": "AgIAAE4AAAAAAAAAAAArwHAAAABAAAAAAAAAAA==",
+              "ViewState": "AgIAAJEBAAAAAAAAAAAowLQBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-01T15:20:41.007Z",
+              "WhenOpened": "2025-10-03T20:30:37.702Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\Views\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "WpfSerialInterface\\Views\\MainWindow.xaml",
-              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\Views\\MainWindow.xaml",
-              "RelativeToolTip": "WpfSerialInterface\\Views\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-01T15:07:07.902Z"
+              "DocumentIndex": 0,
+              "Title": "SerialPortService.cs",
+              "DocumentMoniker": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\Core\\Services\\SerialPortService.cs",
+              "RelativeDocumentMoniker": "WpfSerialInterface\\Core\\Services\\SerialPortService.cs",
+              "ToolTip": "C:\\Users\\1zwer\\Documents\\Projects\\100_Programming\\Visual Studio\\WpfSerialInterfaceWithProtocol\\WpfSerialInterface\\Core\\Services\\SerialPortService.cs",
+              "RelativeToolTip": "WpfSerialInterface\\Core\\Services\\SerialPortService.cs",
+              "ViewState": "AgIAAJIBAAAAAAAAAAAkwMIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-03T20:29:56.721Z",
+              "EditorCaption": ""
             }
           ]
         }

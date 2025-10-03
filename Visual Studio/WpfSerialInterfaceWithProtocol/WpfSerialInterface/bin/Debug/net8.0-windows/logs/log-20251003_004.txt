@@ -1,0 +1,8 @@
+2025-10-03 22:25:31.220 +02:00 [INF] Application started successfully
+2025-10-03 22:31:13.883 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 22:31:13.982 +02:00 [INF] MainViewModel initialized
+2025-10-03 22:31:19.482 +02:00 [INF] Successfully connected to COM10
+2025-10-03 22:31:58.903 +02:00 [INF] Successfully connected to COM10
+2025-10-03 22:32:05.869 +02:00 [INF] Auto-Reconnect deaktiviert
+2025-10-03 22:32:59.652 +02:00 [INF] Auto-Reconnect aktiviert
+2025-10-03 22:33:04.862 +02:00 [INF] Successfully connected to COM10
